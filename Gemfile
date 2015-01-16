@@ -51,6 +51,8 @@ group :development do
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'rack-livereload'
   gem 'html2haml'
   gem 'quiet_assets'
   gem 'rails_apps_pages'
