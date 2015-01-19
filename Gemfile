@@ -1,23 +1,22 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '2.1.5'
-gem 'rails', '4.1.8'
+ruby '2.2.0'
+gem 'rails', '4.2.0'
+
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'bourbon'
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass'
 gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -27,8 +26,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
 gem 'pg'
@@ -42,20 +39,18 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
 
-  gem 'guard-bundler'
-  gem 'guard-rails'
-  gem 'guard-rspec'
-  gem 'guard-livereload'
+  gem 'guard', '>= 2.2.2',  :require => false
+  gem 'guard-bundler',      :require => false
+  gem 'guard-rails',        :require => false
+  gem 'guard-rspec',        :require => false
+  gem 'guard-livereload',   :require => false
   gem 'rack-livereload'
+  gem 'rb-fsevent',         :require=>false
 
   gem 'html2haml'
   gem 'rails_apps_pages'
   gem 'rails_apps_testing'
   gem 'rails_layout'
-
-  gem 'rb-fchange', :require=>false
-  gem 'rb-fsevent', :require=>false
-  gem 'rb-inotify', :require=>false
 
   gem 'spring-commands-rspec'
 end
@@ -69,7 +64,7 @@ end
 
 group :production do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer',  platforms: :ruby
+  # gem 'therubyracer',  platforms: :ruby
   gem 'rails_12factor'
 end
 
