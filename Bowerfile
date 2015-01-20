@@ -1,0 +1,16 @@
+# A sample Bowerfile
+# Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
+
+# Set assets path. Defaults to ./vendor/assets/bower_components
+# assets_path "assets/"
+
+asset 'jquery'
+asset 'jquery-ujs'
+asset 'bootstrap-sass-twbs'
+asset 'bower-bourbon'
+
+asset 'd3'
+asset 'highcharts'
+
+asset 'chance'
+asset 'highlight'
