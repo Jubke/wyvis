@@ -12,6 +12,8 @@
       .collapse.navbar-collapse#main-navbar
         %ul.nav.navbar-nav
           %li
-            = link_to "Home", '/home' , class: "active"
+            = link_to "Home", page_path('home') , class: "active"
           %li 
-            = link_to "About", '/about'
+            = link_to "About", page_path('about')
+          %li
+            = link_to "Usecases", usecases_path

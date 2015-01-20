@@ -1,0 +1,10 @@
+%h1.page-header Listing libraries
+
+%table
+      
+  %tbody
+    - @libraries.each do |library|
+      %tr
+        %td= library.name
+
+%br
