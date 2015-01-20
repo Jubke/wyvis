@@ -1,0 +1,15 @@
+%h1.page-header Listing usecases
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @usecases.each do |usecase|
+      %tr
+        %td= link_to 'Show', usecase
+
+%br

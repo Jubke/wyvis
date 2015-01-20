@@ -1,0 +1,2 @@
+class ImplementationsController < ApplicationController
+end

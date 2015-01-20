@@ -11,9 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150120173933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "implementations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "author"
+    t.text     "discription"
+    t.integer  "library_id"
+    t.integer  "usecase_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "implementations", ["library_id"], name: "index_implementations_on_library_id", using: :btree
+  add_index "implementations", ["usecase_id"], name: "index_implementations_on_usecase_id", using: :btree
+
+  create_table "libraries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.text     "discription"
+    t.string   "version"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "web_standard"
+    t.string   "latest_version"
+    t.string   "license"
+    t.text     "support"
+  end
+
+  create_table "usecases", force: :cascade do |t|
+    t.string   "name"
+    t.text     "discription"
+    t.string   "author"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
 end
