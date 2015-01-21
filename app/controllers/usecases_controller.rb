@@ -69,6 +69,6 @@ class UsecasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usecase_params
-      params[:usecase]
+      params.require(:usecase).permit(:name,:short,:discription)
     end
 end

@@ -60,6 +60,6 @@ library_list = [
 ]
 
 library_list.each do |l|
-  Library.create( :name => l[0], :discription => l[11], :web_standard => l[1], :latest_version => l[8], :license => l[4], :support => l[5], :url => l[10] )
+  Library.create( :name => l[0], :short => l[11], :discription => l[11], :web_standard => l[1], :latest_version => l[8], :license => l[4], :support => l[5], :url => l[10] )
   
 end

@@ -1,0 +1,15 @@
+= simple_form_for(@library) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :short, hint: 'max. 150 characters', input_html: { maxlength: 150 }
+    = f.input :discription
+    = f.input :url
+    = f.input :license
+    = f.input :latest_version
+    = f.input :web_standard, label: 'Web standards only? (e.g. SVG, Canvas, etc.)'
+    = f.input :support
+
+  .form-actions
+    = f.button :submit, class: 'btn-success'

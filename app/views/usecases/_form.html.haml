@@ -2,6 +2,8 @@
   = f.error_notification
 
   .form-inputs
-
+    = f.input :name
+    = f.input :short, hint: 'max. 150 characters', input_html: { maxlength: 150 }
+    = f.input :discription
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: "btn-success"
