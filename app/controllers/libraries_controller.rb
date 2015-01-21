@@ -4,12 +4,13 @@ class LibrariesController < ApplicationController
   # GET /libraries
   # GET /libraries.json
   def index
-    @libraries = Library.all
+    @libraries = Library.all.order('LOWER(name) ASC')
   end
 
   # GET /libraries/1
   # GET /libraries/1.json
   def show
+    @library = Library.find(params[:id])
   end
 
   # GET /libraries/new
@@ -24,7 +25,7 @@ class LibrariesController < ApplicationController
   # POST /libraries
   # POST /libraries.json
   def create
-    @library = Library.new(Library_params)
+    @library = Library.new(library_params)
 
     respond_to do |format|
       if @library.save
@@ -41,7 +42,7 @@ class LibrariesController < ApplicationController
   # PATCH/PUT /libraries/1.json
   def update
     respond_to do |format|
-      if @library.update(Library_params)
+      if @library.update(library_params)
         format.html { redirect_to @library, notice: 'Library was successfully updated.' }
         format.json { render :show, status: :ok, location: @library }
       else
@@ -56,19 +57,19 @@ class LibrariesController < ApplicationController
   def destroy
     @library.destroy
     respond_to do |format|
-      format.html { redirect_to Libraries_url, notice: 'Library was successfully destroyed.' }
+      format.html { redirect_to libraries_url, notice: 'Library was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_Library
+    def set_library
       @library = Library.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def Library_params
-      params[:Library]
+    def library_params
+      params.require(:library).permit(:name,:short,:discription,:url,:license,:latest_version,:web_standards,:support)
     end
 end

@@ -1,6 +1,14 @@
-%p#notice= notice
+%h1.page-header
+  = @usecase.name
+-if notice
+  .alert.alert-success
+    %p#notice= notice
 
+%p.lead
+  = @usecase.short
+%p
+  = @usecase.discription
 
-= link_to 'Edit', edit_usecase_path(@usecase)
-\|
-= link_to 'Back', usecases_path
+.btn-group
+  = link_to 'Edit', edit_usecase_path(@usecase), class: 'btn btn-default'
+  = link_to 'Back', usecases_path, class: 'btn btn-default'

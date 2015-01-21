@@ -1,10 +1,23 @@
-%h1.page-header Listing libraries
+%h1.page-header Toolbox
+%p.lead This is quite a sufisticated list of libraries and tools for data visualisation on the web. Some of them focus on charting, some on particular visualizations and others are complete web graphing tools capable of almost anything. Feel free to submit more tools you know!
 
-%table
+= link_to 'Add new Library', new_library_path, class: 'btn btn-default'
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Short discription
+      %th License
+      %th Website / Repo
+      %th Edit
       
   %tbody
     - @libraries.each do |library|
       %tr
-        %td= library.name
-
-%br
+        %td= link_to library.name, library
+        %td= library.short
+        %td= library.license
+        %td= link_to library.url, library.url
+        %td= link_to 'edit', edit_library_path(library)
+%br/

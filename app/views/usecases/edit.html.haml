@@ -1,7 +1,7 @@
-%h1 Editing usecase
+%h1 Editing #{link_to @usecase.name, @usecase}
 
 = render 'form'
-
-= link_to 'Show', @usecase
-\|
-= link_to 'Back', usecases_path
+%br/
+.btn-group
+  = link_to 'Show', @usecase, class: "btn btn-default"
+  = link_to 'Back', usecases_path, class: "btn btn-default"
