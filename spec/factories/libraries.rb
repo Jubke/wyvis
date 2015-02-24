@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :library do
     name "MyString"
 url "MyString"
-discription "MyText"
+description "MyText"
 version "MyString"
 implementations ""
   end

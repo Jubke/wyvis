@@ -3,7 +3,7 @@ class CreateImplementations < ActiveRecord::Migration
     create_table :implementations do |t|
       t.string :name
       t.string :author
-      t.text :discription
+      t.text :description
       t.belongs_to :library, index: true
       t.belongs_to :usecase, index: true
 

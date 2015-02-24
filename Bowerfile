@@ -1,3 +1,4 @@
+
 # A sample Bowerfile
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
@@ -10,7 +11,10 @@ asset 'bootstrap-sass-twbs'
 asset 'bower-bourbon'
 
 asset 'd3'
+asset 'd3-plugins'
 asset 'highcharts'
 
 asset 'chance'
-asset 'highlight'
+asset 'ace-builds'
+asset 'highlightjs'
+asset 'colorbrewer2'

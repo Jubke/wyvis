@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121173710) do
+ActiveRecord::Schema.define(version: 20150203160026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,21 @@ ActiveRecord::Schema.define(version: 20150121173710) do
   create_table "implementations", force: :cascade do |t|
     t.string   "name"
     t.string   "author"
-    t.text     "discription"
+    t.text     "description"
     t.integer  "library_id"
     t.integer  "usecase_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "javascript_file_name"
+    t.string   "javascript_content_type"
+    t.integer  "javascript_file_size"
+    t.datetime "javascript_updated_at"
+    t.string   "stylesheet_file_name"
+    t.string   "stylesheet_content_type"
+    t.integer  "stylesheet_file_size"
+    t.datetime "stylesheet_updated_at"
+    t.string   "javascript_content"
+    t.string   "stylesheet_content"
   end
 
   add_index "implementations", ["library_id"], name: "index_implementations_on_library_id", using: :btree
@@ -32,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150121173710) do
   create_table "libraries", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
-    t.text     "discription"
+    t.text     "description"
     t.string   "version"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -45,11 +55,16 @@ ActiveRecord::Schema.define(version: 20150121173710) do
 
   create_table "usecases", force: :cascade do |t|
     t.string   "name"
-    t.text     "discription"
+    t.text     "description"
     t.string   "author"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.text     "short"
+    t.string   "javascript_file_name"
+    t.string   "javascript_content_type"
+    t.integer  "javascript_file_size"
+    t.datetime "javascript_updated_at"
+    t.string   "javascript_content"
   end
 
 end

@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title 
+      VisComp 
+      = yield :title
+    = csrf_meta_tags
+    = javascript_include_tag 'frame', 'data-turbolinks-track' => true
+    = yield :style
+    = yield :script
+  
+  %body{data: {controller: params[:controller], action: params[:action]}}
+    = yield

@@ -3,7 +3,7 @@ class CreateLibraries < ActiveRecord::Migration
     create_table :libraries do |t|
       t.string :name
       t.string :url
-      t.text :discription
+      t.text :description
       t.string :version
 
       t.timestamps null: false

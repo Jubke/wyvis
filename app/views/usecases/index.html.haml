@@ -1,16 +1,17 @@
 %h1.page-header Listing usecases
 
-= link_to "Create new usecase", new_usecase_path, class: 'btn btn-default' 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-      
-  %tbody
-    - @usecases.each do |usecase|
-      %tr
-        %td= link_to 'Show', usecase
-
-%br
+.row
+  - usecases.each do |usecase|
+    .col-sm-4.col-md-3
+      = link_to usecase, class: 'link-thumb' do
+        .thumbnail
+          %img.img-rounded.img-responsive{src: 'http://placehold.it/250x150/eeeeee', alt: usecase.name}/
+          .caption
+            %h3= usecase.name
+            %p= usecase.short
+  .col-sm-4.col-md-3
+    = link_to new_usecase_path, class: 'link-thumb', title: 'Add a new usecase' do
+      .thumbnail.add-item-thumb
+        .plus
+          %div
+          %div

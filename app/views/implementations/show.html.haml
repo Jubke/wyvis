@@ -1,0 +1,20 @@
+- content_for :title do
+  \∙ #{usecase.name}: #{library.name}
+
+%h1.page-header
+  #{ link_to library.name, library} implementation of #{link_to usecase.name, usecase}
+  .btn-group.btn-group-sm.pull-right{role: 'group'}
+    = link_to usecase, class: 'btn btn-default', title: 'Return to ' + usecase.name do
+      %span.glyphicon.glyphicon-arrow-left
+    = link_to edit_usecase_implementation_path(usecase, implementation), class: 'btn btn-default', title: 'Edit' do
+      %span.glyphicon.glyphicon-edit
+      Edit
+-if notice
+  .alert.alert-success
+    %p#notice
+      %span.glyphicon.glyphicon-check
+      = notice
+      %button.close{type: "button", data: {dismiss: "alert"}} &times;
+
+#usecase-app
+  = render partial: 'implementations/partials/implementation', object: implementation
