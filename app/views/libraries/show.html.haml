@@ -6,9 +6,9 @@
 
 %p.lead
   = @library.short
-%p= link_to @library.url
+%p= link_to @library.url, @library.url
 %p
-  = @library.discription
+  = @library.description
 
 .btn-group
   = link_to 'Edit', edit_library_path(@library), class: 'btn btn-default'

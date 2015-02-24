@@ -70,6 +70,6 @@ class LibrariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def library_params
-      params.require(:library).permit(:name,:short,:discription,:url,:license,:latest_version,:web_standards,:support)
+      params.require(:library).permit(:name,:short,:description,:url,:license,:latest_version,:web_standards,:support)
     end
 end

@@ -1,7 +1,6 @@
-%h1 Editing #{link_to @usecase.name, @usecase}
+- content_for :title do
+  \∙ #{usecase.name}
 
-= render 'form'
-%br/
-.btn-group
-  = link_to 'Show', @usecase, class: "btn btn-default"
-  = link_to 'Back', usecases_path, class: "btn btn-default"
+%h1.page-header Editing #{link_to usecase.name, usecase}
+
+= render 'usecases/partials/form'

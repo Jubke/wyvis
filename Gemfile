@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 gem 'rails', '4.2.0'
 
+
 # Use sqlite3 as the database for Active Record
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -13,7 +14,7 @@ gem 'bower-rails', '~> 0.9.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+# gem 'sprockets-es6'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -28,14 +29,25 @@ gem 'haml-rails'
 gem 'high_voltage'
 gem 'pg'
 gem 'simple_form'
+gem 'gon', '~> 5.2.3'
+gem 'draper', '~> 1.3'
+gem 'decent_exposure'
+gem 'devise', '~> 3.3.0'
+gem 'devise-bootstrap-views'
+
+# Handle model attachment file uploads
+gem 'paperclip', "~> 4.2"
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+  # Faster webserver for development
+  gem 'thin'
+
   gem 'quiet_assets'
   gem 'better_errors'
-  gem 'binding_of_caller', :platforms=>[:mri_21]
+  gem 'binding_of_caller'
 
   gem 'guard', '>= 2.2.2',  :require => false
   gem 'guard-bundler',      :require => false
@@ -71,5 +83,6 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'cucumber-rails', :require => false
 end
 

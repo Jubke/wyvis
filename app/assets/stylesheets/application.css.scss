@@ -13,12 +13,20 @@
  *= require_self
  */
 
-$icon-font-path: "bootstrap-sass/assets/fonts/bootstrap/";
+$icon-font-path: "bootstrap-sass-twbs/assets/fonts/bootstrap/";
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sass-twbs/assets/stylesheets/bootstrap-sprockets";
 
+// Custom global variables
 @import "variables/manifest";
+
 // own bootstrap custom to exclude certain components
 @import "bootstrap-custom";
 @import "bower-bourbon/bourbon";
-@import "highlight/src/styles/github";
+@import "highlightjs/styles/github";
+
+// Custom global classes
+@import "globals/manifest";
+
+@import "usecases";
+@import "implementations";

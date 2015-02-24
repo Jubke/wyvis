@@ -14,8 +14,16 @@
 //= require jquery-ujs/src/rails
 //= require bootstrap-sass-twbs/assets/javascripts/bootstrap-sprockets
 //= require turbolinks
+//
 //= require chance/chance
-//= require highlight/src/highlight
-//= require d3/d3
-//= require highcharts/highcharts
-//= require_tree .
+//= require colorbrewer2/colorbrewer
+//= require ace-builds/src-min-noconflict/ace
+//= require ace-builds/src-min-noconflict/worker-javascript
+//= require ace-builds/src-min-noconflict/theme-chrome
+//= require ace-builds/src-min-noconflict/mode-javascript
+//= require ace-builds/src-min-noconflict/mode-css
+//
+//= require_tree ./lib/vis_compare
+//
+//= require init
+//= require_tree ./implementations

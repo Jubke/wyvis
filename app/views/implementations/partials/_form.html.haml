@@ -1,0 +1,10 @@
+= simple_form_for([usecase, implementation], :html => { :multipart => true }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :library
+    = f.input :javascript, as: 'file', label: 'Upload the Javascript', hint: 'Please upload non minified versions only (e.g. example.js)'
+    = f.input :stylesheet, as: 'file', label: 'Upload the Stylesheet', hint: 'Please upload non compressed css stylesheets only (e.g. example.css)'
+  .form-actions
+    = f.button :submit, class: "btn-success"
+    = link_to 'Cancel', :back, class: 'btn btn-default btn-danger'

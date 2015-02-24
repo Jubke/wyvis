@@ -1,14 +1,31 @@
+- content_for :title do
+  \∙ #{usecase.name}
+
+.btn-group.btn-group-xs{role: 'group'}
+  = link_to 'Back to usecases', usecases_path, class: 'btn btn-default btn-small'
+  = link_to edit_usecase_path(usecase), class: 'btn btn-default btn-small', title: 'Edit' do
+    %span.glyphicon.glyphicon-edit
+    Edit
 %h1.page-header
-  = @usecase.name
+  = usecase.name
 -if notice
   .alert.alert-success
-    %p#notice= notice
+    %p#notice
+      %span.glyphicon.glyphicon-check
+      = notice
+      %button.close{tape: "button", data: {dismiss: "alert"}} &times;
 
 %p.lead
-  = @usecase.short
+  = usecase.short
 %p
-  = @usecase.discription
+  = usecase.description
 
-.btn-group
-  = link_to 'Edit', edit_usecase_path(@usecase), class: 'btn btn-default'
-  = link_to 'Back', usecases_path, class: 'btn btn-default'
+%h2 Implementations
+.row
+  = render partial: 'implementations/partials/implementation_thumb', collection: usecase.implementations
+  .col-sm-4.col-md-3
+    = link_to new_usecase_implementation_path(usecase), class: 'link-thumb', title: 'Add a new implementation' do
+      .thumbnail.add-item-thumb
+        .plus
+          %div
+          %div

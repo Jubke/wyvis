@@ -1,0 +1,7 @@
+.col-sm-4.col-md-3
+  = link_to usecase_implementation_path(usecase, implementation_thumb), class: 'link-thumb' do
+    .thumbnail
+      %img.img-rounded.img-responsive{src: 'http://placehold.it/250x150/eeeeee'}/
+      .caption
+        %h3= implementation_thumb.library.name
+        %h5 by xyz

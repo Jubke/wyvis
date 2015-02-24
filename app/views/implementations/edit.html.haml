@@ -1,0 +1,4 @@
+%h1 Editing #{link_to implementation.library.name, usecase_implementation_path(usecase, implementation)} implementation of #{link_to implementation.usecase.name, usecase}
+
+= render 'implementations/partials/form'
+= link_to "Delete", usecase_implementation_path(usecase, implementation), method: :delete, data: { confirm: 'Are you sure?' }
