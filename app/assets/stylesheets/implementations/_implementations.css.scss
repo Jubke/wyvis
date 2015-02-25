@@ -6,6 +6,10 @@ body[data-controller=implementations] {
     max-width: 1024px;
   }
 
+  .form-inline {
+    padding: 8px 33px;
+  }
+
   .implementation {
     position: relative;
 
@@ -54,7 +58,9 @@ body[data-controller=implementations] {
     }
     
     .code-container {
-      .col-xs-12 {padding: 0;}
+      .col-xs-12 {
+        padding: 0;
+      }
 
       .code-wrapper {
         @include box-sizing(border-box);

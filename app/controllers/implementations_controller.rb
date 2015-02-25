@@ -1,15 +1,17 @@
 class ImplementationsController < ApplicationController
   expose(:usecase)
+  expose(:implementations) {ImplementationDecorator.decorate_collection(usecase.implementations)}
   expose(:implementation, attributes: :implementation_params)
   expose(:library) { implementation.library }
 
   # GET /implementations/1
   # GET /implementations/1.js
-  def show
+  def show    
+    render layout: 'wide_content'
   end
 
   def remote
-    @implementation = Implementation.find( params[:id] )
+    @implementation = Implementation.find( params[:id] ).decorate
     @index = params[:index]
     
     respond_to do |format|
@@ -19,14 +21,9 @@ class ImplementationsController < ApplicationController
 
   # GET /implementations/compare/?ids[]
   def compare
-    @implementations = Implementation.find( params[:ids] )
+    @implementations = ImplementationDecorator.decorate_collection( Implementation.find( params[:ids] ) )
 
-    @array_of_implementations = []
-    usecase.implementations.each do |i|
-      @array_of_implementations << i.id
-    end
-
-    render layout: 'application_fluid'
+    render layout: 'wide_content'
   end
 
   # GET /implmentations/1/frame
