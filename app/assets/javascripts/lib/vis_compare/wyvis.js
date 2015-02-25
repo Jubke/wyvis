@@ -7,6 +7,7 @@
   defaults = {
     target_id: 'usecase-app',
     code_wrapper_class: 'code-wrapper',
+    controls_wrapper_class: 'controls-wrapper',
     visualization_wrapper_class: 'vis-wrapper'
   };
 
@@ -37,9 +38,10 @@
     // buffer jQuery objects for each modul
     this.$code = this.$element.find( '.' + this.options.code_wrapper_class );
     this.$visuals = this.$element.find( '.' + this.options.visualization_wrapper_class );
+    this.$controls = this.$element.find( '.' + this.options.controls_wrapper_class);
 
     // initialize the editor plugin
-    this.$code.editor();
+    this.$code.editor( this );
     this.editor = this.$code.data("plugin_editor");
 
     // initialize the visualization plugin

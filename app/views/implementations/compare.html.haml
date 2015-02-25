@@ -2,15 +2,12 @@
   \∙ Comparing
 
 %h4 Comparing implementations of #{link_to usecase.name, usecase}
-#usecase-app
-  .row
-    - @implementations.each_with_index do |impl, i|
-      .col-md-6{id: 'col-index-' + i.to_s}
-        = form_tag(remote_implementation_path(usecase), method: 'get', format: 'javascript', remote: true) do
-          .form-group
-            = select_tag(:id, options_for_select(@array_of_implementations), class: 'form-control')
-          %input#index{type: 'hidden', name: 'index', value: i}
-          = submit_tag('Load', class: 'btn btn-default')
-        %h2= impl.library.name
-        %hr/
-        = render partial: 'implementations/partials/implementation', object: impl
+.row
+  - @implementations.each_with_index do |impl, i|
+    .col-md-6{id: 'col-index-' + i.to_s}
+      = form_tag(remote_implementation_path(usecase), method: 'get', format: 'javascript', remote: true) do
+        %input#index{type: 'hidden', name: 'index', value: i}
+        .form-group
+          = select_tag(:id, options_for_select(@array_of_implementations), class: 'form-control')
+        = submit_tag('Load', class: 'btn btn-default')
+      = render partial: 'implementations/partials/implementation', object: impl 

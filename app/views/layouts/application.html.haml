@@ -10,6 +10,6 @@
       
   %body{data: {controller: params[:controller], action: params[:action]}}
     = render 'layouts/shared/header'
-    .container
+    .container-fluid
       = yield
     = render 'layouts/shared/footer'
