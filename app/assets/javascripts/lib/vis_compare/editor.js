@@ -9,8 +9,9 @@
   };
 
   // The actual plugin constructor
-  function Editor ( element, options ) {    
+  function Editor ( element, app, options ) {    
     this.$element = $( element );
+    this.app = app;
     this.options = $.extend( {}, defaults, options) ;
 
     this._defaults = defaults;
@@ -30,7 +31,7 @@
 
     _build.apply(this);
 
-    this.ace = ace.edit( this.$element.find("textarea").get(0) );
+    this.ace = ace.edit( this.$textarea[0] );
     this.ace.setTheme('ace/theme/' + this.options.theme);
 
     this.ace.on('change', function (e) {
@@ -43,39 +44,38 @@
    * @return {[type]} [description]
    */
   var _build = function () {
-    var html = '<div class="btn-group btn-group-sm" role="group"></div>';
-    this.$controls = $(html);
-    this.$element.prepend(this.$controls);
-
     // add the event handler
     var context = this;
-    this.$controls.delegate('.btn', 'click', function (e) {
+    this.app.$controls.delegate('.btn-editor-tab', 'click', function (e) {
       var name = $( e.currentTarget ).attr("id");
       _setTab.call(context, name);
     });
 
-    var $textarea = $( '<textarea></textarea>' );
-    this.$element.append($textarea);
+    this.$textarea = $( '<textarea></textarea>' );
+    this.$element.append(this.$textarea);
   };
+
+
 
   /**
    * Activates the editSession of the given ID
    * @param {integer} tab_id ID of the Tab to activate
    */
-  var _setTab = function (name) {
+  var _setTab = function (name) {    
     var tab = this.tabs[name];
     if (tab !== undefined) {
       this.ace.setSession( tab.session );
-      this.$controls.find(".btn").removeClass("active");
+      this.app.$controls.find(".btn-editor-tab").removeClass("active");
       tab.$btn.addClass("active");
     }
   };
 
-  var _buildTab = function (doc) {
 
-  };
 
   // public methods
+  Editor.prototype.setTab = function (name) {
+    _setTab.call(this, name);
+  };
 
   /**
    * Create a new EditSession with the specified document, name and mode
@@ -100,9 +100,9 @@
     }
 
     // add tab controlls
-    var html = '<button id="' + name + '" class="btn btn-default" role="button">' + label + '</button>';
+    var html = '<button id="' + name + '" class="btn btn-default btn-editor-tab" role="button">' + label + '</button>';
     this.tabs[name].$btn = $( html );
-    this.$controls.append(this.tabs[name].$btn);
+    this.app.$controls.find(".btn-group-editor").append(this.tabs[name].$btn);
   };
 
   Editor.prototype.setTab = function (name) {
@@ -127,11 +127,11 @@
 
   // A really lightweight plugin wrapper around the constructor,
   // preventing against multiple instantiations
-  $.fn[pluginName] = function ( options ) {
+  $.fn[pluginName] = function ( app, options ) {
     return this.each(function () {
       if ( !$.data(this, "plugin_" + pluginName )) {
         $.data( this, "plugin_" + pluginName,
-          new Editor( this, options ));
+          new Editor( this, app, options ));
       }
     });
   };
