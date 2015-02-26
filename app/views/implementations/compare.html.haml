@@ -1,5 +1,5 @@
 - content_for :title do
-  \∙ Comparing
+  Compare and edit
 
 %h4 Comparing implementations of #{link_to usecase.name, usecase}
 .row
@@ -8,6 +8,5 @@
       = form_tag(remote_implementation_path(usecase), method: 'get', format: 'javascript', remote: true, class: 'form-inline') do
         %input#index{type: 'hidden', name: 'index', value: i}
         .form-group
-          = select_tag :id, options_from_collection_for_select(implementations, 'id', 'lib_name', selected: [impl.id,impl.lib_name]), class: 'form-control'
-          = button_tag('Load', class: 'btn btn-default')
+          = select_tag :id, options_from_collection_for_select(implementations, 'id', 'lib_name', selected: [impl.id,impl.lib_name]), class: 'form-control', onchange: 'javascript: $( this ).trigger("submit.rails")'
       = render partial: 'implementations/partials/implementation', object: impl 

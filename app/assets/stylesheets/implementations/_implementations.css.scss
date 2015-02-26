@@ -8,6 +8,15 @@ body[data-controller=implementations] {
 
   .form-inline {
     padding: 8px 33px;
+
+    select {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+      font-size: 2em;
+      font-weight: 200;
+      color: $brand-info;
+    }
   }
 
   .implementation {
