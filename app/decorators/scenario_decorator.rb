@@ -1,9 +1,6 @@
 class ScenarioDecorator < Draper::Decorator
   delegate_all
-
-  def has_interval?
-    object.javascript_content.include? '.setInterval('
-  end
+ 
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:

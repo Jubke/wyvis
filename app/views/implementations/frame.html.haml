@@ -1,5 +1,5 @@
 - content_for :style do
-  = stylesheet_link_tag asset_path( implementation.stylesheet.url )
+  = stylesheet_link_tag implementation.styles_url
   :css
     html, body, #vis {
     margin: 0;
@@ -11,5 +11,5 @@
   %style#styles
 
 #vis
-= javascript_include_tag asset_path( scenario.javascript.url )
-= javascript_include_tag asset_path( implementation.javascript.url )
+= javascript_include_tag scenario.script_url
+= javascript_include_tag implementation.script_url
