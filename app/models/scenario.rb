@@ -1,33 +1,36 @@
 class Scenario < ActiveRecord::Base
-  has_attached_file :javascript,
-    :path => :default_path,
-    :url => :default_url
+  include Transliterate
 
   validates :name, :description, :short, presence: true
-  validates_attachment :javascript, 
-    :content_type => {:content_type => ['application/javascript', 'application/x-javascript', 'text/javascript']},
-    :file_name => {:matches => /js\Z/}
 
   has_many :implementations, dependent: :destroy
   has_many :libraries, through: :implementations
 
-  before_save :extract_javascript_content
+  def script  
+    File.open(dir_path + '/data.js').read
+  end
 
-  def javascript_path
-    ActionController::Base.helpers.asset_path( javascript.url )
+  def dir_path
+    "#{Rails.root.join('public','assets').to_s}/scenarios/#{transliterate_name}"
+  end
+
+  def dir_url
+    "/assets/scenarios/#{transliterate_name}"
+  end
+
+  def script_url
+    dir_url + '/data.js'
+  end
+
+  def has_interval?
+    script.include? '.setInterval('
+  end
+
+  def json
+    self.to_json(
+      :methods => :script
+    )
   end
 
   private
-    def default_url
-      '/assets/scenarios/' + self.id.to_s + '/:attachment/:basename:dotextension'
-    end
-
-    def default_path
-      ':rails_root/public' + default_url
-    end
-
-    def extract_javascript_content
-      path = javascript.queued_for_write[:original].path
-      self.javascript_content = File.open(path).read
-    end
 end

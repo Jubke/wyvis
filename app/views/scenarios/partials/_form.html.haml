@@ -5,7 +5,7 @@
     = f.input :name
     = f.input :short, hint: 'max. 150 characters', input_html: { maxlength: 150 }
     = f.input :description
-    = f.input :javascript, as: 'file', label: 'Javascript', hint: "Javascript to initialize the common datasource used by all implementations of your scenario"
   .form-actions
     = f.button :submit, class: "btn-success"
-    = link_to 'Cancel', :back, class: 'btn btn-default btn-danger'
+    = link_to 'Cancel', :back, class: 'btn btn-default'
+    = link_to 'Delete', scenario, method: :delete, class: 'btn btn-danger'
