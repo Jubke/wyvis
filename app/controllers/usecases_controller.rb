@@ -1,6 +1,7 @@
 class UsecasesController < ApplicationController
   expose(:usecases)
   expose(:usecase, attributes: :usecase_params)
+  expose(:implementations) {ImplementationDecorator.decorate_collection(usecase.implementations)}
 
   # GET /usecases
   def index
