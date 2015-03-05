@@ -1,4 +1,6 @@
 body[data-controller=implementations] {
+  background-color: $brand-dark;
+  color: #fff;
   
   .max-width-1024 {
     position: relative;
@@ -67,6 +69,7 @@ body[data-controller=implementations] {
     }
     
     .code-container {
+
       .col-xs-12 {
         padding: 0;
       }

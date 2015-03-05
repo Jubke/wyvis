@@ -7,13 +7,23 @@
   .row.controls-container
     .col-xs-12
       .max-width-1024
-        .controls-wrapper
+        .btn-toolbar.controls-wrapper
           .btn-group
             %button#redraw.btn.btn-default{title: 'Redraw the visualization to apply changes', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
               %span.glyphicon.glyphicon-pencil
             %button#reset.btn.btn-default{title: 'Reset the visualization to the initial state', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
               %span.glyphicon.glyphicon-trash
           .btn-group.btn-group-editor
+
+          - if usecase_view.has_interval?
+            .btn-group
+              
+            .btn-group
+              .btn-label
+                %span.glyphicon.glyphicon-transfer
+                &nbsp;Data-Stream
+              %button#toggle-pause.btn.btn-default.active{title: 'start/stop the data flow'}
+                %span.glyphicon
   .row.code-container
     .col-xs-12
       .max-width-1024
