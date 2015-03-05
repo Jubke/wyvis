@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   resources :libraries
 
-  resources :usecases do
+  resources :scenarios do
     resources :implementations
   end
 
-  get 'usecases/:usecase_id/compare' => 'implementations#compare', as: :compare
-  get 'usecases/:usecase_id/remote' => 'implementations#remote', as: :remote_implementation
-  get 'usecases/:usecase_id/implementations/:id/frame' => 'implementations#frame', as: :frame
+  get 'scenarios/:scenario_id/compare' => 'implementations#compare', as: :compare
+  get 'scenarios/:scenario_id/remote' => 'implementations#remote', as: :remote_implementation
+  get 'scenarios/:scenario_id/implementations/:id/frame' => 'implementations#frame', as: :frame
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

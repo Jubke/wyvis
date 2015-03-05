@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150203160026) do
     t.string   "author"
     t.text     "description"
     t.integer  "library_id"
-    t.integer  "usecase_id"
+    t.integer  "scenario_id"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "javascript_file_name"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20150203160026) do
   end
 
   add_index "implementations", ["library_id"], name: "index_implementations_on_library_id", using: :btree
-  add_index "implementations", ["usecase_id"], name: "index_implementations_on_usecase_id", using: :btree
+  add_index "implementations", ["scenario_id"], name: "index_implementations_on_scenario_id", using: :btree
 
   create_table "libraries", force: :cascade do |t|
     t.string   "name"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20150203160026) do
     t.text     "short"
   end
 
-  create_table "usecases", force: :cascade do |t|
+  create_table "scenarios", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "author"

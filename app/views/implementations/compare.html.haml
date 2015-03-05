@@ -1,11 +1,11 @@
 - content_for :title do
   Compare and edit
 
-%h4 Comparing implementations of #{link_to usecase.name, usecase}
+%h4 Comparing implementations of #{link_to scenario.name, scenario}
 .row
   - @implementations.each_with_index do |impl, i|
     .col-md-6{id: 'col-index-' + i.to_s}
-      = form_tag(remote_implementation_path(usecase), method: 'get', format: 'javascript', remote: true, class: 'form-inline') do
+      = form_tag(remote_implementation_path(scenario), method: 'get', format: 'javascript', remote: true, class: 'form-inline') do
         %input#index{type: 'hidden', name: 'index', value: i}
         .form-group
           = select_tag :id, options_from_collection_for_select(implementations, 'id', 'lib_name', selected: [impl.id,impl.lib_name]), class: 'form-control', onchange: 'javascript: $( this ).trigger("submit.rails")'

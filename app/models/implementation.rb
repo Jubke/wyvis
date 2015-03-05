@@ -14,9 +14,9 @@ class Implementation < ActiveRecord::Base
     :content_type => {:content_type => ['text/css']},
     :file_name => {:matches => /css\Z/}
   
-  validates :library_id, :usecase_id, presence: true
+  validates :library_id, :scenario_id, presence: true
 
-  belongs_to :usecase
+  belongs_to :scenario
   belongs_to :library
 
   before_save :extract_javascript_content, :extract_stylesheet_content
@@ -31,7 +31,7 @@ class Implementation < ActiveRecord::Base
 
   private
     def default_url
-      '/assets/usecases/' + self.usecase_id.to_s + '/implementations/' + self.library_id.to_s + '/:attachment/:basename:dotextension'
+      '/assets/scenarios/' + self.scenario_id.to_s + '/implementations/' + self.library_id.to_s + '/:attachment/:basename:dotextension'
     end
 
     def default_path
