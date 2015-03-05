@@ -1,6 +1,7 @@
 class ImplementationsController < ApplicationController
   expose(:usecase)
-  expose(:implementations) {ImplementationDecorator.decorate_collection(usecase.implementations)}
+  expose(:usecase_view) { usecase.decorate }
+  expose(:implementations) { ImplementationDecorator.decorate_collection(usecase.implementations) }
   expose(:implementation, attributes: :implementation_params)
   expose(:library) { implementation.library }
 
@@ -47,7 +48,7 @@ class ImplementationsController < ApplicationController
     # PATCH/PUT /implmentations/1
   def update
     if implementation.save
-      redirect_to implementation, notice: 'Usecase was successfully updated.'
+      redirect_to usecase_implementation_path(usecase,implementation), notice: 'Usecase was successfully updated.'
     else
       render :edit
     end
