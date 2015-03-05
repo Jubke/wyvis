@@ -5,7 +5,7 @@
   // Create the defaults once
   var pluginName = "wyvis",
   defaults = {
-    target_id: 'usecase-app',
+    target_id: 'scenario-app',
     code_wrapper_class: 'code-wrapper',
     controls_wrapper_class: 'controls-wrapper',
     visualization_wrapper_class: 'vis-wrapper'
@@ -32,7 +32,7 @@
 
     // Try loading data inputs
     this.implementation = this.$element.data("implementation");
-    this.usecase = this.$element.data("usecase");
+    this.scenario = this.$element.data("scenario");
     this.library = this.$element.data("library");
     
     // buffer jQuery objects for each modul
@@ -51,7 +51,7 @@
     // add tabs to editor
     this.editor.createTab(this.implementation.javascript_content, 'javascript', 'JS', 'javascript');
     this.editor.createTab(this.implementation.stylesheet_content, 'styles','CSS', 'css');
-    this.editor.createTab(this.usecase.javascript_content, 'data', 'Data' , 'javascript');
+    this.editor.createTab(this.scenario.javascript_content, 'data', 'Data' , 'javascript');
 
     // set javascript as default tab
     this.editor.setTab("javascript");

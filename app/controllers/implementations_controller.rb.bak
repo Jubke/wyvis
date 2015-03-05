@@ -2,10 +2,10 @@ class ImplementationsController < ApplicationController
   before_action :set_implementation, only: [:show, :frame, :edit, :update, :destroy]
   before_action :set_associations, only: [:show, :frame]
   
-  # GET /usecases/1/implementations/new
+  # GET /scenarios/1/implementations/new
   def new
-    @usecase = Usecase.find(params[:usecase_id])
-    @implementation = @usecase.implementations.new
+    @scenario = Scenario.find(params[:scenario_id])
+    @implementation = @scenario.implementations.new
   end
 
   # GET /implementations/1
@@ -17,12 +17,12 @@ class ImplementationsController < ApplicationController
   # GET /implementations/compare/:id/:id_2
   def compare
     @implementations = Implementation.find( params[:id_1], params[:id_2] )
-    @usecases = []
+    @scenarios = []
     @libraries = []
     gon.implementations = []
     @implementations.each do |impl|
       gon.implementations << impl_to_json(impl)
-      @usecases << impl.usecase
+      @scenarios << impl.scenario
       @libraries << impl.library
     end
 
@@ -38,16 +38,16 @@ class ImplementationsController < ApplicationController
   def edit
   end
 
-  # POST /usecases/1/implementations
-  # POST /usecases/1/implementations.json
+  # POST /scenarios/1/implementations
+  # POST /scenarios/1/implementations.json
   def create
-    @usecase = Usecase.find(params[:usecase_id])
+    @scenario = Scenario.find(params[:scenario_id])
     @implementation = Implementation.new(implementation_params)
-    @implementation.usecase_id = params[:usecase_id]
+    @implementation.scenario_id = params[:scenario_id]
 
     respond_to do |format|
       if @implementation.save
-        format.html { redirect_to @usecase, notice: 'Implementation was successfully created.' }
+        format.html { redirect_to @scenario, notice: 'Implementation was successfully created.' }
       else
         format.html { render :new }
       end
@@ -59,7 +59,7 @@ class ImplementationsController < ApplicationController
   def update
     respond_to do |format|
       if @implementation.update(implementation_params)
-        format.html { redirect_to @implementation, notice: 'Usecase was successfully updated.' }
+        format.html { redirect_to @implementation, notice: 'Scenario was successfully updated.' }
         format.json { render :show, status: :ok, location: @implementation }
       else
         format.html { render :edit }
@@ -71,10 +71,10 @@ class ImplementationsController < ApplicationController
   # DELETE /implementations/1
   # DELETE /implementations/1.json
   def destroy
-    @usecase = @implementation.usecase
+    @scenario = @implementation.scenario
     @implementation.destroy
     respond_to do |format|
-      format.html { redirect_to usecase, notice: 'Implementation was successfully destroyed.' }
+      format.html { redirect_to scenario, notice: 'Implementation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -86,7 +86,7 @@ class ImplementationsController < ApplicationController
     end
 
     def set_associations
-      @usecase = @implementation.usecase
+      @scenario = @implementation.scenario
       @library = @implementation.library
     end
 
@@ -98,7 +98,7 @@ class ImplementationsController < ApplicationController
     def impl_to_json(impl)
       impl.to_json(
         :include => [
-          :usecase,
+          :scenario,
           :library
         ]
       )
