@@ -5,7 +5,8 @@
   // Create the defaults once
   var pluginName = "frame",
   defaults = {
-
+    data_object: "dweak",
+    draw_function: "draw"
   };
 
   // The actual plugin constructor
@@ -65,13 +66,22 @@
     }
   };
 
-  Frame.prototype.redraw = function () {
-    this.$vis.empty();
-    this.iframeWindow.init();
+  Frame.prototype.resetData = function () {
+    this.iframeWindow[this.options.data_object].reset();
+    this.iframeWindow.$(document).off("new.data");
   };
 
-  Frame.prototype.reset = function () {
+  Frame.prototype.callDraw = function () {
+    this.$vis.empty();
+    this.iframeWindow[this.options.draw_function]();
+  };
+
+  Frame.prototype.refresh = function () {
     this.$iframe.attr("src", this.$iframe.attr("src"));
+  };
+
+  Frame.prototype.togglePause = function (e) {
+    this.iframeWindow[this.options.data_object].toggleInterval();
   };
 
   // A really lightweight plugin wrapper around the constructor,

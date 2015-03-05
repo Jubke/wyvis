@@ -8,11 +8,12 @@
 //= require d3/d3
 //= require d3-plugins/sankey/sankey
 //= require highcharts/highcharts
+//= require lib/wyvis/dweak
 
 
 var setOnLoad = function (argument) {
   window.hasLoaded = true;
-  init();
+  draw();
 };
 
 $(document).ready(setOnLoad);

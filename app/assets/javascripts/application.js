@@ -23,7 +23,7 @@
 //= require ace-builds/src-min-noconflict/mode-javascript
 //= require ace-builds/src-min-noconflict/mode-css
 //
-//= require_tree ./lib/vis_compare
+//= require_tree ./lib/wyvis
 //
 //= require init
 //= require_tree ./implementations
