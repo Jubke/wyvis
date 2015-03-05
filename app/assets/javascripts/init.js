@@ -4,6 +4,13 @@ App.implementations = {};
 
 App.common.init = function () {
   $('[data-toggle="tooltip"]').tooltip();
+
+  // $( document ).on('page:change', function() {
+  //       $( '#content' ).addClass('rollIn') ; 
+  // });
+  // $( document ).on('page:fetch', function() {
+  //       $( '#content' ).addClass('hinge') ;
+  // });
 };
 
 var UTIL = {
