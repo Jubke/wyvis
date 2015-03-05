@@ -1,14 +1,14 @@
 - content_for :title do
-  #{usecase_view.name}: #{library.name}
+  #{scenario_view.name}: #{library.name}
 
 .row
   .col-md-6.col-md-offset-3
     %h1.page-header
-      #{ link_to library.name, library} implementation of #{link_to usecase.name, usecase}
+      #{ link_to library.name, library} implementation of #{link_to scenario.name, scenario}
       .btn-group.btn-group-sm.pull-right{role: 'group'}
-        = link_to usecase, class: 'btn btn-default', title: 'Return to ' + usecase.name do
+        = link_to scenario, class: 'btn btn-default', title: 'Return to ' + scenario.name do
           %span.glyphicon.glyphicon-arrow-left
-        = link_to edit_usecase_implementation_path(usecase, implementation), class: 'btn btn-default', title: 'Edit' do
+        = link_to edit_scenario_implementation_path(scenario, implementation), class: 'btn btn-default', title: 'Edit' do
           %span.glyphicon.glyphicon-edit
           Edit
     -if notice
