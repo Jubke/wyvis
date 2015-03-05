@@ -1,9 +1,9 @@
-= content_tag 'div', class: 'implementation', id: 'implementation-' + implementation.id.to_s, data: {implementation: implementation, usecase: implementation.usecase, library: implementation.library} do
+= content_tag 'div', class: 'implementation', id: 'implementation-' + implementation.id.to_s, data: {implementation: implementation, scenario: implementation.scenario, library: implementation.library} do
   .row.vis-container
     .col-xs-12
       .max-width-1024
         .vis-wrapper
-          %iframe{id: 'frame-' + implementation.id.to_s, src: frame_path(usecase, implementation), sandbox: 'allow-scripts allow-same-origin'}
+          %iframe{id: 'frame-' + implementation.id.to_s, src: frame_path(scenario, implementation), sandbox: 'allow-scripts allow-same-origin'}
   .row.controls-container
     .col-xs-12
       .max-width-1024
@@ -15,7 +15,7 @@
               %span.glyphicon.glyphicon-trash
           .btn-group.btn-group-editor
 
-          - if usecase_view.has_interval?
+          - if scenario_view.has_interval?
             .btn-group
               
             .btn-group

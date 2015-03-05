@@ -5,7 +5,7 @@ class CreateImplementations < ActiveRecord::Migration
       t.string :author
       t.text :description
       t.belongs_to :library, index: true
-      t.belongs_to :usecase, index: true
+      t.belongs_to :scenario, index: true
 
       t.timestamps null: false
     end
