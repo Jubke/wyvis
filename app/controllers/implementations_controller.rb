@@ -1,7 +1,7 @@
 class ImplementationsController < ApplicationController
-  expose(:usecase)
-  expose(:usecase_view) { usecase.decorate }
-  expose(:implementations) { ImplementationDecorator.decorate_collection(usecase.implementations) }
+  expose(:scenario)
+  expose(:scenario_view) { scenario.decorate }
+  expose(:implementations) { ImplementationDecorator.decorate_collection(scenario.implementations) }
   expose(:implementation, attributes: :implementation_params)
   expose(:library) { implementation.library }
 
@@ -36,10 +36,10 @@ class ImplementationsController < ApplicationController
   def edit
   end
 
-  # POST /usecases/1/implementations
+  # POST /scenarios/1/implementations
   def create
     if implementation.save
-      redirect_to usecase, notice: 'Implementation was successfully created.'
+      redirect_to scenario, notice: 'Implementation was successfully created.'
     else
       render :new
     end
@@ -48,7 +48,7 @@ class ImplementationsController < ApplicationController
     # PATCH/PUT /implmentations/1
   def update
     if implementation.save
-      redirect_to usecase_implementation_path(usecase,implementation), notice: 'Usecase was successfully updated.'
+      redirect_to scenario_implementation_path(scenario,implementation), notice: 'Scenario was successfully updated.'
     else
       render :edit
     end
@@ -57,7 +57,7 @@ class ImplementationsController < ApplicationController
   # DELETE /implementations/1
   def destroy
     implementation.destroy
-    redirect_to usecase, notice: 'Implementation was successfully destroyed.'
+    redirect_to scenario, notice: 'Implementation was successfully destroyed.'
   end
 
   private
@@ -69,7 +69,7 @@ class ImplementationsController < ApplicationController
     def impl_to_json(impl)
       impl.to_json(
         :include => [
-          :usecase,
+          :scenario,
           :library
         ]
       )

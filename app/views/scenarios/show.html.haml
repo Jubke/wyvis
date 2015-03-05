@@ -1,0 +1,45 @@
+- content_for :title do
+  #{scenario.name}
+
+.btn-group.btn-group-xs{role: 'group'}
+  = link_to 'Back to scenarios', scenarios_path, class: 'btn btn-default btn-small'
+  = link_to edit_scenario_path(scenario), class: 'btn btn-default btn-small', title: 'Edit' do
+    %span.glyphicon.glyphicon-edit
+    Edit
+%h1.page-header
+  = scenario.name
+-if notice
+  .alert.alert-success
+    %p#notice
+      %span.glyphicon.glyphicon-check
+      = notice
+      %button.close{tape: "button", data: {dismiss: "alert"}} &times;
+
+%p.lead
+  = scenario.short
+%p
+  = scenario.description
+
+%h2 Compare two Implementations
+%p.lead
+  Select two initial implementations to get started.
+
+= form_tag compare_path(scenario), method: 'get', class: 'form-inline' do
+  .form-group
+    = select_tag 'ids[]', options_from_collection_for_select(implementations, 'id', 'lib_name'), prompt: 'Library 1', class: 'form-control', required: true
+  .form-group
+    = select_tag 'ids[]', options_from_collection_for_select(implementations, 'id', 'lib_name'), prompt: 'Library 2', class: 'form-control', required: true
+  = button_tag 'Compare', class: 'btn btn-info'
+%br/
+%p
+  The comparison view allows you to easily see different interpretations of the scenario side by side. You can inspect and edit the source code right in the brwoser to explore possibilties and find out which library comforts you most.
+
+%h2 Implementations
+.row
+  = render partial: 'implementations/partials/implementation_thumb', collection: scenario.implementations
+  .col-sm-4.col-md-3
+    = link_to new_scenario_implementation_path(scenario), class: 'link-thumb', title: 'Add a new implementation' do
+      .thumbnail.add-item-thumb
+        .plus
+          %div
+          %div
