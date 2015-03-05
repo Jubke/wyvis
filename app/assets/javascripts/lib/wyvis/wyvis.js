@@ -49,9 +49,9 @@
     this.frame = this.$visuals.data("plugin_frame");
 
     // add tabs to editor
-    this.editor.createTab(this.implementation.javascript_content, 'javascript', 'JS', 'javascript');
-    this.editor.createTab(this.implementation.stylesheet_content, 'styles','CSS', 'css');
-    this.editor.createTab(this.scenario.javascript_content, 'data', 'Data' , 'javascript');
+    this.editor.createTab(this.implementation.script, 'javascript', 'JS', 'javascript');
+    this.editor.createTab(this.implementation.styles, 'styles','CSS', 'css');
+    this.editor.createTab(this.scenario.script, 'data', 'Data' , 'javascript');
 
     // set javascript as default tab
     this.editor.setTab("javascript");

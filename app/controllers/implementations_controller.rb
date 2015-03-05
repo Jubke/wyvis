@@ -1,9 +1,11 @@
 class ImplementationsController < ApplicationController
   expose(:scenario)
-  expose(:scenario_view) { scenario.decorate }
-  expose(:implementations) { ImplementationDecorator.decorate_collection(scenario.implementations) }
+  #expose(:implementations) { ImplementationDecorator.decorate_collection(scenario.implementations) }
   expose(:implementation, attributes: :implementation_params)
   expose(:library) { implementation.library }
+
+  def new
+  end
 
   # GET /implementations/1
   # GET /implementations/1.js
@@ -41,7 +43,7 @@ class ImplementationsController < ApplicationController
     if implementation.save
       redirect_to scenario, notice: 'Implementation was successfully created.'
     else
-      render :new
+      render :new 
     end
   end
 
@@ -63,15 +65,7 @@ class ImplementationsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def implementation_params
-      params.require(:implementation).permit(:library_id, :javascript, :stylesheet)
-    end
-
-    def impl_to_json(impl)
-      impl.to_json(
-        :include => [
-          :scenario,
-          :library
-        ]
-      )
+      p = params.permit(:scenario_id)
+      p.merge params.require(:implementation).permit(:library_id)
     end
 end

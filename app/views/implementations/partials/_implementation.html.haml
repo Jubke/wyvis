@@ -1,4 +1,4 @@
-= content_tag 'div', class: 'implementation', id: 'implementation-' + implementation.id.to_s, data: {implementation: implementation, scenario: implementation.scenario, library: implementation.library} do
+= content_tag 'div', class: 'implementation', id: 'implementation-' + implementation.id.to_s, data: {implementation: implementation.json, scenario: implementation.scenario.json, library: implementation.library} do
   .row.vis-container
     .col-xs-12
       .max-width-1024
@@ -15,7 +15,7 @@
               %span.glyphicon.glyphicon-trash
           .btn-group.btn-group-editor
 
-          - if scenario_view.has_interval?
+          - if scenario.has_interval?
             .btn-group
               
             .btn-group

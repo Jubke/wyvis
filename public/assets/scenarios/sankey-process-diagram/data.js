@@ -72,11 +72,13 @@
   
   dweak.defineTweak({
     value : function (pre) {
-
-      return chance.integer({
-        min: Math.max(pre - (pre * 0.2), 1), 
-        max: Math.min(pre + (pre * 0.25), 500)
-      });
+      return chance.weighted([
+        chance.integer({
+          min: Math.max(pre - (pre * 0.2), 1), 
+          max: Math.min(pre + (pre * 0.25), 500)
+        }),
+        pre
+      ],[20,80]);
     },
   });
 
