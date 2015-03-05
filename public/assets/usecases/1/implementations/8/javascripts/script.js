@@ -2,15 +2,17 @@
 /*global $*/
 /*global colorbrewer*/
 
-var init = function() {
-    var margin = {top: 1, right: 1, bottom: 6, left: 1},
-    width = $("#vis").width() - margin.left - margin.right,
-    height = $("#vis").height() - margin.top - margin.bottom;
+var draw = function() {
+  'use strict';
+
+  var margin = {top: 1, right: 1, bottom: 6, left: 1},
+      width = $("#vis").width() - margin.left - margin.right,
+      height = $("#vis").height() - margin.top - margin.bottom,
+      timeout = dweak.getIntervalTimeout();
 
   // formatting of strings for labels and color scale
   var formatNumber = d3.format(",.0f"),
     format = function (d) {
-      'use strict';
       return formatNumber(d) + " Users";
     },
     color = d3.scale.ordinal()
@@ -40,7 +42,6 @@ var init = function() {
   var path = sankey.link();
 
   function update(data) {
-    'use strict';
     sankey
       .nodes(data.nodes)
       .links(data.links)
@@ -66,7 +67,7 @@ var init = function() {
     // Update all links
     link
       .transition()
-      .duration(1000)
+      .duration(timeout)
       .attr("d", path)
       .style("stroke-width", function (d) { return Math.max(1, d.dy); })
       .sort(function (a, b) { return b.dy - a.dy; })
@@ -123,38 +124,26 @@ var init = function() {
     // Update all nodes
     node
       .transition()
-      .duration(1000)
+      .duration(timeout)
       .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
     // node height
     node.select("rect")
       .transition()
-      .duration(1000)
+      .duration(timeout)
       .attr("height", function (d) { return d.dy; });
 
     // adding node labels + formatting
     node.select("text")
       .transition()
-      .duration(1000)
+      .duration(timeout)
       .attr("y", function (d) { return d.dy / 2; });
   }
 
-  function random_data(data) {
-    'use strict';
-    var i;
-    for (i = data.links.length - 1; i >= 0; i--) {
-      data.links[i].value = Math.floor(Math.random() * 100);
-    }
+  var data = dweak.getData();
+  update(data);
 
-    return data;
-  }
-
-  var $data = data;
-  update($data);
-
-  $("#update").on("click", function () {
-    'use strict';
-    $data = random_data($data);
-    update($data);
+  $( dweak ).on("new.data", function (e, data) {
+    update(data);
   });
 };
