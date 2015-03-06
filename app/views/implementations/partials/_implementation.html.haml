@@ -7,7 +7,7 @@
   .row.controls-container
     .col-xs-12
       .max-width-1024
-        .btn-toolbar.controls-wrapper
+        .controls-wrapper
           .btn-group
             %button#redraw.btn.btn-default{title: 'Redraw the visualization to apply changes', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
               %span.glyphicon.glyphicon-pencil
@@ -16,8 +16,6 @@
           .btn-group.btn-group-editor
 
           - if scenario.has_interval?
-            .btn-group
-              
             .btn-group
               .btn-label
                 %span.glyphicon.glyphicon-transfer

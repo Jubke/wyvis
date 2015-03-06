@@ -1,6 +1,6 @@
 class ImplementationsController < ApplicationController
   expose(:scenario)
-  #expose(:implementations) { ImplementationDecorator.decorate_collection(scenario.implementations) }
+  expose(:implementations) { ImplementationDecorator.decorate_collection(scenario.implementations) }
   expose(:implementation, attributes: :implementation_params)
   expose(:library) { implementation.library }
 

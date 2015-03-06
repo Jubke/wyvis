@@ -67,7 +67,13 @@
     // initialize redraw button
     this.$element.delegate('#redraw', 'click', function (e) {
       var scripts = that.editor.getScripts();
+      
+      // clean data object in the frame
       that.frame.resetData();
+
+      // reset the play/pause button status
+      $( "#toggle-pause" ).addClass("active")
+
       $.each(scripts, function (i, script) {
         that.frame.injectScript(script);
       });
