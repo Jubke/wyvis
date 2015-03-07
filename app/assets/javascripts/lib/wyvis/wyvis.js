@@ -69,10 +69,10 @@
       var scripts = that.editor.getScripts();
       
       // clean data object in the frame
-      that.frame.resetData();
+      that.frame.destroyData();
 
       // reset the play/pause button status
-      $( "#toggle-pause" ).addClass("active")
+      $( "#toggle-pause" ).addClass("active");
 
       $.each(scripts, function (i, script) {
         that.frame.injectScript(script);

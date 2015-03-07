@@ -280,7 +280,7 @@
     }
   };
 
-  Dweak.prototype.reset = function () {
+  Dweak.prototype.destroy = function () {
     this.clearInterval();
 
     this._data = {};
