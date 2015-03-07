@@ -1,5 +1,6 @@
 var chart;
 var draw = function () {
+  // draw the chart
   chart = new Highcharts.Chart({
     chart: {
       renderTo: 'vis',
@@ -10,7 +11,7 @@ var draw = function () {
       text: 'Simple Line Chart'
     },
     series: [{
-      data: [dweak.getData()],
+      data: [dweak.getData()], // initial data point
     }],
     xAxis: {
       type: 'datetime'
