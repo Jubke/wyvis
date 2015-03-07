@@ -4,7 +4,7 @@
 %h4 Comparing implementations of #{link_to scenario.name, scenario}
 .row
   - @implementations.each_with_index do |impl, i|
-    .col-md-6{id: 'col-index-' + i.to_s}
+    .col-md-6.implementation-container{id: 'col-index-' + i.to_s}
       = form_tag(remote_implementation_path(scenario), method: 'get', format: 'javascript', remote: true, class: 'form-inline') do
         %input#index{type: 'hidden', name: 'index', value: i}
         .form-group
