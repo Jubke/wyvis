@@ -66,13 +66,13 @@
     }
   };
 
-  Frame.prototype.resetData = function () {
-    this.iframeWindow[this.options.data_object].reset();
+  Frame.prototype.destroyData = function () {
+    this.iframeWindow[this.options.data_object].destroy();
     this.iframeWindow.$(document).off("new.data");
   };
 
   Frame.prototype.callDraw = function () {
-    this.$vis.empty();
+    this.$vis.replaceWith("<div id='vis' ></div>");
     this.iframeWindow[this.options.draw_function]();
   };
 
