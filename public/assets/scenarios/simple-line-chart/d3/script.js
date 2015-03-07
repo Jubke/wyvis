@@ -2,7 +2,7 @@ var draw = function() {
   'use strict';
 
   // set up margins
-  var margin = {top: 0, right: 0, bottom: 40, left: 40},
+  var margin = {top: 10, right: 10, bottom: 40, left: 40},
       width = $("#vis").width() - margin.left - margin.right,
       height = $("#vis").height() - margin.top - margin.bottom,
       timeout = dweak.getIntervalTimeout(); // retrieves the timeout interval set on the data object
@@ -75,9 +75,12 @@ var draw = function() {
 
     // upadte the domains of the scales
     x.domain(d3.extent(data, function(d) { return d.x; }));
+
+    var extend = d3.extent(data, function(d) { return d.y; }),
+        diff = extend[1] - extend[0];
     y.domain([
-      d3.min(data, function(d) { return d.y; }) * 0.97,
-      d3.max(data, function(d) { return d.y; }) * 1.03
+      extend[0] - 0.1 * diff,
+      extend[1] + 0.1 * diff
     ]);
 
     // update axis helpers
