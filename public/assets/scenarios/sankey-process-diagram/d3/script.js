@@ -1,7 +1,3 @@
-/*global d3*/
-/*global $*/
-/*global colorbrewer*/
-
 var draw = function() {
   'use strict';
 
@@ -21,10 +17,10 @@ var draw = function() {
   // setup basic svg
   var svg = d3.select("#vis")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   // prepair link and node groups
   var link_group = svg.append("g")
