@@ -32,6 +32,14 @@ class Implementation < ActiveRecord::Base
     dir_url + "/styles.css"
   end
 
+  def resources
+    paths = Dir.glob('public' + dir_url + '/lib/*.js')
+    paths.each_index do |i|
+      paths[i] = paths[i].sub('public', '')
+    end
+    return paths 
+  end
+
   def json
     self.to_json(
       :methods => [:script, :styles]

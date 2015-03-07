@@ -11,5 +11,8 @@
   %style#styles
 
 #vis
+= javascript_include_tag library.cdn_url
 = javascript_include_tag scenario.script_url
 = javascript_include_tag implementation.script_url
+- implementation.resources.each do |url|
+  = javascript_include_tag url

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305172948) do
+ActiveRecord::Schema.define(version: 20150307083127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150305172948) do
     t.string   "license"
     t.text     "support"
     t.text     "short"
+    t.string   "cdn_url"
   end
 
   create_table "scenarios", force: :cascade do |t|
