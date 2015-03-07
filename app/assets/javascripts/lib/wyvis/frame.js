@@ -66,13 +66,17 @@
     }
   };
 
-  Frame.prototype.destroyData = function () {
+  Frame.prototype.destroy = function () {
     this.iframeWindow[this.options.data_object].destroy();
+
+    var new_vis = $( "<div id='vis'></div>" );
+    this.$vis.replaceWith(new_vis);
+    this.$vis = new_vis;
+
     this.iframeWindow.$(document).off("new.data");
   };
 
   Frame.prototype.callDraw = function () {
-    this.$vis.replaceWith("<div id='vis' ></div>");
     this.iframeWindow[this.options.draw_function]();
   };
 
