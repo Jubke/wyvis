@@ -8,5 +8,5 @@
       = form_tag(remote_implementation_path(scenario), method: 'get', format: 'javascript', remote: true, class: 'form-inline') do
         %input#index{type: 'hidden', name: 'index', value: i}
         .form-group
-          = select_tag :id, options_from_collection_for_select(implementations, 'id', 'lib_name', selected: [impl.id,impl.lib_name]), class: 'form-control', onchange: 'javascript: $( this ).trigger("submit.rails")'
+          = select_tag :id, options_from_collection_for_select(scenario_implementations, 'id', 'lib_name', selected: [impl.id,impl.lib_name]), class: 'form-control', onchange: 'javascript: $( this ).trigger("submit.rails")'
       = render partial: 'implementations/partials/implementation', object: impl 
