@@ -10,8 +10,8 @@
   dweak.defineTweak({
     y : function (pre) {
       return chance.integer({
-        min: Math.max(pre - (pre * 0.02), 1), 
-        max: Math.min(pre + (pre * 0.025), 200)
+        min: Math.max(pre - 5, 1), 
+        max: Math.min(pre + 5, 200)
       });
     },
     x : function (pre) {
