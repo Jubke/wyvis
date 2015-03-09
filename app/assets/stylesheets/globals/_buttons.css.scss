@@ -16,6 +16,16 @@
   }
 }
 
+.btn-icon {
+  background-color: transparent;
+  color: #fff;
+
+  &:hover, &:focus {
+    background-color: transparent;
+    color: $brand-info;
+  }
+}
+
 .btn-label {
   @extend .btn;
   @extend .btn-default;

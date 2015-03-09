@@ -1,12 +1,16 @@
 - content_for :title do
-  Compare and edit
+  = scenario.name
 
-%h4 Comparing implementations of #{link_to scenario.name, scenario}
-.row
+%h4 Comparing implementations of the #{link_to scenario.name, scenario} scenario:
+.row.compare-container
   - @implementations.each_with_index do |impl, i|
-    .col-md-6.implementation-container{id: 'col-index-' + i.to_s}
-      = form_tag(remote_implementation_path(scenario), method: 'get', format: 'javascript', remote: true, class: 'form-inline') do
-        %input#index{type: 'hidden', name: 'index', value: i}
-        .form-group
-          = select_tag :id, options_from_collection_for_select(scenario_implementations, 'id', 'lib_name', selected: [impl.id,impl.lib_name]), class: 'form-control', onchange: 'javascript: $( this ).trigger("submit.rails")'
+    .implementation-container{id: 'col-index-' + i.to_s}
+      .top-controls
+        = form_tag(remote_implementation_path(scenario), method: 'get', format: 'javascript', remote: true, class: 'form-inline form-impl-select') do
+          %input#index{type: 'hidden', name: 'index', value: i}
+          .form-group
+            = select_tag :id, options_from_collection_for_select(scenario_implementations, 'id', 'lib_name', selected: [impl.id,impl.lib_name]), class: 'form-control', onchange: 'javascript: $( this ).trigger("submit.rails")'
+        %button.btn.btn-icon.btn-impl-enlarge
+          %span.glyphicon
+
       = render partial: 'implementations/partials/implementation', object: impl 
