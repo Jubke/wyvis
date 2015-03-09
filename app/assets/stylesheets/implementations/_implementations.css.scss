@@ -8,19 +8,104 @@ body[data-controller=implementations] {
     max-width: 1024px;
   }
 
-  .form-inline {
-    padding: 8px 33px;
-
-    select {
-      background-color: transparent;
-      border: none;
-      box-shadow: none;
-      font-size: 2em;
-      font-weight: 200;
-      color: $brand-info;
-    }
+  .compare-container {
+    position: relative;
   }
 
+  .implementation-container {
+    @extend .col-md-6;
+    position: relative;
+    top: 0;
+    left: 0;
+
+    @include transition(all 0.5s linear 0s);
+
+    &#col-index-0 {
+
+      &.zero-width {
+        transform: -50%;
+      }
+    }
+
+    &#col-index-1 {
+
+      &.zero-width {
+        left: -50%;
+      }
+    }
+
+    &.full-width {
+      @extend .col-md-12;
+
+      &:last-child {
+        float: right;
+      }
+    }
+
+    &.zero-width {
+      padding: 0;
+      overflow: hidden;
+      opacity: 0.1;
+    }
+  
+    .top-controls {
+      @extend .clearfix;
+      display: block;
+      height: auto;
+  
+      .btn-impl-enlarge {
+        margin: 10.5px 0;
+        float: right;
+  
+        span {
+          @extend .glyphicon-resize-full;
+        }
+
+        &.active span {
+          @extend .glyphicon-resize-small;
+        }
+      }
+  
+      .form-impl-select {
+        float: left;
+        padding: 8px 33px;
+        width: 80%;
+  
+        .form-group {
+          position: relative;
+          
+          &:after {
+            display: block;
+            content: "\22EE";
+            position: absolute;
+            font-size: 1.5em;
+            color: $brand-info;
+            left: 5px;
+            top: 0.3em;
+          }
+          &:hover {
+            select, &:after {
+              cursor: pointer;
+              color: $brand-info;
+            }
+          }
+        }
+  
+        select {
+          -webkit-appearance: none;
+          position: relative;
+          padding: 0 10px 0 20px;
+          height: 1.4em;
+          background-color: transparent;
+          border: none;
+          box-shadow: none;
+          font-size: 2em;
+          font-weight: 200;
+          color: #fff;
+        }
+      }
+    }
+  }
   .implementation {
     position: relative;
 
