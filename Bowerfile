@@ -9,6 +9,8 @@ asset 'jquery'
 asset 'jquery-ujs'
 asset 'bootstrap-sass-twbs'
 asset 'bower-bourbon'
+asset 'seeker'
+asset 'jquery-live-search'
 
 asset 'd3'
 asset 'd3-plugins'

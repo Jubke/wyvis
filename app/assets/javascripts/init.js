@@ -1,6 +1,7 @@
 var App = App || {};
 App.common = {};
 App.implementations = {};
+App.libraries = {};
 
 App.common.init = function () {
   $('[data-toggle="tooltip"]').tooltip();

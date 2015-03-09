@@ -1,23 +1,20 @@
-%h1.page-header Toolbox
-%p.lead This is quite a sufisticated list of libraries and tools for data visualisation on the web. Some of them focus on charting, some on particular visualizations and others are complete web graphing tools capable of almost anything. Feel free to submit more tools you know!
+%h1.page-header Tools & libraries
+%p.lead This is a list of libraries and tools for data visualisation for the web. Some of them focus on charting, some on particular visualizations and others are complete web graphing tools capable of more complex visualization. Feel free to submit more tools you know!
 
-= link_to 'Add new Library', new_library_path, class: 'btn btn-default'
-
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Short description
-      %th License
-      %th Website / Repo
-      %th Edit
-      
-  %tbody
-    - libraries.each do |library|
-      %tr
-        %td= link_to library.name, library
-        %td= library.short
-        %td= library.license
-        %td= link_to library.url, library.url
-        %td= link_to 'edit', edit_library_path(library)
+.form-group.form-inline
+  .input-group
+    %input.form-control#search-query{type: 'text', placeholder: 'search...'}
+    %span.input-group-btn
+      %button.btn.btn-default{type:"button", onclick: "$('#search-query').val('').trigger('blur');"}
+        x
+  = link_to 'Add new Library', new_library_path, class: 'btn btn-default'
+.vertical-spacer
+#live-search.row
+  - libraries.each do |library|
+    .col-sm-4.col-md-3.search-tile{id: library.transliterate_name}
+      = link_to library, class: 'link-thumb' do
+        .thumbnail.library-thumb
+          .caption
+            %h3= library.name
+            %div= library.short
 %br/

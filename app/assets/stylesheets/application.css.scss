@@ -14,6 +14,7 @@
  */
 
 $icon-font-path: "bootstrap-sass-twbs/assets/fonts/bootstrap/";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400);
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sass-twbs/assets/stylesheets/bootstrap-sprockets";
 
@@ -31,3 +32,4 @@ $icon-font-path: "bootstrap-sass-twbs/assets/fonts/bootstrap/";
 
 @import "scenarios";
 @import "implementations";
+@import "libraries";

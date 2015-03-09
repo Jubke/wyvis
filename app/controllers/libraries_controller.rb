@@ -1,6 +1,6 @@
 class LibrariesController < ApplicationController
   expose :library, attributes: :library_params
-  expose :libraries
+  expose(:libraries) { Library.order('LOWER(name) ASC') }
 
   # GET /libraries
   def index
