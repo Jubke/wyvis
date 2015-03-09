@@ -22,8 +22,10 @@
 //= require ace-builds/src-min-noconflict/theme-chrome
 //= require ace-builds/src-min-noconflict/mode-javascript
 //= require ace-builds/src-min-noconflict/mode-css
+//= require jquery-live-search/jquery.live.search
 //
 //= require_tree ./lib/wyvis
 //
 //= require init
 //= require_tree ./implementations
+//= require_tree ./libraries

@@ -3,9 +3,9 @@ module Transliterate extend ActiveSupport::Concern
   def transliterate(s)
     # Transliterate by Dave South
     # Based on permalink_fu by Rick Olsen
-   
+    
     # Escape str by transliterating to UTF-8 with Iconv
-    s.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "_")
+    s = s.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "_")
    
     # Downcase string
     s.downcase!
