@@ -10,3 +10,5 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile << %r(bootstrap-sass-twbs/assets/fonts/bootstrap/[\w-]+\.(?:eot|svg|ttf|woff2?)$)
 
 Rails.application.config.assets.precompile += %w( frame.js )
+
+Rails.application.config.assets.precompile << Rails.root.join('vendor', 'assets', 'components')
