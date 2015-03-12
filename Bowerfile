@@ -8,7 +8,7 @@
 asset 'jquery'
 asset 'jquery-ujs'
 asset 'bootstrap-sass-twbs'
-asset 'bower-bourbon'
+asset 'bourbon'
 asset 'seeker'
 asset 'jquery-live-search'
 
