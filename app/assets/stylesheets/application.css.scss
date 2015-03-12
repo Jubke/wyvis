@@ -23,7 +23,7 @@ $icon-font-path: "bootstrap-sass-twbs/assets/fonts/bootstrap/";
 
 // own bootstrap custom to exclude certain components
 @import "bootstrap-custom";
-@import "bourbon/app/assets/stylesheets/bourbon";
+@import "bourbon/dist/bourbon";
 //@import "animation";
 @import "highlightjs/styles/github";
 
