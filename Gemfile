@@ -31,7 +31,7 @@ gem 'simple_form'
 gem 'gon', '~> 5.2.3'
 gem 'draper', '~> 1.3'
 gem 'decent_exposure'
-gem 'devise', '~> 3.3.0'
+# gem 'devise', '~> 3.3.0'
 gem 'devise-bootstrap-views'
 
 # Handle model attachment file uploads

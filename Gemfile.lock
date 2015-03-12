@@ -41,7 +41,6 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
-    bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -87,12 +86,6 @@ GEM
     database_cleaner (1.4.0)
     debug_inspector (0.0.2)
     decent_exposure (2.3.2)
-    devise (3.3.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
     devise-bootstrap-views (0.0.4)
     diff-lcs (1.2.5)
     draper (1.4.0)
@@ -194,7 +187,6 @@ GEM
     notiffany (0.0.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    orm_adapter (0.5.0)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -332,8 +324,6 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.3)
-      rack (>= 1.0)
     websocket (1.2.1)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -348,7 +338,6 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   decent_exposure
-  devise (~> 3.3.0)
   devise-bootstrap-views
   draper (~> 1.3)
   factory_girl_rails
