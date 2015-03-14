@@ -259,7 +259,7 @@
         that.addData(tweaked_data);
       }
 
-      // trigger global event for tweaked data
+      // trigger event for tweaked data
       $( this ).trigger('tweak.data');
 
     }, this._interval.timeout);
@@ -282,6 +282,8 @@
 
   Dweak.prototype.destroy = function () {
     this.clearInterval();
+    
+    $(this).off();
 
     this._data = {};
     this._data_set = [];
