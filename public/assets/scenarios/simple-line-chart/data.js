@@ -5,9 +5,9 @@
       "y" : 100,
     };
 
-  dweak.addData(data, true);
+  datahub.addData(data, true);
 
-  dweak.defineTweak({
+  datahub.defineTweak({
     y : function (pre) {
       return chance.integer({
         min: Math.max(pre - 5, 1), 
@@ -19,6 +19,6 @@
     },
   });
 
-  dweak.setInterval({timeout: 100});
+  datahub.setInterval({timeout: 100});
 
 })();

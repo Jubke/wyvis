@@ -5,7 +5,7 @@
   // Create the defaults once
   var pluginName = "frame",
   defaults = {
-    data_object: "dweak",
+    data_object: "datahub",
     draw_function: "draw"
   };
 

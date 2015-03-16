@@ -5,7 +5,7 @@
 //= require chance/chance
 //= require colorbrewer2/colorbrewer
 
-//= require lib/wyvis/dweak
+//= require lib/wyvis/datahub
 
 
 var setOnLoad = function (argument) {
