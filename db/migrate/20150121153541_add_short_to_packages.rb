@@ -1,5 +1,5 @@
 class AddShortToLibraries < ActiveRecord::Migration
   def change
-    add_column :libraries, :short, :text
+    add_column :packages, :short, :text
   end
 end

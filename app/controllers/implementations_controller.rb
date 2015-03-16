@@ -1,7 +1,7 @@
 class ImplementationsController < ApplicationController
   expose(:scenario)
   expose(:implementation, attributes: :implementation_params)
-  expose(:library) { implementation.library }
+  expose(:package) { implementation.package }
   expose(:scenario_implementations) { ImplementationDecorator.decorate_collection(scenario.implementations) }
 
   def new
@@ -66,6 +66,6 @@ class ImplementationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def implementation_params
       p = params.permit(:scenario_id)
-      p.merge params.require(:implementation).permit(:library_id)
+      p.merge params.require(:implementation).permit(:package_id)
     end
 end

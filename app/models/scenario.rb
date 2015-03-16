@@ -4,7 +4,7 @@ class Scenario < ActiveRecord::Base
   validates :name, :description, :short, presence: true
 
   has_many :implementations, dependent: :destroy
-  has_many :libraries, through: :implementations
+  has_many :packages, through: :implementations
 
   def script  
     File.open(dir_path + '/data.js').read

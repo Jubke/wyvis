@@ -1,5 +1,5 @@
 var App = App || {};
-App.libraries.index = function() {
+App.packages.index = function() {
   window.liveSearch = $.liveSearch({
     selectorContainer: "#live-search",
     selectorElementsToSearch: ".search-tile",

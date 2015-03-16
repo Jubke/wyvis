@@ -1,6 +1,6 @@
-class CreateLibraries < ActiveRecord::Migration
+class CreatePackages < ActiveRecord::Migration
   def change
-    create_table :libraries do |t|
+    create_table :packages do |t|
       t.string :name
       t.string :url
       t.text :description

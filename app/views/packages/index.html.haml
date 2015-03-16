@@ -1,0 +1,20 @@
+%h1.page-header Tools & packages
+%p.lead This is a list of packages and tools for data visualisation for the web. Some of them focus on charting, some on particular visualizations and others are complete web graphing tools capable of more complex visualization. Feel free to submit more tools you know!
+
+.form-group.form-inline
+  .input-group
+    %input.form-control#search-query{type: 'text', placeholder: 'search...'}
+    %span.input-group-btn
+      %button.btn.btn-default{type:"button", onclick: "$('#search-query').val('').trigger('blur');"}
+        x
+  = link_to 'Add new Package', new_package_path, class: 'btn btn-default'
+.vertical-spacer
+#live-search.row
+  - packages.each do |package|
+    .col-sm-4.col-md-3.search-tile{id: package.transliterate_name}
+      = link_to package, class: 'link-thumb' do
+        .thumbnail.package-thumb
+          .caption
+            %h3= package.name
+            %div= package.short
+%br/
