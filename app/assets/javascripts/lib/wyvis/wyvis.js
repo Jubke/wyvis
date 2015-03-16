@@ -33,7 +33,7 @@
     // Try loading data inputs
     this.implementation = this.$element.data("implementation");
     this.scenario = this.$element.data("scenario");
-    this.library = this.$element.data("library");
+    this.package = this.$element.data("package");
     
     // buffer jQuery objects for each modul
     this.$code = this.$element.find( '.' + this.options.code_wrapper_class );

@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :implementation do
     name "MyString"
 description "MyText"
-library ""
+package ""
   end
 
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :libraries
+  resources :packages
 
   resources :scenarios do
     resources :implementations

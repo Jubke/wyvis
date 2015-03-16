@@ -1,0 +1,7 @@
+%h1 Editing #{link_to package.name, package}
+
+= render 'packages/partials/form'
+%br/
+.btn-group
+  = link_to 'Back', packages_path, class: 'btn btn-default'
+  = link_to 'Show', package, class: 'btn btn-default'

@@ -1,10 +1,10 @@
 class Implementation < ActiveRecord::Base
   include Transliterate
   
-  validates :library_id, :scenario_id, presence: true
+  validates :package_id, :scenario_id, presence: true
 
   belongs_to :scenario
-  belongs_to :library
+  belongs_to :package
 
   before_save :set_name
 
@@ -48,6 +48,6 @@ class Implementation < ActiveRecord::Base
 
   private
     def set_name
-      self.name = self.library.name
+      self.name = self.package.name
     end
 end

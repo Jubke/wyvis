@@ -1,0 +1,15 @@
+%h1.page-header
+  = package.name
+-if notice
+  .alert.alert-success
+    %p#notice= notice
+
+%p.lead
+  = package.short
+%p= link_to package.url, package.url
+%p
+  = package.description
+
+.btn-group
+  = link_to 'Edit', edit_package_path(package), class: 'btn btn-default'
+  = link_to 'Back', packages_path, class: 'btn btn-default'
