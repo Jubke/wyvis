@@ -1,5 +1,4 @@
 - content_for :style do
-  = stylesheet_link_tag implementation.styles_url
   :css
     html, body, #vis {
     margin: 0;
@@ -8,6 +7,7 @@
     height: 100%;
     overflow: scroll;
     }
+  = stylesheet_link_tag implementation.styles_url
   %style#styles
 
 #vis

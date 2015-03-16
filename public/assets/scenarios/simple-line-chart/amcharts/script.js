@@ -3,7 +3,7 @@ var draw = function () {
   chart = AmCharts.makeChart("vis", {
     "type": "serial",
     "theme": "none",
-    "dataProvider": [dweak.getData()],
+    "dataProvider": [datahub.getData()],
     "valueAxes": [{
         "position": "left",
         "title": "Values"
@@ -32,7 +32,7 @@ var draw = function () {
   }
 
   // call update on the new.data event
-  $( dweak ).on("new.data", function (e, data) {
+  $( datahub ).on("new.data", function (e, data) {
     update(data);
   });
 };

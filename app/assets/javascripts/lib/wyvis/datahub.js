@@ -24,9 +24,9 @@
       };
 
   // Constructor
-  function Dweak (opts) {
-    if (!(this instanceof Dweak)) {
-      return new Dweak(opts);
+  function DataHub (opts) {
+    if (!(this instanceof DataHub)) {
+      return new DataHub(opts);
     } 
     
     this._data = {};
@@ -85,7 +85,7 @@
    * Adds a new data object to the data set array
    * @param {Object} data object to be added to the end of the array
    */
-  Dweak.prototype.addData = function (data, set_data) {
+  DataHub.prototype.addData = function (data, set_data) {
     this._data_set.push(data);
 
     if ( typeof(set_data) === 'boolean' && set_data ) {
@@ -97,7 +97,7 @@
    * Sets the active data object
    * @param {int} index of the data object in the data set array
    */
-  Dweak.prototype.setData = function (index) {
+  DataHub.prototype.setData = function (index) {
     this._data_index = index;
     this._data = this._data_set[this._data_index];
 
@@ -109,7 +109,7 @@
    * Returns the active data
    * @return {Object} active data object
    */
-  Dweak.prototype.getData = function () {
+  DataHub.prototype.getData = function () {
     var r = $.extend(true, {}, this._data);
     return r;
   };
@@ -118,7 +118,7 @@
    * Returns current datas index within the data set
    * @return {int} index
    */
-  Dweak.prototype.getIndex = function () {
+  DataHub.prototype.getIndex = function () {
     return this._data_index;
   };
 
@@ -128,7 +128,7 @@
    * If neither applies the active data is returned.
    * @return {Object} a data object
    */
-  Dweak.prototype.getNextData = function () {
+  DataHub.prototype.getNextData = function () {
     // if there is more data vailable,
     // return that data
     if (this._data_index + 1 <= this._data_set.length - 1) {
@@ -155,7 +155,7 @@
    * If neither applies the active data is returned.
    * @return {Object} data object
    */
-  Dweak.prototype.getPreviousData = function () {
+  DataHub.prototype.getPreviousData = function () {
     // if there is earlier data vailable,
     // return that data
     if (this._data_index - 1 >= 0) {
@@ -184,14 +184,14 @@
    * @param  {object} opts        Additional options to be applied to all tweaks
    * @return {boolean}             returns the value of 'tweak_available'
    */
-  Dweak.prototype.defineTweak = function (definitions, opts) {
+  DataHub.prototype.defineTweak = function (definitions, opts) {
     this._tweak_options = $.extend(true, {}, this._options.tweak, opts);
 
     // create mixin from definitions
     // and prepare tweak_set
     var that = this;
     $.each(definitions, function (key, value) {
-      var name = 'dweak_' + key,
+      var name = 'datahub_' + key,
           obj = {};
 
       obj[''+name] = value;
@@ -212,7 +212,7 @@
    * @return {object or boolean}  returns the tweaked data or 
    *                              false if no tweak is available         
    */
-  Dweak.prototype.tweak = function (options) {
+  DataHub.prototype.tweak = function (options) {
     var tweaked_data = false;
 
     if (this._tweak_available) {
@@ -228,7 +228,7 @@
    * Returns weather an automated tweak is scheduled
    * @return {boolean} true if set false otherwise
    */
-  Dweak.prototype.hasInterval = function () {
+  DataHub.prototype.hasInterval = function () {
     return this._has_interval;
   };
 
@@ -236,7 +236,7 @@
    * Returns the currently set timeout, if an interval is set
    * @return {[type]} [description]
    */
-  Dweak.prototype.getIntervalTimeout = function () {
+  DataHub.prototype.getIntervalTimeout = function () {
     if (this._has_interval) {
       return this._interval.timeout;
     } else {
@@ -244,7 +244,7 @@
     }
   };
 
-  Dweak.prototype.setInterval = function (opts) {
+  DataHub.prototype.setInterval = function (opts) {
     var tweaked_data;
 
     this._interval = $.extend(true, {}, this._options.interval, this._interval, opts);
@@ -267,12 +267,12 @@
     this._has_interval = true;
   };
 
-  Dweak.prototype.clearInterval = function () {
+  DataHub.prototype.clearInterval = function () {
     window.clearInterval(this._interval.id);
     this._has_interval = false;
   };
 
-  Dweak.prototype.toggleInterval = function () {
+  DataHub.prototype.toggleInterval = function () {
     if (this.hasInterval()) {
       this.clearInterval();
     } else {
@@ -280,7 +280,7 @@
     }
   };
 
-  Dweak.prototype.destroy = function () {
+  DataHub.prototype.destroy = function () {
     this.clearInterval();
     
     $(this).off();
@@ -298,6 +298,6 @@
   };
 
 
-  window.Dweak = Dweak;
-  window.dweak = new Dweak();
+  window.DataHub = DataHub;
+  window.datahub = new DataHub();
 })(window, jQuery, Chance);

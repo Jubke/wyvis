@@ -68,9 +68,9 @@
   };
 
 
-  dweak.addData(data, true);
+  datahub.addData(data, true);
   
-  dweak.defineTweak({
+  datahub.defineTweak({
     value : function (pre) {
       return chance.weighted([
         chance.integer({
@@ -82,5 +82,5 @@
     },
   });
 
-  dweak.setInterval({timeout: 1500});
+  datahub.setInterval({timeout: 1500});
 })();

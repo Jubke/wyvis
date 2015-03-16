@@ -4,7 +4,7 @@ var draw = function() {
   var margin = {top: 1, right: 1, bottom: 6, left: 1},
       width = $("#vis").width() - margin.left - margin.right,
       height = $("#vis").height() - margin.top - margin.bottom,
-      timeout = dweak.getIntervalTimeout();
+      timeout = datahub.getIntervalTimeout();
 
   // formatting of strings for labels and color scale
   var formatNumber = d3.format(",.0f"),
@@ -136,10 +136,10 @@ var draw = function() {
       .attr("y", function (d) { return d.dy / 2; });
   }
 
-  var data = dweak.getData();
+  var data = datahub.getData();
   update(data);
 
-  $( dweak ).on("new.data", function (e, data) {
+  $( datahub ).on("new.data", function (e, data) {
     update(data);
   });
 };

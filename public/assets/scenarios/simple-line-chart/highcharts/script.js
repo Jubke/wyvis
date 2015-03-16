@@ -11,7 +11,7 @@ var draw = function () {
       text: 'Simple Line Chart'
     },
     series: [{
-      data: [dweak.getData()], // initial data point
+      data: [datahub.getData()], // initial data point
     }],
     xAxis: {
       type: 'datetime'
@@ -27,7 +27,7 @@ var draw = function () {
   }
 
   // call update on the new.data event
-  $( dweak ).on("new.data", function (e, data) {
+  $( datahub ).on("new.data", function (e, data) {
     update(data);
   });
 };
