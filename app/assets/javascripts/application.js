@@ -28,4 +28,4 @@
 //
 //= require init
 //= require_tree ./implementations
-//= require_tree ./packages
+//= require_tree ./libraries

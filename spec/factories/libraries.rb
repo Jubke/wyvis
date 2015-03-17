@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :package do
+  factory :library do
     name "MyString"
 url "MyString"
 description "MyText"

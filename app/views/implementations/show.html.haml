@@ -1,10 +1,10 @@
 - content_for :title do
-  #{scenario.name}: #{package.name}
+  #{scenario.name}: #{library.name}
 
 .row
   .col-md-6.col-md-offset-3
     %h1.page-header
-      #{ link_to package.name, package} implementation of #{link_to scenario.name, scenario}
+      #{ link_to library.name, library} implementation of #{link_to scenario.name, scenario}
       .btn-group.btn-group-sm.pull-right{role: 'group'}
         = link_to scenario, class: 'btn btn-default', title: 'Return to ' + scenario.name do
           %span.glyphicon.glyphicon-arrow-left
