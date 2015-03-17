@@ -20,16 +20,16 @@ ActiveRecord::Schema.define(version: 20150307083127) do
     t.string   "name"
     t.string   "author"
     t.text     "description"
-    t.integer  "package_id"
+    t.integer  "library_id"
     t.integer  "scenario_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "implementations", ["package_id"], name: "index_implementations_on_package_id", using: :btree
+  add_index "implementations", ["library_id"], name: "index_implementations_on_library_id", using: :btree
   add_index "implementations", ["scenario_id"], name: "index_implementations_on_scenario_id", using: :btree
 
-  create_table "packages", force: :cascade do |t|
+  create_table "libraries", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
     t.text     "description"

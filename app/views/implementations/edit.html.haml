@@ -1,4 +1,4 @@
-%h1 Editing #{link_to implementation.package.name, scenario_implementation_path(scenario, implementation)} implementation of #{link_to implementation.scenario.name, scenario}
+%h1 Editing #{link_to implementation.library.name, scenario_implementation_path(scenario, implementation)} implementation of #{link_to implementation.scenario.name, scenario}
 
 = render 'implementations/partials/form'
 = link_to "Delete", scenario_implementation_path(scenario, implementation), method: :delete, data: { confirm: 'Are you sure?' }

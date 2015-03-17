@@ -4,7 +4,7 @@ class CreateImplementations < ActiveRecord::Migration
       t.string :name
       t.string :author
       t.text :description
-      t.belongs_to :package, index: true
+      t.belongs_to :library, index: true
       t.belongs_to :scenario, index: true
 
       t.timestamps null: false
