@@ -6,15 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-file = File.open('libraries.json')
+file = File.open('db/libraries.json')
 content = file.read
 library_list = JSON.parse(content)
 
 library_list.each do |lib|
-  Library.create( 
+  new_library = Library.create!( 
     :name            => lib['name'],
     :url             => lib['url'],
-    #:lib             => lib['lib'],
     :current_version => lib['current_version'],
     :image_url       => lib['image_url'],
     :short           => lib['best_title'],
@@ -28,4 +27,32 @@ library_list.each do |lib|
     :meta_tags       => lib['meta_tags'],
     :description     => lib['description']
   )
+
+  lib['lib']['assets'].each do |asset|
+    new_library.resources.create!(url: asset['url'], content_type: asset['content_type'])
+  end
+
+end
+
+file = File.open('db/data_types.json')
+content = file.read
+data_type_list = JSON.parse(content)
+
+data_type_list.each do |dt|
+    DataType.create!(name: dt['name'])
+end 
+
+file = File.open('db/visualization_types.json')
+content = file.read
+vis_type_list = JSON.parse(content)
+
+vis_type_list.each do |vt|
+    new_vis_type = VisualizationType.create!(
+        name: vt["name"],
+        wiki_url: vt["wiki_url"],
+        image_url: vt["image_url"],
+        description: vt["description"]
+    )
+
+    new_vis_type.data_types << DataType.where(name: vt['category'])
 end

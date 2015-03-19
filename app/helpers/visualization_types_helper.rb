@@ -1,0 +1,2 @@
+module VisualizationTypesHelper
+end

@@ -3,8 +3,8 @@ class Implementation < ActiveRecord::Base
   
   validates :library_id, :scenario_id, presence: true
 
-  belongs_to :scenario
-  belongs_to :library
+  belongs_to :scenario, inverse_of: :implementations
+  belongs_to :library, inverse_of: :implementations
 
   before_save :set_name
 

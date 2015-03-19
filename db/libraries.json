@@ -1365,7 +1365,7 @@
     },
     "description": "\nPure mathematical relationships may emerge in your explorations, though real data tends to be much noisier. The cars dataset has several roughly inverse relationships, revealed by dense crossings. The first two dimensions in this chart, -x and x, have a perfectly inverse relationship. All lines between those axes meet at a single point.\n",
     "description_old": "A visual toolkit for multidimensional detectives."
-}, {"All modern web and mobile browsers, including IE6+"}, {
+}, {
     "name": "Prefuse Flare",
     "url": "http://flare.prefuse.org",
     "lib": {

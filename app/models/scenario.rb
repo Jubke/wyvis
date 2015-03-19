@@ -3,7 +3,7 @@ class Scenario < ActiveRecord::Base
 
   validates :name, :description, :short, presence: true
 
-  has_many :implementations, dependent: :destroy
+  has_many :implementations, inverse_of: :scenario, dependent: :destroy
   has_many :libraries, through: :implementations
 
   def script  
