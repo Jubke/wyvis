@@ -10,11 +10,13 @@
   = link_to 'Add new Library', new_library_path, class: 'btn btn-default'
 .vertical-spacer
 #live-search.row
-  - libraries.each do |library|
-    .col-sm-4.col-md-3.search-tile{id: library.transliterate_name}
-      = link_to library, class: 'link-thumb' do
+  - libraries.each do |lib|
+    .col-sm-4.col-md-3.search-tile{id: lib.transliterate_name}
+      = link_to lib, class: 'link-thumb' do
         .thumbnail.library-thumb
+          - if !lib.image_url.nil? 
+            %img{src: lib.image_url}
           .caption
-            %h3= library.name
-            %div= library.short
+            %h3= lib.name
+            %div= lib.short
 %br/

@@ -11,8 +11,8 @@ class CreateLibraries < ActiveRecord::Migration
       t.string :dependencies
       t.string :license
       t.string :support
-      t.date :first_release
-      t.date :latest_release
+      t.integer :first_release
+      t.integer :latest_release
       t.string :meta_tags
       t.text :description
 
