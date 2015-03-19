@@ -32,8 +32,10 @@ gem 'gon', '~> 5.2.3'
 gem 'draper', '~> 1.3'
 gem 'decent_exposure'
 # gem 'devise', '~> 3.3.0'
-gem 'devise-bootstrap-views'
+# gem 'devise-bootstrap-views'
 
+# web scraping
+gem 'metainspector'
 # Handle model attachment file uploads
 gem 'paperclip', "~> 4.2"
 
