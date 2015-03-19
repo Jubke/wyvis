@@ -1,0 +1,23 @@
+[
+  {
+    "name": "1D/Linear"
+  },
+  {
+    "name": "2D/Planar"
+  },
+  {
+    "name": "3D/Volumetric"
+  },
+  {
+    "name": "Temporal"
+  },
+  {
+    "name": "nD/Multidimensional"
+  },
+  {
+    "name": "Tree/Hierarchical"
+  },
+  {
+    "name": "Network"
+  }
+]
