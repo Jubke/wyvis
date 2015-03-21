@@ -3,8 +3,12 @@ class Scenario < ActiveRecord::Base
 
   validates :name, :description, :short, presence: true
 
+  has_and_belongs_to_many :data_types
+  has_and_belongs_to_many :visualization_tasks
+  has_and_belongs_to_many :visualization_types
   has_many :implementations, inverse_of: :scenario, dependent: :destroy
   has_many :libraries, through: :implementations
+  
 
   def script  
     File.open(dir_path + '/data.js').read

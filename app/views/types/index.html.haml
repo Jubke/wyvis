@@ -1,0 +1,22 @@
+- content_for :title do
+  = "InfoVis Taxonomy"
+
+.row
+  .col-md-7.col-md-offset-1
+    %h1.page-header A information visualization taxonomy
+    %p.lead intro text + attribution
+    .form-group.form-inline
+      .input-group
+        %input.form-control#search-query{type: 'text', placeholder: 'search...'}
+        %span.input-group-btn
+          %button.btn.btn-default{type:"button", onclick: "$('#search-query').val('').trigger('blur');"}
+            X
+    .vertical-spacer
+.row
+  .col-md-7.col-md-offset-1
+    #live-search.row
+      = render partial: "types/partials/data_type", collection: data_types, as: :type
+  .col-md-4.affix-details#affix
+    = render partial: 'types/partials/vis_type', collection: vis_types_rep , as: :type
+      
+%br/

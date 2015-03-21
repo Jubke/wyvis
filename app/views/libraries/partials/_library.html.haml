@@ -1,0 +1,41 @@
+.details-container.library-container{id: lib.transliterate_name}
+  %ul.versions
+    %li
+      %span First released:
+      = lib.first_release
+    %li
+      %span Latest release:
+      = lib.latest_release
+    %li
+      %span Current verison:
+      = lib.current_version
+  %h1= lib.name
+  %p.lead
+    = link_to lib.url, lib.url, target: "_blank"
+  %p= lib.description
+  .vertical-spacer
+
+  %dl.dl-horizontal
+    %dt Rendered in
+    %dd= lib.render_tech
+    %dt Web standards only
+    %dd= lib.web_standard
+    %dt Browser support
+    %dd= lib.support
+    %dt Licensing
+    %dd= lib.license
+    %dt Dependencies
+    %dd= lib.dependencies
+  
+  %h3 Implemented scenarios
+  - if lib.implementations.empty?
+    %p.not-available Sorry, there are no scenario implementations with #{lib.name} yet. If you know #{lib.name} and would like to contribute check our link_to contribution page.
+  - else
+    %table.table.table-condensed.scenarios
+      %thead
+        %tr
+          %th Scenario
+          %th Tasks
+          %th Data Types
+      %tbody
+        = render(partial: "libraries/partials/implementation", collection: lib.implementations, as: :impl)

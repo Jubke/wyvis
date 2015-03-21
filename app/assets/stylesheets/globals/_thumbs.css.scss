@@ -1,57 +1,85 @@
 .link-thumb {
   display: block;
-  
-  .thumbnail {
-    position: relative;
-    height: 240px;
-    overflow: hidden;
+ 
+  &:hover {
+    text-decoration: none;
+  }
+}
 
-    &:after {
-      content: " ";
-      display: block;
-      position: absolute;
-      height: 20px;
-      width: 100%;
-      bottom: 0;
-      left: 0;
-      box-shadow: inset 0 -10px 20px 0px #fff;      
-    }
-  
-    &.add-item-thumb {
-      width: 100%;
-      height: 240px;
-      position: relative;
-  
-      .plus {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 50%;
-        left: 50%;
-  
-        div {
-          background-color: $gray-lighter;
-          position: absolute;
-          width: 80%;
-          height: 10%;
-          border-radius: $border-radius-base;
-          @include transform( translate(-50%,-50%) );
-          
-          &:last-child {
-            @include transform( translate(-50%,-50%) rotate(90deg) );
-          }
-        }
-      }
-    }
+.thumbnail {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+
+  &:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    box-shadow: inset 0 -10px 20px 0px #fff;      
   }
 
   &:hover {
-    text-decoration: none;
-    .thumbnail {
-      box-shadow: 0 0 6px rgba($gray-light, 0.4);
-      
-      .plus div {
-        background-color: darken($gray-lighter, 5%);
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba($gray-light, 0.4);
+    
+    .plus div {
+      background-color: darken($gray-lighter, 5%);
+    }
+  }
+
+  .img-placeholder {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+
+    img, .glyphicon {
+      transform: translate(-50%,-50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-height: 100px;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .glyphicon {
+      font-size: 6em;
+      color: $gray-lighter;
+    }
+  }
+
+  &.active {
+    box-shadow: 0 0 6px rgba($brand-primary, 0.8);
+  }
+
+  &.add-item-thumb {
+    width: 100%;
+    height: 240px;
+    position: relative;
+
+    .plus {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 50%;
+      left: 50%;
+
+      div {
+        background-color: $gray-lighter;
+        position: absolute;
+        width: 80%;
+        height: 10%;
+        border-radius: $border-radius-base;
+        @include transform( translate(-50%,-50%) );
+        
+        &:last-child {
+          @include transform( translate(-50%,-50%) rotate(90deg) );
+        }
       }
     }
   }

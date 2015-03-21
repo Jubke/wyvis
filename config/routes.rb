@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'scenarios/:scenario_id/remote' => 'implementations#remote', as: :remote_implementation
   get 'scenarios/:scenario_id/implementations/:id/frame' => 'implementations#frame', as: :frame
 
+  get 'tasks' => 'visulaization_tasks#index'
+
+  get 'types' => 'types#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
