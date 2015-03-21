@@ -13,4 +13,16 @@ class VisualizationTypeDecorator < Draper::Decorator
   def image
     (object.image_url.nil? || object.image_url.empty?) ? h.content_tag(:span,"",class: "glyphicon glyphicon-picture") : h.image_tag(object.image_url)
   end
+
+  def scenarios_badge
+    if object.scenarios.length > 0
+      h.content_tag(:span, h.pluralize(object.scenarios.length, "scenario"), class: 'badge')
+    end
+  end
+
+  def implementations_badge
+    if object.implementations.length > 0
+      h.content_tag(:span, h.pluralize(object.implementations.length, "implementation"), class: 'badge')
+    end
+  end
 end

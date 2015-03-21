@@ -41,4 +41,14 @@ class LibraryDecorator < Draper::Decorator
   def description
     object.description.empty? ? h.content_tag(:span, "Sorry, there is no description available. Check out the website instead.", class: "not-available") : object.description
   end
+
+  def short
+    object.description.empty? ? h.content_tag(:span, "Sorry, there is no description. Check the website instead.", class: "not-available") : h.truncate(object.description, length: 60)
+  end
+
+  def implementations_badge
+    if object.implementations.length > 0
+      h.content_tag(:span, h.pluralize(object.implementations.length, "implementation"), class: 'badge')
+    end    
+  end
 end

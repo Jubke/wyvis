@@ -6,15 +6,15 @@
   %p= type.description
   .vertical-spacer
   
-  %h3 Implementing scenarios
+  %h3 Scenarios
   - if type.scenarios.empty?
-    %p.not-available Sorry, there are no scenarios that feature a this visualization type yet. If you would like to a create a scenario for using a '#{type.name}' visualization check our link_to contribution page.
+    %p.not-available Sorry, there are no scenarios that feature this visualization type yet. If you would like to a create a scenario for using a '#{type.name}' visualization check our link_to contribution page.
   - else
     %table.table.table-condensed.scenarios
       %thead
         %tr
           %th Scenario
           %th Tasks
-          %th Data Types
+          %th # of implementations
       %tbody
         = render(partial: "types/partials/scenario", collection: type.scenarios)
