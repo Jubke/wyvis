@@ -10,4 +10,7 @@ class VisualizationTypeDecorator < Draper::Decorator
   #     end
   #   end
 
+  def image
+    (object.image_url.nil? || object.image_url.empty?) ? h.content_tag(:span,"",class: "glyphicon glyphicon-picture") : h.image_tag(object.image_url)
+  end
 end

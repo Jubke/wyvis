@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319202242) do
+ActiveRecord::Schema.define(version: 20150320193638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20150319202242) do
   end
 
   add_index "data_types", ["name"], name: "index_data_types_on_name", using: :btree
+
+  create_table "data_types_scenarios", id: false, force: :cascade do |t|
+    t.integer "scenario_id",  null: false
+    t.integer "data_type_id", null: false
+  end
 
   create_table "data_types_visualization_types", id: false, force: :cascade do |t|
     t.integer "data_type_id",          null: false
@@ -65,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150319202242) do
     t.integer "visualization_task_id", null: false
   end
 
-  create_table "libraries_visualization_type", id: false, force: :cascade do |t|
+  create_table "libraries_visualization_types", id: false, force: :cascade do |t|
     t.integer "library_id",            null: false
     t.integer "visualization_type_id", null: false
   end
@@ -88,11 +93,21 @@ ActiveRecord::Schema.define(version: 20150319202242) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "scenarios_visualization_tasks", id: false, force: :cascade do |t|
+    t.integer "scenario_id",           null: false
+    t.integer "visualization_task_id", null: false
+  end
+
+  create_table "scenarios_visualization_types", id: false, force: :cascade do |t|
+    t.integer "scenario_id",           null: false
+    t.integer "visualization_type_id", null: false
+  end
+
   create_table "visualization_tasks", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.text     "short"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "visualization_types", force: :cascade do |t|

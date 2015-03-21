@@ -111,7 +111,7 @@
     "name": "polar area/rose/circumplex chart",
     "wiki_url": "http://en.wikipedia.org/wiki/Pie_chart#Polar_area_diagram",
     "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Disk_usage_(Boabab).png/220px-Disk_usage_(Boabab).png",
-    "description": "A pie chart (or a circle chart) is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. In a pie chart, the arc length of each slice (and consequently its central angle and area), is proportional to the quantity it represents. While it is named for its resemblance to a pie which has been sliced, there are variations on the way it can be presented. The earliest known pie chart is generally credited to William Playfair's Statistical Breviary of 1801.[1][2]"
+    "description": "The polar area diagram is similar to a usual pie chart, except sectors are equal angles and differ rather in how far each sector extends from the center of the circle. The polar area diagram is used to plot cyclic phenomena (e.g., count of deaths by month)."
 }, {
     "category": "Temporal",
     "name": "sankey diagram",
@@ -128,7 +128,7 @@
     "category": "nD/Multidimensional",
     "name": "pie chart",
     "wiki_url": "http://en.wikipedia.org/wiki/Pie_chart",
-    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Disk_usage_(Boabab).png/220px-Disk_usage_(Boabab).png",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pie_chart_EP_election_2004.svg/744px-Pie_chart_EP_election_2004.svg.png",
     "description": "A pie chart (or a circle chart) is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. In a pie chart, the arc length of each slice (and consequently its central angle and area), is proportional to the quantity it represents. While it is named for its resemblance to a pie which has been sliced, there are variations on the way it can be presented. The earliest known pie chart is generally credited to William Playfair's Statistical Breviary of 1801.[1][2]"
 }, {
     "category": "nD/Multidimensional",
@@ -218,8 +218,8 @@
     "category": "nD/Multidimensional",
     "name": "mosaic display/Marimekko chart",
     "wiki_url": "http://en.wikipedia.org/wiki/Marimekko#Marimekko_chart",
-    "image_url": "http://upload.wikimedia.org/wikipedia/en/thumb/7/74/Marianne_Aav_Marimekko_low-res_Cover.jpg/236px-Marianne_Aav_Marimekko_low-res_Cover.jpg",
-    "description": "Marimekko is a Finnish company based in Helsinki that has made important contributions to fashion, especially in the 1960s. It is particularly noted for brightly colored printed fabrics and simple styles, used both in women's garments and in home furnishings.[1] Two designers in particular, Vuokko Nurmesniemi with bold stripes, and Maija Isola with large simple flowered prints, created hundreds of distinctive patterns and helped to make Marimekko a household name across the world."
+    "image_url": "",
+    "description": "The Marimekko chart refers to a bar chart where all the bars are of equal height, there are no spaces between the bars, and the bars are in turn each divided into segments of different height. The design of the 'marimekko' chart is said to resemble a Marimekko print.[10] The chart's design encodes two variables (such as percentage of sales and market share), but it is criticised for making the data hard to perceive and to compare visually."
 }, {
     "category": "nD/Multidimensional",
     "name": "waterfall chart",
@@ -228,7 +228,7 @@
     "description": "A waterfall chart is a form of data visualization that helps in understanding the cumulative effect of sequentially introduced positive or negative values. The waterfall chart is also known as a flying bricks chart or Mario chart due to the apparent suspension of columns (bricks) in mid-air. Often in finance, it will be referred to as a bridge."
 }, {
     "category": "nD/Multidimensional",
-    "name": "tabular comparison of charts (e.g., pairs plots",
+    "name": "tabular comparison of charts",
     "wiki_url": "",
     "image_url": "",
     "description": ""

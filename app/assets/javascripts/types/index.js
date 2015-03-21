@@ -1,5 +1,5 @@
 var App = App || {};
-App.libraries.index = function() {
+App.types.index = function() {
 
   // initialize live-search
   window.liveSearch = $.liveSearch({
@@ -11,17 +11,17 @@ App.libraries.index = function() {
     typeDelay: 200,
   });
 
-  // cache library thumbs and containers
-  var library_thumbs = $( ".library-thumb" );
-  var library_containers = $( ".details-container" );
+  // cache type thumbs and containers
+  var type_thumbs = $( ".vis-type-thumb" );
+  var type_containers = $( ".details-container" );
 
-  // bind library selection
-  $("#live-search").on("click", ".library-thumb", selectLibrary);
-  // set first library as active
-  library_thumbs.first().addClass("active");
-  library_containers.first().addClass("active");
+  // bind type selection
+  $("#live-search").on("click", ".vis-type-thumb", selectLibrary);
+  // set first type as active
+  type_thumbs.first().addClass("active");
+  type_containers.first().addClass("active");
 
-  // initialize affix for side panel with library containers
+  // initialize affix for side panel with type containers
   $('#affix').affix({
     offset: {
       top: 180
@@ -30,7 +30,7 @@ App.libraries.index = function() {
 
 
   /**
-   * Sets the 'active' class on the library thumb
+   * Sets the 'active' class on the type thumb
    * and the container.
    * @param  {Event} e the event that tiggered the action
    * @return {undefined}
@@ -39,8 +39,8 @@ App.libraries.index = function() {
     var that = $( e.currentTarget ),
         lib = $( "#" + that.data("name") );
 
-    library_containers.removeClass("active");
-    library_thumbs.removeClass("active");
+    type_containers.removeClass("active");
+    type_thumbs.removeClass("active");
 
     that.addClass("active");
     lib.addClass("active");

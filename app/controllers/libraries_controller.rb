@@ -1,9 +1,11 @@
 class LibrariesController < ApplicationController
   expose :library, attributes: :library_params
   expose(:libraries) { Library.order('LOWER(name) ASC') }
+  expose(:libraries_rep) { LibraryDecorator.decorate_collection(libraries)}
 
   # GET /libraries
   def index
+    render layout: "wide_content"
   end
 
   # GET /libraries/1
@@ -46,6 +48,6 @@ class LibrariesController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def library_params
-      params.require(:library).permit(:name,:short,:description,:url,:cdn_url,:license,:latest_version,:web_standards,:support)
+      params.require(:library).permit(:name,:short,:description,:url,:license,:latest_version,:web_standards,:support)
     end
 end
