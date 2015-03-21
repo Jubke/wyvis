@@ -24,7 +24,7 @@ App.types.index = function() {
   // initialize affix for side panel with type containers
   $('#affix').affix({
     offset: {
-      top: 180
+      top: type_thumbs.offset().top - 160
     }
   });
 

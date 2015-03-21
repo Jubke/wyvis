@@ -4,7 +4,7 @@
 %h4 Comparing implementations of the #{link_to scenario.name, scenario} scenario:
 .row.compare-container
   - @implementations.each_with_index do |impl, i|
-    .implementation-container{id: 'col-index-' + i.to_s}
+    .implementation-container{id: 'container-' + i.to_s}
       .top-controls
         = form_tag(remote_implementation_path(scenario), method: 'get', format: 'javascript', remote: true, class: 'form-inline form-impl-select') do
           %input#index{type: 'hidden', name: 'index', value: i}

@@ -1,4 +1,6 @@
 .affix-details {
+  padding: 0 40px;
+  
   &.affix-top {
     position: inherit;
   }
@@ -12,7 +14,6 @@
   .details-container {
     width: 100%;
     display: none;
-    padding: 0 20px;
 
     &.active {
       display: block;

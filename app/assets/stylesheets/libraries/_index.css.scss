@@ -1,5 +1,10 @@
 body[data-controller=libraries][data-action=index] {
   
+  .library-thumb {    
+    height: 240px;
+  }
+
+
   .library-container {
 
     .versions {
