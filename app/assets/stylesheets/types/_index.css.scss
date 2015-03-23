@@ -9,7 +9,7 @@ body[data-controller=types][data-action=index] {
       h3 {
         position: absolute;
         top: 50%;
-        transform: translate(0,-50%);
+        @include transform(translate(0,-50%));
         
         margin: 0;
         width: 90%;
