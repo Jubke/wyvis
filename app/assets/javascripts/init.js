@@ -1,18 +1,64 @@
 var App = App || {};
-App.common = {};
+App.shared = {};
 App.implementations = {};
 App.libraries = {};
 App.types = {};
 
-App.common.init = function () {
+App.shared.init = function () {
   $('[data-toggle="tooltip"]').tooltip();
+};
 
-  // $( document ).on('page:change', function() {
-  //       $( '#content' ).addClass('rollIn') ; 
-  // });
-  // $( document ).on('page:fetch', function() {
-  //       $( '#content' ).addClass('hinge') ;
-  // });
+App.shared.windowHeight = function() { 
+  return $(window).height();
+};
+
+App.shared.initLiveSearch = function () {
+  // initialize live-search
+  window.liveSearch = $.liveSearch({
+    selectorContainer: "#live-search",
+    selectorElementsToSearch: ".search-tile",
+    attributeToSearch: false,
+    selectorInputSearch: "#search-query",
+    minCharacters: 1,
+    typeDelay: 200,
+  });
+};
+
+App.shared.initDetailsView = function () {
+  // cache library thumbs and containers
+  var thumbs = $( '.thumbnail' );
+  var containers = $( '.details-container' );
+
+  // set first library as active
+  thumbs.first().addClass("active");
+  containers.first().addClass("active");
+
+  // initialize affix for side panel with library containers
+  $( '#affix' ).height(App.shared.windowHeight() - 100).affix({
+    offset: {
+      top: containers.offset().top - 160
+    }
+  });
+
+  // bind selectio
+  $("#live-search").on("click", '.thumbnail', selectDetail);
+
+  /**
+   * Sets the 'active' class on the library thumb
+   * and the container.
+   * @param  {Event} e the event that tiggered the action
+   * @return {undefined}
+   */
+  function  selectDetail(e) {
+    var that = $( e.currentTarget ),
+        lib = $( "#" + that.data("name") );
+
+    containers.removeClass("active");
+    thumbs.removeClass("active");
+
+    that.addClass("active");
+    lib.addClass("active");
+  }
 };
 
 var UTIL = {
@@ -30,7 +76,7 @@ var UTIL = {
     body = document.body;
     controller = body.getAttribute("data-controller");
     action = body.getAttribute("data-action");
-    UTIL.exec("common");
+    UTIL.exec("shared");
     UTIL.exec(controller);
     UTIL.exec(controller, action);
   }
