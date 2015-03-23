@@ -6,7 +6,7 @@
     "data_types": ["Temporal"],
     "visualization_tasks": ["monitor"],
     "visualization_types": ["time series"],
-    "implementations": ["D3","Highcharts"]
+    "implementations": ["D3","Highcharts", "AMCharts"]
   },
   {
     "name": "Sankey Process Diagram",

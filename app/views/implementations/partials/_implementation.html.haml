@@ -1,28 +1,22 @@
 = content_tag 'div', class: 'implementation', id: 'implementation-' + implementation.id.to_s, data: {implementation: implementation.json, scenario: implementation.scenario.json, library: implementation.library} do
-  .row.vis-container
-    .col-xs-12
-      .max-width-1024
-        .vis-wrapper
-          %iframe{id: 'frame-' + implementation.id.to_s, src: frame_path(scenario, implementation), sandbox: 'allow-scripts allow-same-origin'}
-  .row.controls-container
-    .col-xs-12
-      .max-width-1024
-        .controls-wrapper
-          .btn-group
-            %button#redraw.btn.btn-default{title: 'Redraw the visualization to apply changes', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
-              %span.glyphicon.glyphicon-pencil
-            %button#reset.btn.btn-default{title: 'Reset the visualization to the initial state', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
-              %span.glyphicon.glyphicon-trash
-          .btn-group.btn-group-editor
+  .row.vis-row
+    .vis-wrapper
+      %iframe{id: 'frame-' + implementation.id.to_s, src: frame_path(scenario, implementation), sandbox: 'allow-scripts allow-same-origin'}
+  .row.controls-row
+    .controls-wrapper
+      .btn-group
+        %button#redraw.btn.btn-default{title: 'Redraw the visualization to apply changes', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
+          %span.glyphicon.glyphicon-pencil
+        %button#reset.btn.btn-default{title: 'Reset the visualization to the initial state', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
+          %span.glyphicon.glyphicon-trash
+      .btn-group.btn-group-editor
 
-          - if scenario.has_interval?
-            .btn-group
-              .btn-label
-                %span.glyphicon.glyphicon-transfer
-                &nbsp;Data-Stream
-              %button#toggle-pause.btn.btn-default.active{title: 'start/stop the data flow'}
-                %span.glyphicon
-  .row.code-container
-    .col-xs-12
-      .max-width-1024
-        .code-wrapper
+      - if scenario.has_interval?
+        .btn-group
+          .btn-label
+            %span.glyphicon.glyphicon-transfer
+            &nbsp;Data-Stream
+          %button#toggle-pause.btn.btn-default.active{title: 'start/stop the data flow'}
+            %span.glyphicon
+  .row.code-row
+    .code-wrapper
