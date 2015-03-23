@@ -8,7 +8,7 @@
       
   %body{data: {controller: params[:controller], action: params[:action]}}
     = render 'layouts/shared/header'
-    #content.container-fluid.animated
+    #content.container-fluid
       - if content_for?(:wide_content)
         = yield :wide_content
       - else
