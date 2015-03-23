@@ -9,7 +9,8 @@
 .thumbnail {
   position: relative;
   overflow: hidden;
-
+  
+  @include transition(all 0.3s ease);
   // &:after {
   //   content: " ";
   //   display: block;

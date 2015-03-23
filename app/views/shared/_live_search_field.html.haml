@@ -1,0 +1,6 @@
+.form-group.form-inline
+  .input-group
+    %input.form-control#search-query{type: 'text', placeholder: 'search...'}
+    %span.input-group-btn
+      %button.btn.btn-default{type:"button", onclick: "$('#search-query').val('').trigger('blur');"}
+        %span.glyphicon.glyphicon-remove
