@@ -11,14 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307083127) do
+ActiveRecord::Schema.define(version: 20150320193638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "data_types", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "data_types", ["name"], name: "index_data_types_on_name", using: :btree
+
+  create_table "data_types_scenarios", id: false, force: :cascade do |t|
+    t.integer "scenario_id",  null: false
+    t.integer "data_type_id", null: false
+  end
+
+  create_table "data_types_visualization_types", id: false, force: :cascade do |t|
+    t.integer "data_type_id",          null: false
+    t.integer "visualization_type_id", null: false
+  end
+
   create_table "implementations", force: :cascade do |t|
     t.string   "name"
-    t.string   "author"
     t.text     "description"
     t.integer  "library_id"
     t.integer  "scenario_id"
@@ -30,41 +47,76 @@ ActiveRecord::Schema.define(version: 20150307083127) do
   add_index "implementations", ["scenario_id"], name: "index_implementations_on_scenario_id", using: :btree
 
   create_table "libraries", force: :cascade do |t|
-    t.string   "name"
-    t.string   "url"
-    t.text     "description"
-    t.string   "version"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.boolean  "web_standard"
-    t.string   "latest_version"
-    t.string   "license"
-    t.text     "support"
+    t.string   "name",            null: false
+    t.string   "url",             null: false
+    t.string   "current_version"
+    t.string   "image_url"
     t.text     "short"
-    t.string   "cdn_url"
+    t.boolean  "web_standard"
+    t.string   "render_tech"
+    t.string   "dependencies"
+    t.string   "license"
+    t.string   "support"
+    t.integer  "first_release"
+    t.integer  "latest_release"
+    t.string   "meta_tags"
+    t.text     "description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  create_table "libraries_visualization_tasks", id: false, force: :cascade do |t|
+    t.integer "library_id",            null: false
+    t.integer "visualization_task_id", null: false
+  end
+
+  create_table "libraries_visualization_types", id: false, force: :cascade do |t|
+    t.integer "library_id",            null: false
+    t.integer "visualization_type_id", null: false
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string   "url",          null: false
+    t.string   "content_type"
+    t.integer  "library_id",   null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "resources", ["library_id"], name: "index_resources_on_library_id", using: :btree
 
   create_table "scenarios", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "author"
+    t.text     "short"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.text     "short"
   end
 
-  create_table "usecases", force: :cascade do |t|
-    t.string   "name"
+  create_table "scenarios_visualization_tasks", id: false, force: :cascade do |t|
+    t.integer "scenario_id",           null: false
+    t.integer "visualization_task_id", null: false
+  end
+
+  create_table "scenarios_visualization_types", id: false, force: :cascade do |t|
+    t.integer "scenario_id",           null: false
+    t.integer "visualization_type_id", null: false
+  end
+
+  create_table "visualization_tasks", force: :cascade do |t|
+    t.string   "name",        null: false
     t.text     "description"
-    t.string   "author"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.text     "short"
-    t.string   "javascript_file_name"
-    t.string   "javascript_content_type"
-    t.integer  "javascript_file_size"
-    t.datetime "javascript_updated_at"
-    t.string   "javascript_content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "visualization_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "wiki_url"
+    t.string   "image_url"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

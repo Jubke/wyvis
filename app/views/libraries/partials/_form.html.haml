@@ -3,10 +3,9 @@
 
   .form-inputs
     = f.input :name
+    = f.input :url
     = f.input :short, hint: 'max. 150 characters', input_html: { maxlength: 150 }
     = f.input :description
-    = f.input :url
-    = f.input :cdn_url, label: 'CDN Url'
     = f.input :license
     = f.input :latest_version
     = f.input :web_standard, label: 'Web standards only? (e.g. SVG, Canvas, etc.)'

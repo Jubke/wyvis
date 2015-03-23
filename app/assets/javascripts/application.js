@@ -29,3 +29,4 @@
 //= require init
 //= require_tree ./implementations
 //= require_tree ./libraries
+//= require_tree ./types

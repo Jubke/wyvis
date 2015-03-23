@@ -1,0 +1,4 @@
+%tr
+  %td= link_to impl.scenario.name, scenario_implementation_path(impl.scenario, impl)
+  %td= impl.scenario.visualization_tasks.collect{|t| t.name}.join(", ").html_safe
+  %td= impl.scenario.data_types.collect{|t| t.name}.join(", ").html_safe

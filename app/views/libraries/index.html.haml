@@ -1,20 +1,22 @@
-%h1.page-header Tools & libraries
-%p.lead This is a list of libraries and tools for data visualisation for the web. Some of them focus on charting, some on particular visualizations and others are complete web graphing tools capable of more complex visualization. Feel free to submit more tools you know!
-
-.form-group.form-inline
-  .input-group
-    %input.form-control#search-query{type: 'text', placeholder: 'search...'}
-    %span.input-group-btn
-      %button.btn.btn-default{type:"button", onclick: "$('#search-query').val('').trigger('blur');"}
-        x
-  = link_to 'Add new Library', new_library_path, class: 'btn btn-default'
-.vertical-spacer
-#live-search.row
-  - libraries.each do |library|
-    .col-sm-4.col-md-3.search-tile{id: library.transliterate_name}
-      = link_to library, class: 'link-thumb' do
-        .thumbnail.library-thumb
-          .caption
-            %h3= library.name
-            %div= library.short
+- content_for :title do
+  = "Visualization Libraries"
+.row
+  .col-md-7.col-md-offset-1
+    %h1.page-header Visualization Libraries
+    %p.lead This is a list of JavaScript visualization libraries. Some of them focus on charting, some on particular visualizations and others are complete web graphing tools, capable of more complex visualizations.
+    .form-group.form-inline
+      .input-group
+        %input.form-control#search-query{type: 'text', placeholder: 'search...'}
+        %span.input-group-btn
+          %button.btn.btn-default{type:"button", onclick: "$('#search-query').val('').trigger('blur');"}
+            X
+      = link_to 'Add library', new_library_path, class: 'btn btn-default'
+    .vertical-spacer
+.row
+  .col-md-7.col-md-offset-1
+    #live-search.row
+      = render partial: 'libraries/partials/library_thumb', collection: libraries_rep, as: :lib
+  .col-md-4.affix-details#affix
+    = render partial: 'libraries/partials/library', collection: libraries_rep, as: :lib
+      
 %br/

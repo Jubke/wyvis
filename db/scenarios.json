@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Simple Line Chart",
+    "short": "A simple time series as a line chart. A good starting point to explore Wyvis!",
+    "description": "The scenario asks monitor temporal data in a simple line chart. New data arrives by default every 100ms and is varied randomly. There is no other task then to display the data. This scenario is used as a simple starting point to understand the features of Wyvis.",
+    "data_types": ["Temporal"],
+    "visualization_tasks": ["monitor"],
+    "visualization_types": ["time series"],
+    "implementations": ["D3","Highcharts", "AMCharts"]
+  },
+  {
+    "name": "Sankey Process Diagram",
+    "short": "Use a dynamic Sankey chart to visualize a business process.",
+    "description": "Given is fix set of nodes and links. The weight on the links is varied over time. Create a dynamic Sankey diagram to visualize the change in the data streams between the steps of our exemplary business process.",
+    "data_types": ["Temporal", "Network"],
+    "visualization_tasks": ["monitor", "overview"],
+    "visualization_types": ["sankey diagram"],
+    "implementations": ["D3"]
+  }
+]

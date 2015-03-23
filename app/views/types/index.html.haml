@@ -1,0 +1,50 @@
+- content_for :title do
+  = "InfoVis Taxonomy"
+
+.row
+  .col-md-7.col-md-offset-1
+    %h1.page-header A information visualization taxonomy
+    %p.lead 
+      A #{link_to "visualization taxonomy by Angela Zoss", "http://guides.library.duke.edu/vis_types" } based on the #{link_to "data taxonomy by Ben Shneidermann", "http://www.interactiondesign.us/courses/2011_AD690/PDFs/Shneiderman_1996.pdf"}.
+.row.text-justify
+  .col-md-3.col-md-offset-1
+    %p
+      Browse the taxonomy to explore scenarios based on the visualization type you select.
+    %p
+      Since data is always unique to a certain degree and the optimal visual support depends highly on the idividual observer, there is no such thing as the perfect visu- alization for any problem. Nevertheless, there have been certain patterns that have proofen useful across different scenarios.
+    %p
+      Shneiderman, 1996 proposed a type by task taxonomy (TTT) for data visualizations. He describes seven types of data (one-, two-, three-dimensional data, temporal and multi-dimensional data, and tree and network data) and seven tasks (overview, zoom, filter, details-on-demand, relate, history, and extracts). A visualization can be appropriate to multiple categories of data types and/or tasks. The intention behind the TTT was to motivate new types of visualizations possible with modern computer enabled interactive visualizations. What was still relatively new in 1996, has been taken to completely new levels in the age of touch enabled devices. Intuitive scrolling, zooming and marking by swiping and pinching the screen, is exactly the type of interaction sought back then. However, the tasks and data types haven’t changed at all, and still make a helpful reference.
+    %p
+      Shneiderman does name examples for each type and task, but does not assign known patterns to any specific class. 
+  .col-md-3
+    %p
+      He focuses on the complexity of information exploration, that goes hand in hand with the filtering of large, complex data structures.From his first tasks he phrased the Information-Seeking Mantra:
+    %blockquote
+      %p
+        “Overview first, zoom and filter, then details on demand.”
+      %footer
+        Shneiderman, 1996 in
+        %cite{title: "The eyes have it: A task by data type taxonomy for information visualizations"}The eyes have it: A task by data type taxonomy for information visualizations
+    %p
+      When evalutating visualization tools we are interested to which degree and at what ease these tasks can be accomplished. For example, could we evaluate for a given library, whether filtering multivariate data is easily implemented compared to others. This could include the aspect of how easily this can be combined with other tasks like giving details on demand. How such evaluation can be done in NAME is illustrated with the use case in chapter 3.
+    %p
+      Angela Zoss created, based on Shneiderman’s taxonomy, a more straight forward classification by data types of commonly used visualizations patterns. Wyvis uses her taxonomy to tag scenarios.
+.row
+  .col-md-7.col-md-offset-1
+    %hr/
+    
+    .vertical-spacer
+.row
+  .col-md-7.col-md-offset-1
+    #live-search.row
+      = render partial: "types/partials/data_type", collection: data_types, as: :type
+  .col-md-4.affix-details#affix
+    .form-group.form-inline
+      .input-group
+        %input.form-control#search-query{type: 'text', placeholder: 'search...'}
+        %span.input-group-btn
+          %button.btn.btn-default{type:"button", onclick: "$('#search-query').val('').trigger('blur');"}
+            X
+    = render partial: 'types/partials/vis_type', collection: vis_types_rep , as: :type
+      
+%br/
