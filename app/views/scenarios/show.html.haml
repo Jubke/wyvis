@@ -21,20 +21,9 @@
   = scenario.description
 
 %h2 Compare two Implementations
-%p.lead
-  Select two initial implementations to get started.
-
-= form_tag compare_path(scenario), method: 'get', class: 'form-inline' do
-  .form-group
-    = select_tag 'ids[]', options_from_collection_for_select(implementations, 'id', 'lib_name'), prompt: 'Library 1', class: 'form-control', required: true
-  .form-group
-    = select_tag 'ids[]', options_from_collection_for_select(implementations, 'id', 'lib_name'), prompt: 'Library 2', class: 'form-control', required: true
-  = button_tag 'Compare', class: 'btn btn-info'
-%br/
+%p.lead Select any implementation to get started.
 %p
   The comparison view allows you to easily see different interpretations of the scenario side by side. You can inspect and edit the source code right in the browser to explore possibilties and find out which library comforts you most.
-
-%h2 Implementations
 .row
   = render partial: 'implementations/partials/implementation_thumb', collection: scenario.implementations
   .col-sm-4.col-md-3

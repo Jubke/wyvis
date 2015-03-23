@@ -1,0 +1,2 @@
+class DataTypesController < ApplicationController
+end

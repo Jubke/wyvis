@@ -33,6 +33,7 @@
 
     this.ace = ace.edit( this.$textarea[0] );
     this.ace.setTheme('ace/theme/' + this.options.theme);
+    this.ace.setOption("scrollPastEnd", 0.5);
 
     this.ace.on('change', function (e) {
       
@@ -90,12 +91,17 @@
     this.tabs[name].label = label;    
     // store the session object
     this.tabs[name].session = ace.createEditSession( doc, 'ace/mode/' + mode);
+    // general settings
+    this.tabs[name].session.setUseWorker(true);
+    this.tabs[name].session.setTabSize(2);
+    this.tabs[name].session.setUseWrapMode(true);
+
 
     // bubble style change events
     if(mode === 'css') {
       var context = this;
       this.tabs[name].session.on('change', function (e) {
-        context.$element.trigger("css.change", context.tabs[name].session.getValue());
+        context.$element.trigger("css.wyvis", context.tabs[name].session.getValue());
       });
     }
 

@@ -25,11 +25,11 @@ $icon-font-path: "bootstrap-sass-twbs/assets/fonts/bootstrap/";
 @import "bootstrap-custom";
 @import "bourbon/dist/bourbon";
 //@import "animation";
-@import "highlightjs/styles/github";
 
 // Custom global classes
 @import "globals/manifest";
 
-@import "scenarios";
-@import "implementations";
-@import "libraries";
+@import "scenarios/manifest";
+@import "implementations/manifest";
+@import "libraries/manifest";
+@import "types/manifest";

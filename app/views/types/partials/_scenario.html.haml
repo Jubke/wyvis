@@ -1,0 +1,4 @@
+%tr
+  %td= link_to scenario.name, scenario
+  %td= scenario.visualization_tasks.collect{|t| t.name}.join(", ").html_safe
+  %td= scenario.implementations.length.to_s

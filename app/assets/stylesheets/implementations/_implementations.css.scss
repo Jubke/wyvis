@@ -1,61 +1,66 @@
 body[data-controller=implementations] {
   background-color: $brand-dark;
   color: #fff;
-  
-  .max-width-1024 {
-    position: relative;
-    margin: auto;
-    max-width: 1024px;
-  }
 
   .compare-container {
     position: relative;
+    height: 100%;
   }
 
   .implementation-container {
-    @extend .col-md-6;
-    position: relative;
+    position: absolute;
     top: 0;
-    left: 0;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+    
+    background-color: $brand-dark;
 
-    @include transition(all 0.5s linear 0s);
-
-    &#col-index-0 {
-
-      &.zero-width {
-        transform: -50%;
-      }
+    @include transition(all 0.5s ease-in-out 0.2s);
+    
+    &.full-screen {
+      z-index: 10;
     }
 
-    &#col-index-1 {
+    &#container-0 {
+      left: 0%;
+      right: 50%;
 
-      &.zero-width {
+      &.full-screen {
+        right: 0%;
+      }
+
+      &.not-full-screen {
         left: -50%;
+        right: 100%;
       }
     }
 
-    &.full-width {
-      @extend .col-md-12;
+    &#container-1 {
+      left: 50%;
+      right: 0%;
 
-      &:last-child {
-        float: right;
+      &.full-screen {
+        left: 0%;
+      }
+
+      &.not-full-screen {
+        left: 100%;
+        right: -50%;
       }
     }
 
-    &.zero-width {
-      padding: 0;
-      overflow: hidden;
-      opacity: 0.1;
-    }
-  
     .top-controls {
       @extend .clearfix;
       display: block;
-      height: auto;
+      height: 50px;
   
-      .btn-impl-enlarge {
-        margin: 10.5px 0;
+      .btn-full-screen {
         float: right;
+        
+        @include box-sizing(border-box);
+        height: 100%;
+        padding: 5px 20px;
   
         span {
           @extend .glyphicon-resize-full;
@@ -68,7 +73,8 @@ body[data-controller=implementations] {
   
       .form-impl-select {
         float: left;
-        padding: 8px 33px;
+        padding: 5px 33px;
+        height: 100%;
         width: 80%;
   
         .form-group {
@@ -77,12 +83,26 @@ body[data-controller=implementations] {
           &:after {
             display: block;
             content: "\22EE";
-            position: absolute;
             font-size: 1.5em;
             color: $brand-info;
-            left: 5px;
-            top: 0.3em;
+            @include position(absolute, 0.3em null null 5px);
           }
+  
+          select {
+            position: relative;
+            padding: 0 10px 0 20px;
+            height: 1.4em;
+
+            @include appearance(none);
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            
+            font-size: 2em;
+            font-weight: 200;
+            color: #fff;
+          }
+          
           &:hover {
             select, &:after {
               cursor: pointer;
@@ -90,38 +110,36 @@ body[data-controller=implementations] {
             }
           }
         }
-  
-        select {
-          -webkit-appearance: none;
-          position: relative;
-          padding: 0 10px 0 20px;
-          height: 1.4em;
-          background-color: transparent;
-          border: none;
-          box-shadow: none;
-          font-size: 2em;
-          font-weight: 200;
-          color: #fff;
-        }
       }
     }
   }
+
+  %max-1080 {
+    max-width: 1080px;
+    margin: auto;
+  }
+
   .implementation {
+    @include calc(height, '100% - 50px');
     position: relative;
 
-    .vis-container {
+    .row {
+      margin: 0;      
+    }
+
+    .vis-row {
+      @include calc(height, '50% - 50px');
       background-color: #fff;
 
       .vis-wrapper {
+        @extend %max-1080;
         @include box-sizing(border-box);
 
         position: relative;
         width: 100%;
-        height: 500px;
+        height: 100%;
         
         padding: 45px 30px;
-        border-radius: 15px;
-        background-color: #fff;
 
         iframe {
           width: 100%;
@@ -131,44 +149,51 @@ body[data-controller=implementations] {
       }
     }
 
-    .controls-container {
-      padding: 8px 33px;
+    .controls-row {
+      height: 50px;
+      padding: 5px 33px;
 
-      .btn-group-editor {
-        .btn.active {
-          color: $brand-dark;
+      .controls-wrapper {
+        @extend %max-1080;
+        .btn-group-editor {
+          .btn.active {
+            color: $brand-dark;
 
-          &:after {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 35px;
-            left: 35%;
-            width: 30%;
-            height: 4px;
-            border-radius: 2px;
-            background-color: $brand-info;
+            &:after {
+              content: "";
+              display: block;
+              @include position(absolute, 35px null null 35%);
+              width: 30%;
+              height: 4px;
+              border-radius: 2px;
+              background-color: $brand-info;
+            }
           }
         }
+        
       }
     }
     
-    .code-container {
-
-      .col-xs-12 {
-        padding: 0;
-      }
+    .code-row {
+      height: 50%;
 
       .code-wrapper {
-        @include box-sizing(border-box);
-
+        @extend %max-1080;
         position: relative;
+
+        @include box-sizing(border-box);
+        height: 100%;
         width: 100%;
+
         padding: 0;
-        
+
+        textarea {
+          height: 100%;
+        }
+
         pre {
           z-index: 0;
-          height: 800px;
+          height: 100%;
           position: relative;
           border: none;
           border-radius: 0;

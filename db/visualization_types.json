@@ -1,0 +1,319 @@
+[{
+    "category": "1D/Linear",
+    "name": "list of items",
+    "wiki_url": "",
+    "image_url": "",
+    "description": "A simple list of items by a single feature, e.g. by alphabetical order. Usually not visualized, but there are some interesting examples for text document visualizations (Spence and Apperley, 1982; Chimera, 1992; SeeSoft, Eick et al., 1992)."
+}, {
+    "category": "2D/Planar",
+    "name": "choropleth",
+    "wiki_url": "http://en.wikipedia.org/wiki/Choropleth",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Australian_Census_2011_demographic_map_-_Australia_by_SLA_-_BCP_field_2715_Christianity_Anglican_Persons.svg/280px-Australian_Census_2011_demographic_map_-_Australia_by_SLA_-_BCP_field_2715_Christianity_Anglican_Persons.svg.png",
+    "description": "A choropleth map is a thematic map in which areas are shaded or patterned in proportion to the measurement of the statistical variable being displayed on the map, such as population density or per-capita income. The choropleth map provides an easy way to visualize how a measurement varies across a geographic area or it shows the level of variability within a region."
+}, {
+    "category": "2D/Planar",
+    "name": "cartogram",
+    "wiki_url": "http://en.wikipedia.org/wiki/Cartogram",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Germany-population-cartogram.png/220px-Germany-population-cartogram.png",
+    "description": "A cartogram is a map in which some thematic mapping variable – such as travel time, population, or Gross National Product – is substituted for land area or distance. The geometry or space of the map is distorted in order to convey the information of this alternate variable. There are two main types of cartograms: area and distance cartograms. Cartograms have a fairly long history, with examples from the mid-1800s."
+}, {
+    "category": "2D/Planar",
+    "name": "dot distribution map",
+    "wiki_url": "http://en.wikipedia.org/wiki/Dot_distribution_map",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Snow-cholera-map-1.jpg/350px-Snow-cholera-map-1.jpg",
+    "description": "A dot distribution map (also known as dot density map) is as a map type that uses a dot symbol to show the presence of a feature or phenomenon. Dot maps rely on a visual scatter to show spatial pattern.[1]"
+}, {
+    "category": "2D/Planar",
+    "name": "proportional symbol map",
+    "wiki_url": "http://en.wikipedia.org/wiki/Thematic_map#Proportional_symbol",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Halley_compass_variations_1702.jpg/210px-Halley_compass_variations_1702.jpg",
+    "description": "A thematic map is a type of map especially designed to show a particular theme connected with a specific geographic area. These maps \"can portray physical, social, political, cultural, economic, sociological, agricultural, or any other aspects of a city, state, region, nation, or continent\".[1]"
+}, {
+    "category": "2D/Planar",
+    "name": "contour/isopleth/isarithmic map",
+    "wiki_url": "http://en.wikipedia.org/wiki/Contour_line",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Contour2D.svg/300px-Contour2D.svg.png",
+    "description": "A contour line (also isoline, isopleth, or isarithm) of a function of two variables is a curve along which the function has a constant value.[1] It is a cross-section of the three-dimensional graph of the function f(x, y) parallel to the x, y plane. In cartography, a contour line (often just called a \"contour\") joins points of equal elevation (height) above a given level, such as mean sea level.[2] A contour map is a map illustrated with contour lines, for example a topographic map, which thus shows valleys and hills, and the steepness of slopes.[3] The contour interval of a contour map is the difference in elevation between successive contour lines.[4]"
+}, {
+    "category": "2D/Planar",
+    "name": "dasymetric map",
+    "wiki_url": "http://en.wikipedia.org/wiki/Thematic_map#Dasymetric",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Halley_compass_variations_1702.jpg/210px-Halley_compass_variations_1702.jpg",
+    "description": "A thematic map is a type of map especially designed to show a particular theme connected with a specific geographic area. These maps \"can portray physical, social, political, cultural, economic, sociological, agricultural, or any other aspects of a city, state, region, nation, or continent\".[1]"
+}, {
+    "category": "2D/Planar",
+    "name": "self-organizing map",
+    "wiki_url": "http://en.wikipedia.org/wiki/Self-organizing_map",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Synapse_Self-Organizing_Map.png/300px-Synapse_Self-Organizing_Map.png",
+    "description": "A self-organizing map (SOM) or self-organizing feature map (SOFM) is a type of artificial neural network (ANN) that is trained using unsupervised learning to produce a low-dimensional (typically two-dimensional), discretized representation of the input space of the training samples, called a map. Self-organizing maps are different from other artificial neural networks in the sense that they use a neighborhood function to preserve the topological properties of the input space."
+}, {
+    "category": "3D/Volumetric",
+    "name": "3D computer models",
+    "wiki_url": "http://en.wikipedia.org/wiki/3D_modelling",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Steps_of_forensic_facial_reconstruction_-_Virtual_Mummy_-_cogitas3d.gif/300px-Steps_of_forensic_facial_reconstruction_-_Virtual_Mummy_-_cogitas3d.gif",
+    "description": "In 3D computer graphics, 3D modeling (or modelling) is the process of developing a mathematical representation of any three-dimensional surface of an object (either inanimate or living) via specialized software. The product is called a 3D model. It can be displayed as a two-dimensional image through a process called 3D rendering or used in a computer simulation of physical phenomena. The model can also be physically created using 3D printing devices."
+}, {
+    "category": "3D/Volumetric",
+    "name": "surface rendering",
+    "wiki_url": "http://en.wikipedia.org/wiki/Scientific_visualization#Surface_rendering",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Rayleigh-Taylor_instability.jpg/280px-Rayleigh-Taylor_instability.jpg",
+    "description": "Scientific visualization (also spelled scientific visualisation) is an interdisciplinary branch of science. According to Friendly (2008), it is \"primarily concerned with the visualization of three-dimensional phenomena (architectural, meteorological, medical, biological, etc.), where the emphasis is on realistic renderings of volumes, surfaces, illumination sources, and so forth, perhaps with a dynamic (time) component\".[2] It is also considered a branch of computer science that is a subset of computer graphics. The purpose of scientific visualization is to graphically illustrate scientific data to enable scientists to understand, illustrate, and glean insight from their data."
+}, {
+    "category": "3D/Volumetric",
+    "name": "volume rendering",
+    "wiki_url": "http://en.wikipedia.org/wiki/Scientific_visualization#Volume_rendering",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Rayleigh-Taylor_instability.jpg/280px-Rayleigh-Taylor_instability.jpg",
+    "description": "Scientific visualization (also spelled scientific visualisation) is an interdisciplinary branch of science. According to Friendly (2008), it is \"primarily concerned with the visualization of three-dimensional phenomena (architectural, meteorological, medical, biological, etc.), where the emphasis is on realistic renderings of volumes, surfaces, illumination sources, and so forth, perhaps with a dynamic (time) component\".[2] It is also considered a branch of computer science that is a subset of computer graphics. The purpose of scientific visualization is to graphically illustrate scientific data to enable scientists to understand, illustrate, and glean insight from their data."
+}, {
+    "category": "3D/Volumetric",
+    "name": "computer simulations",
+    "wiki_url": "http://en.wikipedia.org/wiki/Scientific_visualization#Computer_simulation",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Rayleigh-Taylor_instability.jpg/280px-Rayleigh-Taylor_instability.jpg",
+    "description": "Scientific visualization (also spelled scientific visualisation) is an interdisciplinary branch of science. According to Friendly (2008), it is \"primarily concerned with the visualization of three-dimensional phenomena (architectural, meteorological, medical, biological, etc.), where the emphasis is on realistic renderings of volumes, surfaces, illumination sources, and so forth, perhaps with a dynamic (time) component\".[2] It is also considered a branch of computer science that is a subset of computer graphics. The purpose of scientific visualization is to graphically illustrate scientific data to enable scientists to understand, illustrate, and glean insight from their data."
+}, {
+    "category": "Temporal",
+    "name": "timeline",
+    "wiki_url": "http://en.wikipedia.org/wiki/Timeline",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Tidslinje_1.JPG/220px-Tidslinje_1.JPG",
+    "description": "A timeline is a way of displaying a list of events in chronological order, sometimes described as a project artifact.[1] It is typically a graphic design showing a long bar labelled with dates alongside itself and usually events labelled on points where they would have happened."
+}, {
+    "category": "Temporal",
+    "name": "time series",
+    "wiki_url": "http://en.wikipedia.org/wiki/Time_series",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Random-data-plus-trend-r2.png/250px-Random-data-plus-trend-r2.png",
+    "description": "A time series is a sequence of data points, typically consisting of successive measurements made over a time interval. Examples of time series are ocean tides, counts of sunspots, and the daily closing value of the Dow Jones Industrial Average. Time series are very frequently plotted via line charts. Time series are used in statistics, signal processing, pattern recognition, econometrics, mathematical finance, weather forecasting, earthquake prediction, electroencephalography, control engineering, astronomy, communications engineering, and largely in any domain of applied science and engineering which involves temporal measurements."
+}, {
+    "category": "Temporal",
+    "name": "connected scatter plot",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "Temporal",
+    "name": "Gantt chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Gantt_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/7/73/Pert_example_gantt_chart.gif",
+    "description": "A Gantt chart is a type of bar chart, first developed by Karol Adamiecki in 1896, and independently by Henry Gantt in the 1910s, that illustrates a project schedule. Gantt charts illustrate the start and finish dates of the terminal elements and summary elements of a project. Terminal elements and summary elements comprise the work breakdown structure of the project. Modern Gantt charts also show the dependency (i.e., precedence network) relationships between activities. Gantt charts can be used to show current schedule status using percent-complete shadings and a vertical \"TODAY\" line as shown here."
+}, {
+    "category": "Temporal",
+    "name": "stream graph",
+    "wiki_url": "http://en.wikipedia.org/wiki/Stream_graph",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/LastGraph_example.svg/200px-LastGraph_example.svg.png",
+    "description": "A streamgraph, or stream graph, is a type of stacked area graph which is displaced around a central axis, resulting in a flowing, organic shape."
+}, {
+    "category": "Temporal",
+    "name": "arc diagram",
+    "wiki_url": "http://www.watson.ibm.com/cambridge/Technical_Reports/2002/TR2002-11.pdf",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "Temporal",
+    "name": "polar area/rose/circumplex chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Pie_chart#Polar_area_diagram",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Disk_usage_(Boabab).png/220px-Disk_usage_(Boabab).png",
+    "description": "The polar area diagram is similar to a usual pie chart, except sectors are equal angles and differ rather in how far each sector extends from the center of the circle. The polar area diagram is used to plot cyclic phenomena (e.g., count of deaths by month)."
+}, {
+    "category": "Temporal",
+    "name": "sankey diagram",
+    "wiki_url": "http://en.wikipedia.org/wiki/Sankey_diagram",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/1/10/JIE_Sankey_V5_Fig1.png/400px-JIE_Sankey_V5_Fig1.png",
+    "description": "Sankey diagrams are a specific type of flow diagram, in which the width of the arrows is shown proportionally to the flow quantity."
+}, {
+    "category": "Temporal",
+    "name": "alluvial diagram",
+    "wiki_url": "http://en.wikipedia.org/wiki/Alluvial_diagram",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/thumb/9/96/NeuroAlluvial2001-2007-691x273.png/400px-NeuroAlluvial2001-2007-691x273.png",
+    "description": "Alluvial diagrams are a type of flow diagram originally developed to represent changes in network structure over time. In allusion to both their visual appearance and their emphasis on flow, alluvial diagrams are named after alluvial fans that are naturally formed by the soil deposited from streaming water."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "pie chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Pie_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Pie_chart_EP_election_2004.svg/744px-Pie_chart_EP_election_2004.svg.png",
+    "description": "A pie chart (or a circle chart) is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. In a pie chart, the arc length of each slice (and consequently its central angle and area), is proportional to the quantity it represents. While it is named for its resemblance to a pie which has been sliced, there are variations on the way it can be presented. The earliest known pie chart is generally credited to William Playfair's Statistical Breviary of 1801.[1][2]"
+}, {
+    "category": "nD/Multidimensional",
+    "name": "histogram",
+    "wiki_url": "http://en.wikipedia.org/wiki/Histogram",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/thumb/6/64/Travel_time_histogram_total_1_Stata.png/350px-Travel_time_histogram_total_1_Stata.png",
+    "description": "A histogram is a graphical representation of the distribution of data. It is an estimate of the probability distribution of a continuous variable (quantitative variable) and was first introduced by Karl Pearson.[1] To construct a histogram, the first step is to \"bin\" the range of values—that is, divide the entire range of values into a series of small intervals—and then count how many values fall into each interval. A rectangle is drawn with height proportional to the count and width equal to the bin size, so that rectangles abut each other. A histogram may also be normalized displaying relative frequencies. It then shows the proportion of cases that fall into each of several categories, with the sum of the heights equaling 1. The bins are usually specified as consecutive, non-overlapping intervals of a variable. The bins (intervals) must be adjacent, and usually equal size.[2] The rectangles of a histogram are drawn so that they touch each other to indicate that the original variable is continuous.[3]"
+}, {
+    "category": "nD/Multidimensional",
+    "name": "tag cloud",
+    "wiki_url": "http://en.wikipedia.org/wiki/Tag_cloud",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Word_population_tagcloud_2011.png/220px-Word_population_tagcloud_2011.png",
+    "description": "A tag cloud (word cloud, or weighted list in visual design) is a visual representation for text data, typically used to depict keyword metadata (tags) on websites, or to visualize free form text. Tags are usually single words, and the importance of each tag is shown with font size or color.[2] This format is useful for quickly perceiving the most prominent terms and for locating a term alphabetically to determine its relative prominence. When used as website navigation aids, the terms are hyperlinked to items associated with the tag."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "unordered bubble chart/bubble cloud",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "nD/Multidimensional",
+    "name": "bar chart, radial bar chart",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "nD/Multidimensional",
+    "name": "tree map",
+    "wiki_url": "http://en.wikipedia.org/wiki/Tree_map",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/US_Presidential_Elections_2012.png/400px-US_Presidential_Elections_2012.png",
+    "description": "In information visualization and computing, treemapping is a method for displaying hierarchical data by using nested rectangles."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "scatter plot",
+    "wiki_url": "http://en.wikipedia.org/wiki/Scatter_plot",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Scatter_plot.jpg/240px-Scatter_plot.jpg",
+    "description": "A scatter plot, scatterplot, or scattergraph is a type of mathematical diagram using Cartesian coordinates to display values for two variables for a set of data."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "bubble chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Bubble_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/8/83/3Variable_BubbleChart.svg/240px-3Variable_BubbleChart.svg.png",
+    "description": "A bubble chart is a type of chart that displays three dimensions of data. Each entity with its triplet (v1, v2, v3) of associated data is plotted as a disk that expresses two of the vi values through the disk's xy location and the third through its size. Bubble charts can facilitate the understanding of social, economical, medical, and other scientific relationships."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "line chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Line_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Graph_(PSF).png/220px-Graph_(PSF).png",
+    "description": "A line chart or line graph is a type of chart which displays information as a series of data points called 'markers' connected by straight line segments.[1] It is a basic type of chart common in many fields. It is similar to a scatter plot except that the measurement points are ordered (typically by their x-axis value) and joined with straight line segments. A line chart is often used to visualize a trend in data over intervals of time – a time series – thus the line is often drawn chronologically. In these cases they are known as run charts.[2]"
+}, {
+    "category": "nD/Multidimensional",
+    "name": "step chart",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "nD/Multidimensional",
+    "name": "area chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Area_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/US_and_USSR_nuclear_stockpiles.svg/200px-US_and_USSR_nuclear_stockpiles.svg.png",
+    "description": "An area chart or area graph displays graphically quantitive data. It is based on the line chart. The area between axis and line are commonly emphasized with colors, textures and hatchings. Commonly one compares with an area chart two or more quantities."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "heat map",
+    "wiki_url": "http://en.wikipedia.org/wiki/Heat_map",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Heatmap.png/220px-Heatmap.png",
+    "description": "A heat map is a graphical representation of data where the individual values contained in a matrix are represented as colors. Fractal maps and tree maps both often use a similar system of color-coding to represent the values taken by a variable in a hierarchy. The term is also used to mean its thematic application as a choropleth map."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "parallel coordinates",
+    "wiki_url": "http://en.wikipedia.org/wiki/Parallel_coordinates",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/4/4a/ParCorFisherIris.png",
+    "description": "To show a set of points in an n-dimensional space, a backdrop is drawn consisting of n parallel lines, typically vertical and equally spaced. A point in n-dimensional space is represented as a polyline with vertices on the parallel axes; the position of the vertex on the i-th axis corresponds to the i-th coordinate of the point."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "radar/spider chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Radar_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/9/9e/Star_plot_2.gif",
+    "description": "A radar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart of three or more quantitative variables represented on axes starting from the same point. The relative position and angle of the axes is typically uninformative."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "box and whisker plot/candlestick chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Box_plot",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Michelsonmorley-boxplot.svg/300px-Michelsonmorley-boxplot.svg.png",
+    "description": "In descriptive statistics, a box plot or boxplot is a convenient way of graphically depicting groups of numerical data through their quartiles. Box plots may also have lines extending vertically from the boxes (whiskers) indicating variability outside the upper and lower quartiles, hence the terms box-and-whisker plot and box-and-whisker diagram. Outliers may be plotted as individual points."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "mosaic display/Marimekko chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Marimekko#Marimekko_chart",
+    "image_url": "",
+    "description": "The Marimekko chart refers to a bar chart where all the bars are of equal height, there are no spaces between the bars, and the bars are in turn each divided into segments of different height. The design of the 'marimekko' chart is said to resemble a Marimekko print.[10] The chart's design encodes two variables (such as percentage of sales and market share), but it is criticised for making the data hard to perceive and to compare visually."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "waterfall chart",
+    "wiki_url": "http://en.wikipedia.org/wiki/Waterfall_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/0/01/Waterfallchart_ex3.jpeg",
+    "description": "A waterfall chart is a form of data visualization that helps in understanding the cumulative effect of sequentially introduced positive or negative values. The waterfall chart is also known as a flying bricks chart or Mario chart due to the apparent suspension of columns (bricks) in mid-air. Often in finance, it will be referred to as a bridge."
+}, {
+    "category": "nD/Multidimensional",
+    "name": "tabular comparison of charts",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "nD/Multidimensional",
+    "name": "small multiple",
+    "wiki_url": "http://en.wikipedia.org/wiki/Small_multiple",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Smallmult.png/400px-Smallmult.png",
+    "description": "A small multiple (sometimes called trellis chart, lattice chart, grid chart, or panel chart) is a series of similar graphs or charts using the same scale + axes, allowing them to be easily compared. It uses multiple views to show different partitions of a dataset. The term was popularized by Edward Tufte."
+}, {
+    "category": "Tree/Hierarchical",
+    "name": "general tree visualization",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "Tree/Hierarchical",
+    "name": "dendrogram",
+    "wiki_url": "http://en.wikipedia.org/wiki/Dendrogram",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Hierarchical_clustering_simple_diagram.svg/418px-Hierarchical_clustering_simple_diagram.svg.png",
+    "description": "A dendrogram (from Greek dendro \"tree\" and gramma \"drawing\") is a tree diagram frequently used to illustrate the arrangement of the clusters produced by hierarchical clustering. Dendrograms are often used in computational biology to illustrate the clustering of genes or samples."
+}, {
+    "category": "Tree/Hierarchical",
+    "name": "radial tree",
+    "wiki_url": "http://en.wikipedia.org/wiki/Radial_tree",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Radial_tree_-_Graphic_Statistics_in_Management.svg/300px-Radial_tree_-_Graphic_Statistics_in_Management.svg.png",
+    "description": "A radial tree, or radial map, is a method of displaying a tree structure (e.g., a tree data structure) in a way that expands outwards, radially. It is one of many ways to visually display a tree,[2][3] with examples extending back to the early 20th century.[4] In use, it is a type of information graphic."
+}, {
+    "category": "Tree/Hierarchical",
+    "name": "hyperbolic tree",
+    "wiki_url": "http://en.wikipedia.org/wiki/Hyperbolic_tree",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/thumb/e/e2/BasicTree.png/256px-BasicTree.png",
+    "description": "A hyperbolic tree (often shortened as hypertree) in Web development jargon and information visualization, defines a graph drawing method inspired by hyperbolic geometry."
+}, {
+    "category": "Tree/Hierarchical",
+    "name": "tree map",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "Tree/Hierarchical",
+    "name": "wedge stack graph (radial hierarchy)/sunburst",
+    "wiki_url": "http://en.wikipedia.org/wiki/Pie_chart#Ring_chart_.2F_Multilevel_pie_chart",
+    "image_url": "http://upload.wikimedia.org/wikipedia/commons/2/2c/Disk_usage_%28Boabab%29.png",
+    "description": "A pie chart (or a circle chart) is a circular statistical graphic, which is divided into slices to illustrate numerical proportion. In a pie chart, the arc length of each slice (and consequently its central angle and area), is proportional to the quantity it represents. While it is named for its resemblance to a pie which has been sliced, there are variations on the way it can be presented. The earliest known pie chart is generally credited to William Playfair's Statistical Breviary of 1801.[1][2]"
+}, {
+    "category": "Tree/Hierarchical",
+    "name": " icicle plot",
+    "wiki_url": "",
+    "image_url": "",
+    "description": "An icicle plot is a method for presenting a hierarchical clustering. Compared with other methods of presentation, it is far easier in an icicle plot to read off which objects belong to which clusters, and which objects join or drop out from a cluster as we move up and down the levels of the hierarchy, though these benefits only appear when enough objects are being clustered."
+}, {
+    "category": "Network",
+    "name": "matrix",
+    "wiki_url": "",
+    "image_url": "",
+    "description": "The matrix diagram organizes data into sets of items to be compared. The diagram graphically shows relationships and/or evaluates the strengths of relationships between the items in each set. It shows the connection or correlation in the form of a table (matrix). A relationship is indicated at each intersection of rows and columns as present or absent."
+}, {
+    "category": "Network",
+    "name": "node-link diagram",
+    "wiki_url": "https://hal.archives-ouvertes.fr/hal-00744965/document",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "Network",
+    "name": "dependency graph/circular hierarchy",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}, {
+    "category": "Network",
+    "name": "hive plot",
+    "wiki_url": "http://www.hiveplot.net",
+    "image_url": "http://www.hiveplot.net/conference/ismb2011/netbiosig/hivepanel-human-dip-small.png",
+    "description": "The hive plot is a rational visualization method for drawing networks. Nodes are mapped to and positioned on radially distributed linear axes — this mapping is based on network structural properties. Edges are drawn as curved links. Simple and interpretable. The purpose of the hive plot is to establish a new baseline for visualization of large networks — a method that is both general and tunable and useful as a starting point in visually exploring network structure."
+}, {
+    "category": "Network",
+    "name": "alluvial diagram",
+    "wiki_url": "http://en.wikipedia.org/wiki/Alluvial_diagram",
+    "image_url": "http://upload.wikimedia.org/wikipedia/en/thumb/9/96/NeuroAlluvial2001-2007-691x273.png/400px-NeuroAlluvial2001-2007-691x273.png",
+    "description": "Alluvial diagrams are a type of flow diagram originally developed to represent changes in network structure over time. In allusion to both their visual appearance and their emphasis on flow, alluvial diagrams are named after alluvial fans that are naturally formed by the soil deposited from streaming water."
+}, {
+    "category": "Network",
+    "name": "subway/tube map",
+    "wiki_url": "",
+    "image_url": "",
+    "description": ""
+}]

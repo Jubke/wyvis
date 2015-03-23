@@ -30,7 +30,7 @@
   Wyvis.prototype.init = function () {
     this.$element = $( this.element );
 
-    // Try loading data inputs
+    // find data inputs
     this.implementation = this.$element.data("implementation");
     this.scenario = this.$element.data("scenario");
     this.library = this.$element.data("library");
@@ -60,7 +60,7 @@
     var that = this;
 
     // add css live updates
-    this.$element.on('css.change', function (e, styles) {
+    this.$element.on('css.wyvis', function (e, styles) {
       that.frame.injectStyles(styles);
     });
 

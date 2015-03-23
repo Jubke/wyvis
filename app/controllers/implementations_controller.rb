@@ -24,7 +24,7 @@ class ImplementationsController < ApplicationController
 
   # GET /implementations/compare/?ids[]
   def compare
-    @implementations = ImplementationDecorator.decorate_collection( Implementation.find( params[:ids] ) )
+    @implementations = ImplementationDecorator.decorate_collection( Implementation.where(id: params[:ids]).limit(2) )
 
     render layout: 'wide_content'
   end

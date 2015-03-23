@@ -13,6 +13,7 @@ $gray-darker:            lighten($gray-base, 13.5%) !default; // #222
 $gray-dark:              lighten($gray-base, 20%) !default;   // #333
 $gray:                   lighten($gray-base, 33.5%) !default; // #555
 $gray-light:             lighten($gray-base, 46.7%) !default; // #777
+$gray-light-plus:        lighten($gray-base, 75%) !default;
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
 $brand-primary:         #88ccff !default;
@@ -355,19 +356,19 @@ $container-lg:                 $container-large-desktop !default;
 // Basics of a navbar
 $navbar-height:                    50px !default;
 $navbar-margin-bottom:             0 !default;
-$navbar-border-radius:             $border-radius-base !default;
+$navbar-border-radius:             0 !default;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
 $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2) !default;
 $navbar-collapse-max-height:       340px !default;
 
 $navbar-default-color:             $brand-dark !default;
-$navbar-default-bg:                #f8f8f8 !default;
+$navbar-default-bg:                #efefef !default;
 $navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
 
 // Navbar links
-$navbar-default-link-color:                $brand-dark !default;
+$navbar-default-link-color:                $navbar-default-color !default;
 $navbar-default-link-hover-color:          $brand-info !default;
-$navbar-default-link-hover-bg:             transparent !default;
+$navbar-default-link-hover-bg:             tranparent !default;
 $navbar-default-link-active-color:         #555 !default;
 $navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
 $navbar-default-link-disabled-color:       #ccc !default;
@@ -375,7 +376,7 @@ $navbar-default-link-disabled-bg:          transparent !default;
 
 // Navbar brand label
 $navbar-default-brand-color:               $navbar-default-link-color !default;
-$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-color:         $navbar-default-brand-color !default;
 $navbar-default-brand-hover-bg:            transparent !default;
 
 // Navbar toggle
@@ -859,4 +860,4 @@ $page-header-border-color:    $gray-lighter !default;
 //** Width of horizontal description list titles
 $dl-horizontal-offset:        $component-offset-horizontal !default;
 //** Horizontal line color.
-$hr-border:                   #fff !default;
+$hr-border:                   #eee !default;
