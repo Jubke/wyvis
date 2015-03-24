@@ -14,6 +14,7 @@
 
   // the constructor
   function Wyvis ( element, options ) {
+    
     self = this;
 
     self.element = element;
@@ -23,6 +24,7 @@
     self._name = pluginName;
 
     init();
+  
   }
   
 
@@ -39,6 +41,7 @@
    * @return {[type]} [description]
    */
   var init = function () {
+
     self.$element = $( self.element );
 
     // find data inputs
@@ -69,24 +72,28 @@
 
     setUpListeners();
     setUpControls();
+  
   };
 
   /**
    * Sets up the event handlers.
    */
   var setUpListeners = function() {
+
     $.subscribe({
       'startButton': onPlay,
       'pauseButton': onPause,
       'pendingChanges': self.enableRedraw,
       'noPendingChanges': self.disableRedraw,
     });
+  
   };
 
   /**
    * Sets up the events published on control interaction.
    */
   var setUpControls = function () {
+
     var $self = $(self);
 
     // initialize buttons
@@ -94,6 +101,7 @@
       var type = $( e.currentTarget ).attr('id');
       $.publish(type + 'Button', type);
     });
+  
   };
 
   /**
@@ -101,7 +109,9 @@
    * @return {undefined}
    */
   var onPlay = function () {
+
     self.$controls.find("#start").attr("id", "pause");
+  
   };
 
   /**
@@ -109,7 +119,9 @@
    * @return {undefined}
    */
   var onPause = function () {
+
     self.$controls.find("#pause").attr("id", "start");
+  
   };
 
 
@@ -123,7 +135,9 @@
    * @return {undefined}
    */
   Wyvis.prototype.enableRedraw = function() {
+
     self.$controls.find("#redraw").prop("disabled", false);
+  
   };
 
   /**
@@ -131,7 +145,9 @@
    * @return {undefined}
    */
   Wyvis.prototype.disableRedraw = function() {
+
     self.$controls.find("#redraw").prop("disabled", true);
+  
   };
 
   // A really lightweight plugin wrapper around the constructor,

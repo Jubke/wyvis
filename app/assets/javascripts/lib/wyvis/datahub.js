@@ -86,11 +86,13 @@
    * @param {Object} data object to be added to the end of the array
    */
   DataHub.prototype.addData = function (data, set_data) {
+
     this._data_set.push(data);
 
     if ( typeof(set_data) === 'boolean' && set_data ) {
       this.setData(this._data_set.length - 1);
     }
+  
   };
 
   /**
@@ -98,11 +100,13 @@
    * @param {int} index of the data object in the data set array
    */
   DataHub.prototype.setData = function (index) {
+
     this._data_index = index;
     this._data = this._data_set[this._data_index];
 
     // Trigger global event for new data being set as current
     $( this ).trigger('new.data', [this.getData()]);
+  
   };
 
   /**
@@ -110,8 +114,10 @@
    * @return {Object} active data object
    */
   DataHub.prototype.getData = function () {
+
     var r = $.extend(true, {}, this._data);
     return r;
+  
   };
 
   /**
@@ -119,7 +125,9 @@
    * @return {int} index
    */
   DataHub.prototype.getIndex = function () {
+
     return this._data_index;
+  
   };
 
   /**
@@ -129,6 +137,7 @@
    * @return {Object} a data object
    */
   DataHub.prototype.getNextData = function () {
+
     // if there is more data vailable,
     // return that data
     if (this._data_index + 1 <= this._data_set.length - 1) {
@@ -146,6 +155,7 @@
     else {
       return this.getData();
     }
+  
   };
 
   /**
@@ -156,6 +166,7 @@
    * @return {Object} data object
    */
   DataHub.prototype.getPreviousData = function () {
+
     // if there is earlier data vailable,
     // return that data
     if (this._data_index - 1 >= 0) {
@@ -173,6 +184,7 @@
     else {
       return this.getData();
     }
+  
   };
 
   /**
@@ -185,6 +197,7 @@
    * @return {boolean}             returns the value of 'tweak_available'
    */
   DataHub.prototype.defineTweak = function (definitions, opts) {
+
     this._tweak_options = $.extend(true, {}, this._options.tweak, opts);
 
     // create mixin from definitions
@@ -204,6 +217,7 @@
     });
 
     return this._tweak_available;
+  
   };
 
   /**
@@ -213,6 +227,7 @@
    *                              false if no tweak is available         
    */
   DataHub.prototype.tweak = function (options) {
+
     var tweaked_data = false;
 
     if (this._tweak_available) {
@@ -222,6 +237,7 @@
     }
 
     return tweaked_data;
+  
   };
 
   /**
@@ -229,7 +245,9 @@
    * @return {boolean} true if set false otherwise
    */
   DataHub.prototype.hasInterval = function () {
+
     return this._has_interval;
+  
   };
 
   /**
@@ -237,14 +255,21 @@
    * @return {[type]} [description]
    */
   DataHub.prototype.getIntervalTimeout = function () {
+
     if (this._has_interval) {
       return this._interval.timeout;
     } else {
       return false;
     }
+  
   };
 
+  /**
+   * Set an interval after which new data is generated automatically
+   * @param {Obejct} opts An object conaining possible options
+   */
   DataHub.prototype.setInterval = function (opts) {
+
     var tweaked_data;
 
     this._interval = $.extend(true, {}, this._options.interval, this._interval, opts);
@@ -265,22 +290,41 @@
     }, this._interval.timeout);
 
     this._has_interval = true;
+  
   };
 
+  /**
+   * Clears the interval to stop generating data automatically.
+   * @return {undefined}
+   */
   DataHub.prototype.clearInterval = function () {
+
     window.clearInterval(this._interval.id);
     this._has_interval = false;
+  
   };
 
+  /**
+   * Starts or stops the interval depedning on the current state.
+   * @return {undefined}
+   */
   DataHub.prototype.toggleInterval = function () {
+
     if (this.hasInterval()) {
       this.clearInterval();
     } else {
       this.setInterval();
     }
+  
   };
 
+  /**
+   * Completely resets the datahub to default values and
+   * removes any open intervals.
+   * @return {undefined}
+   */
   DataHub.prototype.destroy = function () {
+
     this.clearInterval();
     
     $(this).off();
@@ -295,6 +339,7 @@
     this._interval = {
       id: null,
     };
+  
   };
 
 
