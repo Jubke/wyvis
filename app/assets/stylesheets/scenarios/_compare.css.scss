@@ -1,0 +1,234 @@
+body[data-controller=scenarios][data-action=compare] {
+  
+  background-color: $brand-dark;
+  color: #fff;
+
+  form {
+    float: left;
+    padding: 5px 33px;
+    height: 100%;
+    width: auto;
+  
+    .form-group {
+      position: relative;
+      
+      &:after {
+        display: block;
+        content: "\22EE";
+        font-size: 1.5em;
+        color: $brand-info;
+        @include position(absolute, 0.3em null null 5px);
+      }
+  
+      select {
+        position: relative;
+        padding: 0 10px 0 20px;
+        height: 1.4em;
+
+        @include appearance(none);
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        
+        font-size: 2em;
+        font-weight: 200;
+        color: #fff;
+      }
+      
+      &:hover {
+        select, &:after {
+          cursor: pointer;
+          color: $brand-info;
+        }
+      }
+    }
+  }
+
+  .scenario-container {
+
+  }
+
+  .compare-container {
+    position: relative;
+    height: 100%;
+  }
+
+  .implementation-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+    
+    background-color: $brand-dark;
+
+    @include transition(all 0.5s ease-in-out 0.2s);
+    
+    &.full-screen {
+      z-index: 10;
+    }
+
+    &#container-0 {
+      left: 0%;
+      right: 50%;
+
+      &.full-screen {
+        right: 0%;
+      }
+
+      &.not-full-screen {
+        left: -50%;
+        right: 100%;
+      }
+    }
+
+    &#container-1 {
+      left: 50%;
+      right: 0%;
+
+      &.full-screen {
+        left: 0%;
+      }
+
+      &.not-full-screen {
+        left: 100%;
+        right: -50%;
+      }
+    }
+
+    .top-controls {
+      @extend .clearfix;
+      display: block;
+      height: 50px;
+  
+      .btn-full-screen {
+        float: right;
+        
+        @include box-sizing(border-box);
+        height: 100%;
+        padding: 5px 20px;
+  
+        span {
+          @extend .glyphicon-resize-full;
+        }
+
+        &.active span {
+          @extend .glyphicon-resize-small;
+        }
+      }
+  
+      
+    }
+  }
+
+  %max-1080 {
+    max-width: 1080px;
+    margin: auto;
+  }
+
+  .implementation {
+    @include calc(height, '100% - 50px');
+    position: relative;
+
+    .row {
+      margin: 0;      
+    }
+
+    .vis-row {
+      @include calc(height, '50% - 50px');
+      background-color: #fff;
+
+      .vis-wrapper {
+        @extend %max-1080;
+        @include box-sizing(border-box);
+
+        position: relative;
+        width: 100%;
+        height: 100%;
+        
+        padding: 45px 30px;
+
+        iframe {
+          width: 100%;
+          height:100%;
+          border: none;
+        }
+      }
+    }
+
+    .controls-row {
+      height: 50px;
+      padding: 5px 33px;
+
+      .controls-wrapper {
+        @extend %max-1080;
+        .btn-group-editor {
+          .btn.active {
+            color: $brand-dark;
+
+            &:after {
+              content: "";
+              display: block;
+              @include position(absolute, 35px null null 35%);
+              width: 30%;
+              height: 4px;
+              border-radius: 2px;
+              background-color: $brand-info;
+            }
+          }
+        }
+      }
+    }
+    
+    .code-row {
+      height: 50%;
+
+      .code-wrapper {
+        @extend %max-1080;
+        position: relative;
+
+        @include box-sizing(border-box);
+        height: 100%;
+        width: 100%;
+
+        padding: 0;
+
+        textarea {
+          height: 100%;
+        }
+
+        pre {
+          z-index: 0;
+          height: 100%;
+          position: relative;
+          border: none;
+          border-radius: 0;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+        }
+      }
+    }
+
+    .select-notification {
+      @include position(absolute, 50% null null 50%);
+      @include transform(translate(-50%,-50%));
+
+      width: auto;
+      padding: 5px 33px;
+      color: lighten($brand-dark, 15%);
+
+      .impl-link {
+        display: block;
+      }
+    }
+  }
+
+  .implementation-container:last-child {
+    .vis-row {
+      border-left: 1px solid #eee;
+    }
+  }
+
+}

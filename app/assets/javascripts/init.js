@@ -1,6 +1,7 @@
 var App = App || {};
 App.shared = {};
 App.implementations = {};
+App.scenarios = {};
 App.libraries = {};
 App.types = {};
 

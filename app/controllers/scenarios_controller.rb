@@ -15,6 +15,13 @@ class ScenariosController < ApplicationController
   def new
   end
 
+  # GET /implementations/compare/?ids[]
+  def compare
+    @implementations = ImplementationDecorator.decorate_collection( Implementation.where(id: params[:ids]).limit(2) )
+
+    render layout: 'wide_content'
+  end
+
   # GET /scenarios/1/edit
   def edit
   end

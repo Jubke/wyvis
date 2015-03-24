@@ -35,9 +35,6 @@
     this.ace.setTheme('ace/theme/' + this.options.theme);
     this.ace.setOption("scrollPastEnd", 0.5);
 
-    this.ace.on('change', function (e) {
-      
-    });
   };
 
   /**

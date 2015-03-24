@@ -2,7 +2,6 @@ class ImplementationsController < ApplicationController
   expose(:scenario)
   expose(:implementation, attributes: :implementation_params)
   expose(:library) { implementation.library }
-  expose(:scenario_implementations) { ImplementationDecorator.decorate_collection(scenario.implementations) }
 
   def new
   end
@@ -20,13 +19,6 @@ class ImplementationsController < ApplicationController
     respond_to do |format|
       format.js
     end
-  end
-
-  # GET /implementations/compare/?ids[]
-  def compare
-    @implementations = ImplementationDecorator.decorate_collection( Implementation.where(id: params[:ids]).limit(2) )
-
-    render layout: 'wide_content'
   end
 
   # GET /implmentations/1/frame
