@@ -17,7 +17,7 @@
     this._defaults = defaults;
     this._name = pluginName;
 
-    _init.apply(this);
+    init.apply(this);
   }
 
   // private methods
@@ -26,11 +26,11 @@
    * Initialize the frame instance and set basic options
    * @return {undefined}
    */
-  var _init = function () {
+  var init = function () {
     this.$iframe = this.$element.find( "iframe" );
     var context = this;
     this.$iframe.load(function () {
-      _build.apply(context);
+      build.apply(context);
     });
   };
 
@@ -38,7 +38,7 @@
    * Build the controlls and setup event listeners
    * @return {[type]} [description]
    */
-  var _build = function () {
+  var build = function () {
     this.iframeWindow = this.$iframe[0].contentWindow;
     this.$document = $( this.iframeWindow.document );
     this.$contents = this.$iframe.contents();

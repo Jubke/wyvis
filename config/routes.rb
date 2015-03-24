@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :implementations
   end
 
-  get 'scenarios/:scenario_id/compare' => 'implementations#compare', as: :compare
+  get 'scenarios/:scenario_id/compare' => 'scenarios#compare', as: :compare_scenario
   get 'scenarios/:scenario_id/remote' => 'implementations#remote', as: :remote_implementation
   get 'scenarios/:scenario_id/implementations/:id/frame' => 'implementations#frame', as: :frame
 
