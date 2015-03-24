@@ -7,6 +7,8 @@
       self,
       changes = {},
       defaults = {
+        host: "http://localhost:5000",
+        path: "",
         data_object: "datahub",
         draw_function: "draw",
       };
@@ -43,7 +45,7 @@
 
     self.$iframe = self.$element.find( "iframe" );
     self.$iframe.load(function () {
-      build();
+      self.window = self.$iframe[0].contentWindow;
     });
 
     setUpListeners();
@@ -51,33 +53,31 @@
   };
 
   /**
-   * Build the controlls and setup event listeners
-   * @return {[type]} [description]
-   */
-  var build = function () {
-
-    self.iframeWindow = self.$iframe[0].contentWindow;
-    self.$document = $( self.iframeWindow.document );
-    self.$contents = self.$iframe.contents();
-
-    // prepare style container
-    self.$styles = self.$contents.find("#styles");
-    self.$vis = self.$contents.find("#vis");
-  
-  };
-
-  /**
    * Sets up event handlers for global events
    */
-  var setUpListeners = function () {
+  var setUpListeners = function() {
 
-    $.subscribe({
+    $( window ).on('message', receiveMessage);
+
+    $( app ).on({
       'resetButton': self.refresh,
       'redrawButton': onRedraw,
       'changeEditor': onChange,
       'startButton pauseButton': self.toggleInterval,
     });
   
+  };
+
+  var receiveMessage = function(e) {
+
+    if(e.source === self.window && e.origin === self.$iframe.attr("src")) {
+
+    }
+
+  };
+
+  var sendMessage = function(message) {
+    self.window.postMessage(message, "*");
   };
 
   /**
@@ -95,7 +95,7 @@
       self.injectStyles(data.doc);
     } else if (data.name === "javascript" || data.name === "data" ) {
       changes[data.name] = data.doc;
-      $.publish('pendingChanges');
+      $( self ).trigger('pendingChanges' + self.options.id);
     }
   
   };
@@ -121,7 +121,7 @@
     }
 
     self.callDraw();
-    $.publish('noPendingChanges');
+    $.publish('noPendingChanges' + self.options.id);
 
   };
 
@@ -139,8 +139,11 @@
    */
   Frame.prototype.injectStyles = function (styles) {
 
-    self.$styles.html(styles);
-    $.publish( 'injectAsset', "styles" );
+    sendMessage({
+      type: 'injectStyles',
+      content: styles
+    });
+    $.publish( 'injectAsset' + self.options.id , 'styles' );
   
   };
 
@@ -152,12 +155,11 @@
    */
   Frame.prototype.injectScript = function (name, script) {
 
-    if ( self.iframeWindow.hasLoaded ) {
-      self.iframeWindow.eval(script);
-    } else {
-      $( self.iframeWindow ).ready( function () { eval(script); } );
-    }
-    $.publish('injectAsset', name);
+    sendMessage({
+      type: 'injectScript',
+      content: script
+    });
+    $.publish('injectAsset' + self.options.id, name);
   
   };
 
@@ -167,7 +169,9 @@
    */
   Frame.prototype.destroyData = function () {
 
-    self.iframeWindow[self.options.data_object].destroy();
+    sendMessage({
+      type: 'destroyData',
+    });
   
   };
 
@@ -176,13 +180,11 @@
    * @return {undefined}
    */
   Frame.prototype.destroyVisualization = function () {
+    
+    sendMessage({
+      type: 'destroyVisualization',
+    });
 
-    var new_vis = $( "<div id='vis'></div>" );
-    self.$vis.replaceWith(new_vis);
-    self.$vis = new_vis;
-
-    self.iframeWindow.$(document).off("new.data");
-  
   };
 
   /**
@@ -191,7 +193,9 @@
    */
   Frame.prototype.callDraw = function () {
 
-    self.iframeWindow[self.options.draw_function]();
+    sendMessage({
+      type: 'draw',
+    });
   
   };
 
@@ -202,7 +206,7 @@
   Frame.prototype.refresh = function () {
 
     self.$iframe.attr("src", self.$iframe.attr("src"));
-    $.publish('startInterval');
+    $.publish('startInterval' + self.options.id);
   
   };
 
@@ -212,17 +216,19 @@
    */
   Frame.prototype.toggleInterval = function () {
 
-    self.iframeWindow[self.options.data_object].toggleInterval();
+    sendMessage({
+      type: 'toggleInterval',
+    });
   
   };
 
   // A really lightweight plugin wrapper around the constructor,
   // preventing against multiple instantiations
-  $.fn[pluginName] = function ( options ) {
+  $.fn[pluginName] = function ( app, options ) {
     return this.each(function () {
       if ( !$.data(this, "plugin_" + pluginName )) {
         $.data( this, "plugin_" + pluginName,
-          new Frame( this, options ));
+          new Frame( this, app, options ));
       }
     });
   };

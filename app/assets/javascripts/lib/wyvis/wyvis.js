@@ -43,6 +43,7 @@
   var init = function () {
 
     self.$element = $( self.element );
+    self.id = self.$element.attr("id").slice(15);
 
     // find data inputs
     self.implementation = self.$element.data("implementation");
@@ -59,7 +60,7 @@
     self.editor = self.$code.data("plugin_editor");
 
     // initialize the frame plugin
-    self.$visuals.frame();
+    self.$visuals.frame( self );
     self.frame = self.$visuals.data("plugin_frame");
 
     // add tabs to editor
@@ -80,7 +81,7 @@
    */
   var setUpListeners = function() {
 
-    $.subscribe({
+    $(self).on({
       'startButton': onPlay,
       'pauseButton': onPause,
       'pendingChanges': self.enableRedraw,
@@ -99,7 +100,7 @@
     // initialize buttons
     self.$element.delegate('button', 'click', function(e){
       var type = $( e.currentTarget ).attr('id');
-      $.publish(type + 'Button', type);
+      $(this).trigger(type + 'Button', type);
     });
   
   };

@@ -1,6 +1,7 @@
 //= require jquery/dist/jquery
 //= require jquery-ujs/src/rails
-//= require turbolinks
+
+//= require lib/wyvis/messageBroker
 
 //= require chance/chance
 //= require colorbrewer2/colorbrewer
