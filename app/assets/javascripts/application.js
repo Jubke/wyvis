@@ -23,6 +23,7 @@
 //= require ace-builds/src-min-noconflict/mode-javascript
 //= require ace-builds/src-min-noconflict/mode-css
 //= require jquery-live-search/jquery.live.search
+//= require ba-tiny-pubsub
 //
 //= require_tree ./lib/wyvis
 //
