@@ -11,6 +11,7 @@
 
   // constructor
   function Editor ( element, app, options ) {
+
     // self, different than this, is available through out the 
     // script pointing at the instance
     self = this;
@@ -23,6 +24,7 @@
     self._name = pluginName;
 
     init();
+    
   }
   
 
@@ -37,6 +39,7 @@
    * @return {undefined}
    */
   var init = function () {
+
     self.tabs = {};
 
     build();
@@ -46,6 +49,7 @@
     self.ace.setOption("scrollPastEnd", 0.5);
 
     setUpListeners();
+  
   };
 
   /**
@@ -53,19 +57,23 @@
    * @return {undefined}
    */
   var build = function () {
+
     self.$textarea = $( '<textarea></textarea>' );
     self.$element.append(self.$textarea);
+  
   };
 
   /**
    * Sets up the global event listeners
    */
   var setUpListeners = function() {
+
     $.subscribe({
       'resetButton': self.resetTabs,
       'stylesButton javascriptButton dataButton': onTabChange,
       'injectAsset': onInject,
     });
+  
   };
 
   /**
@@ -75,10 +83,12 @@
    * @return {undefined}
    */
   var onChange = function(name) {
+
     if (!self.tabs[name].hasPendingChanges) {
       self.tabs[name].hasPendingChanges= true;
       self.tabs[name].$btn.addClass('changes-pending');
     }
+  
   };
 
   /**
@@ -89,8 +99,10 @@
    * @return {undefined}
    */
   var onInject = function(e, name) {
+
     self.tabs[name].hasPendingChanges = false;
     self.tabs[name].$btn.removeClass('changes-pending');
+  
   };
 
   /**
@@ -101,7 +113,9 @@
    * @return {undefined}
    */
   var onTabChange = function(e, name) {
+
     self.setTab(name);
+  
   };
 
 
@@ -115,12 +129,14 @@
    * @param {integer} tab_id ID of the Tab to activate
    */
   Editor.prototype.setTab = function (name) {
+
     var tab = self.tabs[name];
     if (tab !== undefined) {
       self.ace.setSession( tab.session );
       self.app.$controls.find(".btn-editor-tab").removeClass("active");
       tab.$btn.addClass("active");
     }
+  
   };
 
   /**
@@ -131,6 +147,7 @@
    * @param  {String} mode The documents content type, e.g. 'javascript', 'css'
    */
   Editor.prototype.createTab = function (doc, name, label, mode) {
+
     self.tabs[name] = {};
     self.tabs[name].mode = mode;
     self.tabs[name].doc = doc;    
@@ -155,6 +172,7 @@
     var html = '<button id="' + name + '" class="btn btn-default btn-editor-tab" role="button">' + label + '</button>';
     self.tabs[name].$btn = $( html );
     self.app.$controls.find(".btn-group-editor").append(self.tabs[name].$btn);
+  
   };
 
   /**
@@ -162,9 +180,11 @@
    * @return {undefined}
    */
   Editor.prototype.resetTabs = function () {
+
     $.each( self.tabs, function (name, tab) {
       tab.session.setValue(tab.doc);
     });
+  
   };
 
   /**
@@ -172,6 +192,7 @@
    * @return {Array} Array of string objects with the content.
    */
   Editor.prototype.getScripts = function () {
+
     var scripts = [];
     $.each( self.tabs, function (name, tab) {
       if( tab.mode == "javascript" ) {
@@ -179,6 +200,7 @@
       }
     });
     return scripts;
+  
   };
 
   // A really lightweight plugin wrapper around the constructor,
