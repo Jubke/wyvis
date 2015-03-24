@@ -2,153 +2,95 @@
 
   'use strict';
 
-  // variables
+  // Create the defaults once
   var pluginName = "wyvis",
-      self,
-      defaults = {
-        target_id: 'scenario-app',
-        code_wrapper_class: 'code-wrapper',
-        controls_wrapper_class: 'controls-wrapper',
-        visualization_wrapper_class: 'vis-wrapper'
-      };
+  defaults = {
+    target_id: 'scenario-app',
+    code_wrapper_class: 'code-wrapper',
+    controls_wrapper_class: 'controls-wrapper',
+    visualization_wrapper_class: 'vis-wrapper'
+  };
 
-  // the constructor
+  // The actual plugin constructor
   function Wyvis ( element, options ) {
-    
-    self = this;
+    this.element = element;
+    this.options = $.extend( {}, defaults, options) ;
 
-    self.element = element;
-    self.options = $.extend( {}, defaults, options) ;
+    this._defaults = defaults;
+    this._name = pluginName;
 
-    self._defaults = defaults;
-    self._name = pluginName;
-
-    init();
-  
+    _private.apply(this);
+    this.init();
   }
-  
 
+  var _private = function () {
 
-  //*****************
-  // private methods
-  //*****************
-  
+  };
 
-  /**
-   * Initializes all the main moduls for the implementation.
-   * The data is retrieved from the main wrapper, editor and frame
-   * moduls are intialized, tabs are created and defaults set.
-   * @return {[type]} [description]
-   */
-  var init = function () {
-
-    self.$element = $( self.element );
-    self.id = self.$element.attr("id").slice(15);
+  Wyvis.prototype.init = function () {
+    this.$element = $( this.element );
 
     // find data inputs
-    self.implementation = self.$element.data("implementation");
-    self.scenario = self.$element.data("scenario");
-    self.library = self.$element.data("library");
+    this.implementation = this.$element.data("implementation");
+    this.scenario = this.$element.data("scenario");
+    this.library = this.$element.data("library");
     
     // buffer jQuery objects for each modul
-    self.$code = self.$element.find( '.' + self.options.code_wrapper_class );
-    self.$visuals = self.$element.find( '.' + self.options.visualization_wrapper_class );
-    self.$controls = self.$element.find( '.' + self.options.controls_wrapper_class);
+    this.$code = this.$element.find( '.' + this.options.code_wrapper_class );
+    this.$visuals = this.$element.find( '.' + this.options.visualization_wrapper_class );
+    this.$controls = this.$element.find( '.' + this.options.controls_wrapper_class);
 
     // initialize the editor plugin
-    self.$code.editor( self );
-    self.editor = self.$code.data("plugin_editor");
+    this.$code.editor( this );
+    this.editor = this.$code.data("plugin_editor");
 
-    // initialize the frame plugin
-    self.$visuals.frame( self );
-    self.frame = self.$visuals.data("plugin_frame");
+    // initialize the visualization plugin
+    this.$visuals.frame();
+    this.frame = this.$visuals.data("plugin_frame");
 
     // add tabs to editor
-    self.editor.createTab(self.implementation.script, 'javascript', 'JS', 'javascript');
-    self.editor.createTab(self.implementation.styles, 'styles','CSS', 'css');
-    self.editor.createTab(self.scenario.script, 'data', 'Data' , 'javascript');
+    this.editor.createTab(this.implementation.script, 'javascript', 'JS', 'javascript');
+    this.editor.createTab(this.implementation.styles, 'styles','CSS', 'css');
+    this.editor.createTab(this.scenario.script, 'data', 'Data' , 'javascript');
 
     // set javascript as default tab
-    self.editor.setTab("javascript");
+    this.editor.setTab("javascript");
 
-    setUpListeners();
-    setUpControls();
-  
-  };
+    // cache this to use inside callback functions
+    var that = this;
 
-  /**
-   * Sets up the event handlers.
-   */
-  var setUpListeners = function() {
-
-    $(self).on({
-      'startButton': onPlay,
-      'pauseButton': onPause,
-      'pendingChanges': self.enableRedraw,
-      'noPendingChanges': self.disableRedraw,
+    // add css live updates
+    this.$element.on('css.wyvis', function (e, styles) {
+      that.frame.injectStyles(styles);
     });
-  
-  };
 
-  /**
-   * Sets up the events published on control interaction.
-   */
-  var setUpControls = function () {
+    // initialize redraw button
+    this.$element.delegate('#redraw', 'click', function (e) {
+      var scripts = that.editor.getScripts();
+      
+      // destroy elements in the frame
+      that.frame.destroy();
 
-    var $self = $(self);
+      // reset the play/pause button status
+      that.$controls.find( "#toggle-pause" ).addClass("active");
 
-    // initialize buttons
-    self.$element.delegate('button', 'click', function(e){
-      var type = $( e.currentTarget ).attr('id');
-      $(this).trigger(type + 'Button', type);
+      $.each(scripts, function (i, script) {
+        that.frame.injectScript(script);
+      });
+      that.frame.callDraw();
     });
-  
-  };
 
-  /**
-   * Sets the pause button to replace the play button.
-   * @return {undefined}
-   */
-  var onPlay = function () {
+    // initialize reset button
+    this.$element.delegate('#reset', 'click', function (e) {
+      that.editor.reset();
+      that.frame.refresh();
+    });
 
-    self.$controls.find("#start").attr("id", "pause");
-  
-  };
-
-  /**
-   * Sets the play button to replace the pause button.
-   * @return {undefined}
-   */
-  var onPause = function () {
-
-    self.$controls.find("#pause").attr("id", "start");
-  
-  };
-
-
-
-  //*****************
-  // public methods
-  //*****************
-
-  /**
-   * Enables the redraw button.
-   * @return {undefined}
-   */
-  Wyvis.prototype.enableRedraw = function() {
-
-    self.$controls.find("#redraw").prop("disabled", false);
-  
-  };
-
-  /**
-   * Disables the redraw button.
-   * @return {undefined}
-   */
-  Wyvis.prototype.disableRedraw = function() {
-
-    self.$controls.find("#redraw").prop("disabled", true);
-  
+    // intialize pause/play button
+    this.$element.delegate('#toggle-pause', 'click', function (e) {
+      $(e.currentTarget).toggleClass( 'active' );
+      that.frame.togglePause();
+    });
   };
 
   // A really lightweight plugin wrapper around the constructor,
