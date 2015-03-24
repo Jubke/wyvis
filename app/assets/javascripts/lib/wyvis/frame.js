@@ -2,90 +2,192 @@
 
   'use strict';
 
-  // Create the defaults once
+  // variables
   var pluginName = "frame",
-  defaults = {
-    data_object: "datahub",
-    draw_function: "draw"
-  };
+      self,
+      changes = {},
+      defaults = {
+        data_object: "datahub",
+        draw_function: "draw",
+      };
 
-  // The actual plugin constructor
-  function Frame ( element, options ) {    
-    this.$element = $( element );
-    this.options = $.extend( {}, defaults, options) ;
+  // constructor
+  function Frame ( element, options ) {
+    // self, different than this, is available through out the 
+    // script pointing at the instance
+    self = this;
 
-    this._defaults = defaults;
-    this._name = pluginName;
+    self.$element = $( element );
+    self.options = $.extend( {}, defaults, options) ;
 
-    _init.apply(this);
+    self._defaults = defaults;
+    self._name = pluginName;
+
+    init();
   }
+  
 
+
+  //*****************
   // private methods
+  //*****************
+  
 
   /**
    * Initialize the frame instance and set basic options
    * @return {undefined}
    */
-  var _init = function () {
-    this.$iframe = this.$element.find( "iframe" );
-    var context = this;
-    this.$iframe.load(function () {
-      _build.apply(context);
+  var init = function () {
+    self.$iframe = self.$element.find( "iframe" );
+    self.$iframe.load(function () {
+      build();
     });
+
+    setUpListeners();
   };
 
   /**
    * Build the controlls and setup event listeners
    * @return {[type]} [description]
    */
-  var _build = function () {
-    this.iframeWindow = this.$iframe[0].contentWindow;
-    this.$document = $( this.iframeWindow.document );
-    this.$contents = this.$iframe.contents();
+  var build = function () {
+    self.iframeWindow = self.$iframe[0].contentWindow;
+    self.$document = $( self.iframeWindow.document );
+    self.$contents = self.$iframe.contents();
 
     // prepare style container
-    this.$styles = this.$contents.find("#styles");
-    this.$vis = this.$contents.find("#vis");
+    self.$styles = self.$contents.find("#styles");
+    self.$vis = self.$contents.find("#vis");
   };
 
-  // public methods
   /**
-   * Inject css styles into the iframe of the Frame
+   * Sets up event handlers for global events
+   */
+  var setUpListeners = function () {
+    $.subscribe({
+      'resetButton': self.refresh,
+      'redrawButton': onRedraw,
+      'changeEditor': onChange,
+      'startButton pauseButton': self.toggleInterval,
+    });
+  };
+
+  /**
+   * Listens to the 'onChange' event emitted by the editor.
+   * Depending on the type of content that has changed, 
+   * the changed document is either buffered or directly 
+   * injected.
+   * @param  {Object} e    jQuery event object.
+   * @param  {Object} data An object with two properties. 'data.name' holds the content identifier. 'data.doc' holds the changed document.
+   * @return {undefined}
+   */
+  var onChange = function(e, data) {
+    if(data.name === "styles") {
+      self.injectStyles(data.doc);
+    } else if (data.name === "javascript" || data.name === "data" ) {
+      changes[data.name] = data.doc;
+      $.publish('pendingChanges');
+    }
+  };
+
+  /**
+   * Callback for gloabl 'redrawButton' event. Detects which 
+   * documents have changed and calls to destroy corresponding
+   * scripts in the frame. Then injects the changed objects and
+   * calls the draw functions to restart the visualization.
+   * @param  {Object} e jQuery event object.
+   * @return {undefined}
+   */
+  var onRedraw = function(e) {
+    if(changes.data !== undefined) {
+      self.destroyData();
+      self.injectScript('data', changes.data);
+    }
+
+    self.destroyVisualization();
+    if(changes.javascript !== undefined) {
+      self.injectScript('javascript', changes.javascript);
+    }
+
+    self.callDraw();
+    $.publish('noPendingChanges');
+  };
+
+
+
+  //*****************
+  // public methods
+  //*****************
+  
+  
+  /**
+   * Inject css styles into thevisualization frame.
    * @param  {[type]} styles Styles as pure Text
    * @return {[type]}        [description]
    */
   Frame.prototype.injectStyles = function (styles) {
-    this.$styles.html(styles);
+    self.$styles.html(styles);
+    $.publish( 'injectAsset', "styles" );
   };
 
-  Frame.prototype.injectScript = function (script) {
-    if ( this.iframeWindow.hasLoaded ) {
-      this.iframeWindow.eval(script);
+  /**
+   * Injects the given script into the visualization frame.
+   * @param  {String} name   Identifier of the contents.
+   * @param  {String} script Content of the script to be injected.
+   * @return {undefined}
+   */
+  Frame.prototype.injectScript = function (name, script) {
+    if ( self.iframeWindow.hasLoaded ) {
+      self.iframeWindow.eval(script);
     } else {
-      $( this.iframeWindow ).ready( function () { eval(script); } );
+      $( self.iframeWindow ).ready( function () { eval(script); } );
     }
+    $.publish('injectAsset', name);
   };
 
-  Frame.prototype.destroy = function () {
-    this.iframeWindow[this.options.data_object].destroy();
+  /**
+   * Calls the destroy() method on the data object in the frame.
+   * @return {undefined}
+   */
+  Frame.prototype.destroyData = function () {
+    self.iframeWindow[self.options.data_object].destroy();
+  };
 
+  /**
+   * Destroys the visualization in the frame.
+   * @return {undefined}
+   */
+  Frame.prototype.destroyVisualization = function () {
     var new_vis = $( "<div id='vis'></div>" );
-    this.$vis.replaceWith(new_vis);
-    this.$vis = new_vis;
+    self.$vis.replaceWith(new_vis);
+    self.$vis = new_vis;
 
-    this.iframeWindow.$(document).off("new.data");
+    self.iframeWindow.$(document).off("new.data");
   };
 
+  /**
+   * Calls the Draw function in the frame.
+   * @return {undefined}
+   */
   Frame.prototype.callDraw = function () {
-    this.iframeWindow[this.options.draw_function]();
+    self.iframeWindow[self.options.draw_function]();
   };
 
+  /**
+   * Completely resets the frame by reinserting the source url.
+   * @return {undefined}
+   */
   Frame.prototype.refresh = function () {
-    this.$iframe.attr("src", this.$iframe.attr("src"));
+    self.$iframe.attr("src", self.$iframe.attr("src"));
+    $.publish('startInterval');
   };
 
-  Frame.prototype.togglePause = function (e) {
-    this.iframeWindow[this.options.data_object].toggleInterval();
+  /**
+   * Toggles the interval on the data object in the frame.
+   * @return {undefined}
+   */
+  Frame.prototype.toggleInterval = function () {
+    self.iframeWindow[self.options.data_object].toggleInterval();
   };
 
   // A really lightweight plugin wrapper around the constructor,
