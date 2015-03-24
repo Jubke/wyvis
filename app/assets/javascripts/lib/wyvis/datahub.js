@@ -12,7 +12,7 @@
 
   'use strict';
 
-  // variables
+  // default options
   var DEFAULTS = {
         tweak: {
           backwards_allowed: true,
@@ -23,29 +23,24 @@
         }
       };
 
-  // constructor
+  // Constructor
   function DataHub (opts) {
     if (!(this instanceof DataHub)) {
       return new DataHub(opts);
     } 
-
-    // self, different than this, is available through out the 
-    // script pointing at the instance
-    self = this;
     
-    self._data = {};
-    self._data_set = [];
-    self._data_index = null;
-    self._tweak_options = {};
-    self._tweak_available = false;
-    self._tweak_set = {};
-    self._has_interval = false;
-    self._interval = {
+    this._data = {};
+    this._data_set = [];
+    this._data_index = null;
+    this._tweak_options = {};
+    this._tweak_available = false;
+    this._tweak_set = {};
+    this._has_interval = false;
+    this._interval = {
       id: null,
     };
 
-    self._options = $.extend(true, {}, DEFAULTS, opts);
-  
+    this._options = $.extend(true, {}, DEFAULTS, opts);
   }
 
   /**
@@ -91,13 +86,11 @@
    * @param {Object} data object to be added to the end of the array
    */
   DataHub.prototype.addData = function (data, set_data) {
-
-    self._data_set.push(data);
+    this._data_set.push(data);
 
     if ( typeof(set_data) === 'boolean' && set_data ) {
-      self.setData(self._data_set.length - 1);
+      this.setData(this._data_set.length - 1);
     }
-  
   };
 
   /**
@@ -105,13 +98,11 @@
    * @param {int} index of the data object in the data set array
    */
   DataHub.prototype.setData = function (index) {
-
-    self._data_index = index;
-    self._data = self._data_set[self._data_index];
+    this._data_index = index;
+    this._data = this._data_set[this._data_index];
 
     // Trigger global event for new data being set as current
-    $( self ).trigger('new.data', [self.getData()]);
-  
+    $( this ).trigger('new.data', [this.getData()]);
   };
 
   /**
@@ -119,10 +110,8 @@
    * @return {Object} active data object
    */
   DataHub.prototype.getData = function () {
-
-    var r = $.extend(true, {}, self._data);
+    var r = $.extend(true, {}, this._data);
     return r;
-  
   };
 
   /**
@@ -130,9 +119,7 @@
    * @return {int} index
    */
   DataHub.prototype.getIndex = function () {
-
-    return self._data_index;
-  
+    return this._data_index;
   };
 
   /**
@@ -142,25 +129,23 @@
    * @return {Object} a data object
    */
   DataHub.prototype.getNextData = function () {
-
     // if there is more data vailable,
-    // return self data
-    if (self._data_index + 1 <= self._data_set.length - 1) {
-      self.setData(self._data_index + 1);
-      return self.getData();
+    // return that data
+    if (this._data_index + 1 <= this._data_set.length - 1) {
+      this.setData(this._data_index + 1);
+      return this.getData();
     } 
     // if no more data is available,
     // is there a tweak for the latest data?
-    else if ( self._tweak_available ) {
-      self.tweak();
-      return self.getData();
+    else if ( this._tweak_available ) {
+      this.tweak();
+      return this.getData();
     }
     // if neither is possible,
     // return the active data
     else {
-      return self.getData();
+      return this.getData();
     }
-  
   };
 
   /**
@@ -171,25 +156,23 @@
    * @return {Object} data object
    */
   DataHub.prototype.getPreviousData = function () {
-
     // if there is earlier data vailable,
-    // return self data
-    if (self._data_index - 1 >= 0) {
-      self.setData(self._data_index - 1);
-      return self.getData();
+    // return that data
+    if (this._data_index - 1 >= 0) {
+      this.setData(this._data_index - 1);
+      return this.getData();
     } 
     // if no earlier data is available,
     // is there a tweak for the earliest data?
-    else if ( self._tweak_available && self._tweak_options.backwards_allowed ) {
-      self.tweak({backwards: true});
-      return self.getData();
+    else if ( this._tweak_available && this._tweak_options.backwards_allowed ) {
+      this.tweak({backwards: true});
+      return this.getData();
     }
     // if neither is possible,
     // return the active data
     else {
-      return self.getData();
+      return this.getData();
     }
-  
   };
 
   /**
@@ -202,11 +185,11 @@
    * @return {boolean}             returns the value of 'tweak_available'
    */
   DataHub.prototype.defineTweak = function (definitions, opts) {
-
-    self._tweak_options = $.extend(true, {}, self._options.tweak, opts);
+    this._tweak_options = $.extend(true, {}, this._options.tweak, opts);
 
     // create mixin from definitions
     // and prepare tweak_set
+    var that = this;
     $.each(definitions, function (key, value) {
       var name = 'datahub_' + key,
           obj = {};
@@ -214,14 +197,13 @@
       obj[''+name] = value;
       chance.mixin(obj);
 
-      self._tweak_set[key] = function (param) { return chance[name](param); };
+      that._tweak_set[key] = function (param) { return chance[name](param); };
 
       // we now have at least one definition so a tweak is available
-      self._tweak_available = true;
+      that._tweak_available = true;
     });
 
-    return self._tweak_available;
-  
+    return this._tweak_available;
   };
 
   /**
@@ -231,17 +213,15 @@
    *                              false if no tweak is available         
    */
   DataHub.prototype.tweak = function (options) {
-
     var tweaked_data = false;
 
-    if (self._tweak_available) {
-      for (var key in self._tweak_set ) {
-        tweaked_data = tweak(self._data, key, self._tweak_set[key]);
+    if (this._tweak_available) {
+      for (var key in this._tweak_set ) {
+        tweaked_data = tweak(this._data, key, this._tweak_set[key]);
       }
     }
 
     return tweaked_data;
-  
   };
 
   /**
@@ -249,9 +229,7 @@
    * @return {boolean} true if set false otherwise
    */
   DataHub.prototype.hasInterval = function () {
-
-    return self._has_interval;
-  
+    return this._has_interval;
   };
 
   /**
@@ -259,90 +237,64 @@
    * @return {[type]} [description]
    */
   DataHub.prototype.getIntervalTimeout = function () {
-
-    if (self._has_interval) {
-      return self._interval.timeout;
+    if (this._has_interval) {
+      return this._interval.timeout;
     } else {
       return false;
     }
-  
   };
 
-  /**
-   * Set an interval after which new data is generated automatically
-   * @param {Obejct} opts An object conaining possible options
-   */
   DataHub.prototype.setInterval = function (opts) {
-
     var tweaked_data;
 
-    self._interval = $.extend(true, {}, self._options.interval, self._interval, opts);
+    this._interval = $.extend(true, {}, this._options.interval, this._interval, opts);
 
-    self._interval.id = window.setInterval( function () {
-      tweaked_data = self.tweak();
+    var that = this;
+    this._interval.id = window.setInterval( function () {
+      tweaked_data = that.tweak();
 
-      if (self._interval.auto_switch_data) {
-        self.addData(tweaked_data, true);
+      if (that._interval.auto_switch_data) {
+        that.addData(tweaked_data, true);
       } else {
-        self.addData(tweaked_data);
+        that.addData(tweaked_data);
       }
 
       // trigger event for tweaked data
-      $( self ).trigger('tweak.data');
+      $( this ).trigger('tweak.data');
 
-    }, self._interval.timeout);
+    }, this._interval.timeout);
 
-    self._has_interval = true;
-  
+    this._has_interval = true;
   };
 
-  /**
-   * Clears the interval to stop generating data automatically.
-   * @return {undefined}
-   */
   DataHub.prototype.clearInterval = function () {
-
-    window.clearInterval(self._interval.id);
-    self._has_interval = false;
-  
+    window.clearInterval(this._interval.id);
+    this._has_interval = false;
   };
 
-  /**
-   * Starts or stops the interval depedning on the current state.
-   * @return {undefined}
-   */
   DataHub.prototype.toggleInterval = function () {
-
-    if (self.hasInterval()) {
-      self.clearInterval();
+    if (this.hasInterval()) {
+      this.clearInterval();
     } else {
-      self.setInterval();
+      this.setInterval();
     }
-  
   };
 
-  /**
-   * Completely resets the datahub to default values and
-   * removes any open intervals.
-   * @return {undefined}
-   */
   DataHub.prototype.destroy = function () {
-
-    self.clearInterval();
+    this.clearInterval();
     
-    $(self).off();
+    $(this).off();
 
-    self._data = {};
-    self._data_set = [];
-    self._data_index = null;
-    self._tweak_options = {};
-    self._tweak_available = false;
-    self._tweak_set = {};
-    self._has_interval = false;
-    self._interval = {
+    this._data = {};
+    this._data_set = [];
+    this._data_index = null;
+    this._tweak_options = {};
+    this._tweak_available = false;
+    this._tweak_set = {};
+    this._has_interval = false;
+    this._interval = {
       id: null,
     };
-  
   };
 
 

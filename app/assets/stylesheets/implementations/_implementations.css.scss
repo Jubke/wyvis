@@ -170,16 +170,6 @@ body[data-controller=implementations] {
             }
           }
         }
-
-        #start span {
-          @extend .glyphicon-play;
-          color: $brand-info;
-        }
-
-        #pause span {
-          @extend .glyphicon-pause;
-          color: $brand-danger;
-        }
         
       }
     }
