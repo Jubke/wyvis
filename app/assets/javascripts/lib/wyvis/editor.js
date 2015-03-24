@@ -68,7 +68,7 @@
    */
   var setUpListeners = function() {
 
-    $.subscribe({
+    $(app).on({
       'resetButton': self.resetTabs,
       'stylesButton javascriptButton dataButton': onTabChange,
       'injectAsset': onInject,
@@ -133,7 +133,7 @@
     var tab = self.tabs[name];
     if (tab !== undefined) {
       self.ace.setSession( tab.session );
-      self.app.$controls.find(".btn-editor-tab").removeClass("active");
+      $(".btn-editor-tab").removeClass("active");
       tab.$btn.addClass("active");
     }
   
@@ -162,7 +162,7 @@
     // bubble change events
     self.tabs[name].session.on('change', function (e) {
       onChange(name);
-      $.publish( 'changeEditor' , {
+      $(self).trigger( 'changeEditor', {
         name: name,
         doc: self.tabs[name].session.getValue()
       });
@@ -171,7 +171,7 @@
     // add tab controlls
     var html = '<button id="' + name + '" class="btn btn-default btn-editor-tab" role="button">' + label + '</button>';
     self.tabs[name].$btn = $( html );
-    self.app.$controls.find(".btn-group-editor").append(self.tabs[name].$btn);
+    $(".btn-group-editor").append(self.tabs[name].$btn);
   
   };
 
