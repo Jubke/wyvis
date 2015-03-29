@@ -11,7 +11,7 @@ var draw = function () {
       text: 'Simple Line Chart'
     },
     series: [{
-      data: [datahub.getData()], // initial data point
+      data: datahub.getData(), // initial data point
     }],
     xAxis: {
       type: 'datetime'
@@ -27,7 +27,7 @@ var draw = function () {
   }
 
   // call update on the new.data event
-  $( datahub ).on("new.data", function (e, data) {
+  $( datahub ).on("newPoint", function (e, data) {
     update(data);
   });
 };

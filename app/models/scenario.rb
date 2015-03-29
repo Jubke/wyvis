@@ -27,7 +27,7 @@ class Scenario < ActiveRecord::Base
   end
 
   def has_interval?
-    script.include? '.setInterval('
+    script.include? 'interval: true'
   end
 
   def json

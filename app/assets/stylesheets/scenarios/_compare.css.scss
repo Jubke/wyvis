@@ -212,15 +212,16 @@ body[data-controller=scenarios][data-action=compare] {
     }
 
     .select-notification {
-      @include position(absolute, 50% null null 50%);
+      @include position(absolute, 30% null null 50%);
       @include transform(translate(-50%,-50%));
 
       width: auto;
       padding: 5px 33px;
-      color: lighten($brand-dark, 15%);
+      color: lighten($brand-dark, 20%);
 
       .impl-link {
         display: block;
+        color: lighten($brand-dark, 20%);
       }
     }
   }

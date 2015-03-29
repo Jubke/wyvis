@@ -5,7 +5,7 @@ var draw = function() {
   var margin = {top: 10, right: 10, bottom: 40, left: 40},
       width = $("#vis").width() - margin.left - margin.right,
       height = $("#vis").height() - margin.top - margin.bottom,
-      timeout = datahub.getIntervalTimeout(); // retrieves the timeout interval set on the data object
+      timeout = datahub.getTimeout();
 
   // a function to parse dates
   var parseDate = d3.time.format("%h:%m:%s:%ms").parse;
@@ -105,10 +105,10 @@ var draw = function() {
   }
 
   // initialize the graph
-  update( datahub.getData() );
+  update( datahub.getData()[0] );
 
   // listen for new data points
-  $( datahub ).on("new.data", function (e, data) {
+  $( datahub ).on("newPoint", function (e, data) {
     update(data);
   });
 };

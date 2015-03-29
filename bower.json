@@ -13,6 +13,7 @@
     "chance": "latest",
     "ace-builds": "latest",
     "highlightjs": "latest",
-    "colorbrewer2": "latest"
+    "colorbrewer2": "latest",
+    "moment": "latest"
   }
 }

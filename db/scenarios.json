@@ -16,5 +16,14 @@
     "visualization_tasks": ["monitor", "overview"],
     "visualization_types": ["sankey diagram"],
     "implementations": ["D3"]
+  },
+  {
+    "name": "Filtered Time Series",
+    "short": "Use cross filters and time series zoom to visualize multivariate data.",
+    "description": "Let the data be weight measures of chemical samples over one year. Each data point consists of sample specification, substance identification, the associated experiment, a date and the weight. We now have multivariate, temporal data. All entries but the weight and the date are on discrete scales. Our goal is to visualize the weights of different samples, of the same substance, across different experiments, during the last month.",
+    "data_types": ["Temporal", "nD/Multidimensional"],
+    "visualization_tasks": ["overview", "zoom", "filter"],
+    "visualization_types": ["time series"],
+    "implementations": ["Highcharts"]
   }
 ]

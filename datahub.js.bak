@@ -24,12 +24,14 @@
       };
 
   // Constructor
-  function DataHub (opts) {
+  function DataHub (series, options) {
     if (!(this instanceof DataHub)) {
       return new DataHub(opts);
-    } 
+    }
+
+    this.init(series);
     
-    this._data = {};
+    this._data = null;
     this._data_set = [];
     this._data_index = null;
     this._tweak_options = {};
@@ -40,7 +42,7 @@
       id: null,
     };
 
-    this._options = $.extend(true, {}, DEFAULTS, opts);
+    this._options = $.extend(true, {}, DEFAULTS, options);
   }
 
   /**
@@ -52,7 +54,6 @@
    * @return {int}           the number of values changed
    */
   function tweak(node, key, nextValue) {
-
     // is the object an array?
     if ( Object.prototype.toString.call(node) === "[object Array]" ) {
       // the current node can not hold the key of 
@@ -61,25 +62,36 @@
         node[i] = tweak(node[i], key, nextValue);
       }
 
-    // is the current node a object?  
-    } else if ( typeof(node) === 'object' && node !== {} ) {
+    // is the current node an object?  
+    } else if ( node !== null && typeof(node) === 'object' && node !== {} ) {
 
       // does the node have the key we are looking for?
-      if ( node.hasOwnProperty(key) ) {
+      if ( key in node ) {
         // then apply the nextValue function
         node[key] = nextValue( node[key] );
       }
 
       // tweak among children, but not the key
       for (var prop in node) {
-        if (prop !== key) node[prop] = tweak(node[prop], key, nextValue);
+        if (prop !== key) {
+          node[prop] = tweak(node[prop], key, nextValue);
+        }
       }
 
     }
     // if neither apllies the current node
-    // is a string or number and we go back up the tree
+    // is not searchable and we go back up the tree
     return node;
   } 
+
+  DataHub.prototype.init = function(series) {
+    // check the series for a template
+    if (series[0].template !== undefined && typeof series[0].template === 'function' ) {
+
+    }
+
+
+  };
 
   /**
    * Adds a new data object to the data set array
@@ -111,6 +123,15 @@
    */
   DataHub.prototype.getData = function () {
     var r = $.extend(true, {}, this._data);
+    return r;
+  };
+
+  /**
+   * Return the whole set of data
+   * @return {Object} the complete data set
+   */
+  DataHub.prototype.getDataSet = function() {
+    var r = $.extend(true, {}, this._data_set);
     return r;
   };
 
@@ -212,17 +233,30 @@
    * @return {object or boolean}  returns the tweaked data or 
    *                              false if no tweak is available         
    */
-  DataHub.prototype.tweak = function (options) {
+  DataHub.prototype.tweak = function (times) {
     var tweaked_data = false;
+    times = times || 1;
 
     if (this._tweak_available) {
-      for (var key in this._tweak_set ) {
-        tweaked_data = tweak(this._data, key, this._tweak_set[key]);
+      for (; times >= 1; times -= 1) {
+        tweaked_data = this._data;
+        for (var key in this._tweak_set ) {
+          tweaked_data = tweak(tweaked_data, key, this._tweak_set[key]);
+        }
+        this.addData(tweaked_data, true);
       }
     }
 
-    return tweaked_data;
+    return this.getData();
   };
+
+
+
+
+
+//********************//
+//* Interval methods *//
+//********************// 
 
   /**
    * Returns weather an automated tweak is scheduled
@@ -252,12 +286,6 @@
     var that = this;
     this._interval.id = window.setInterval( function () {
       tweaked_data = that.tweak();
-
-      if (that._interval.auto_switch_data) {
-        that.addData(tweaked_data, true);
-      } else {
-        that.addData(tweaked_data);
-      }
 
       // trigger event for tweaked data
       $( this ).trigger('tweak.data');
