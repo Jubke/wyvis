@@ -3,13 +3,12 @@ var draw = function () {
   chart = AmCharts.makeChart("vis", {
     "type": "serial",
     "theme": "none",
-    "dataProvider": [datahub.getData()],
+    "dataProvider": datahub.getData(),
     "valueAxes": [{
         "position": "left",
         "title": "Values"
     }],
     "graphs": [{
-        //"fillAlphas": 0.4,
         "valueField": "y"
     }],
     "categoryField": "x",
@@ -32,7 +31,7 @@ var draw = function () {
   }
 
   // call update on the new.data event
-  $( datahub ).on("new.data", function (e, data) {
+  $( datahub ).on("newPoint", function (e, data) {
     update(data);
   });
 };

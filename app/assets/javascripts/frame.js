@@ -4,8 +4,9 @@
 
 //= require chance/chance
 //= require colorbrewer2/colorbrewer
+//= require moment/moment
 
-//= require lib/wyvis/datahub
+//= require_tree ./lib/datahub
 
 
 var setOnLoad = function (argument) {

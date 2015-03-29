@@ -4,7 +4,7 @@ var draw = function() {
   var margin = {top: 1, right: 1, bottom: 6, left: 1},
       width = $("#vis").width() - margin.left - margin.right,
       height = $("#vis").height() - margin.top - margin.bottom,
-      timeout = datahub.getIntervalTimeout();
+      timeout = 1500;
 
   // formatting of strings for labels and color scale
   var formatNumber = d3.format(",.0f"),
@@ -136,10 +136,10 @@ var draw = function() {
       .attr("y", function (d) { return d.dy / 2; });
   }
 
-  var data = datahub.getData();
+  var data = datahub.getLatestData();
   update(data);
 
-  $( datahub ).on("new.data", function (e, data) {
+  $( datahub ).on("newPoint", function (e, data) {
     update(data);
   });
 };

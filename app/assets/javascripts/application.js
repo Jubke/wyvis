@@ -17,6 +17,7 @@
 //
 //= require chance/chance
 //= require colorbrewer2/colorbrewer
+//= require moment/moment
 //= require ace-builds/src-min-noconflict/ace
 //= require ace-builds/src-min-noconflict/worker-javascript
 //= require ace-builds/src-min-noconflict/theme-chrome
@@ -24,7 +25,7 @@
 //= require ace-builds/src-min-noconflict/mode-css
 //= require jquery-live-search/jquery.live.search
 //
-//= require_tree ./lib/wyvis
+//= require_tree ./lib/wyvis/
 //
 //= require init
 //= require_tree ./implementations

@@ -1,13 +1,6 @@
-;(function () {
+var datahub = (function (DataHub) {
 
-  var data = {
-      "x" : new Date(),
-      "y" : 100,
-    };
-
-  datahub.addData(data, true);
-
-  datahub.defineTweak({
+  var template = {
     y : function (pre) {
       return chance.integer({
         min: Math.max(pre - 5, 1), 
@@ -15,10 +8,19 @@
       });
     },
     x : function (pre) {
-      return new Date();
+      return moment().valueOf();
     },
-  });
+  };
 
-  datahub.setInterval({timeout: 100});
+  var datahub = new DataHub({
+      tweak: template,
+      interval: true,
+      timeout: 100,
+      data: [{
+        "x" : moment().valueOf(),
+        "y" : 100        
+      }]
+    });
 
-})();
+  return datahub;
+})(DataHub);
