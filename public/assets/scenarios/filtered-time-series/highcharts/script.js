@@ -5,16 +5,17 @@ var draw = function () {
 
   // preparing the data
   for(var name in series) {
-    var data_points = [],
-        data = series[name];
+    var data = series[name];
 
+    // Highcharts expects an x and y value for each data point
     for(var i = data.length - 1; i >= 0; i-- ) {
-      data_points.unshift({x: data[i].date, y: data[i].weight, experiment: data[i].experiment_id});
+      data[i].y = data[i].weight;
+      data[i].x = data[i].date;
     }
 
     highcharts_data.push({
       name: series[name][0].sample_id, 
-      data: data_points,
+      data: data,
     });
   }
 
@@ -27,7 +28,7 @@ var draw = function () {
       zoomType: 'x'
     },
     title: {
-      text: 'Simple Line Chart'
+      text: 'Sample Weight History'
     },
     series: highcharts_data, // initial data point
     xAxis: {
@@ -35,7 +36,10 @@ var draw = function () {
     },
     tooltip: {
       valueSuffix: ' mol',
-      pointFormat: '{series.name}<br/>weight: {point.y}<br/>experiment: {point.experiment}'
+      pointFormat: 'sample: <b>{series.name}</b><br/>' +
+                   'weight: <b>{point.y}</b><br/>' +
+                   'experiment: <b>{point.experiment}</b><br/>' +
+                   'subsatnce: <b>{point.substance}</b>'
     }
   });
 
