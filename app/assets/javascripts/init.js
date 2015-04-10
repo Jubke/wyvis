@@ -16,7 +16,7 @@ App.shared.windowHeight = function() {
 App.shared.initLiveSearch = function () {
   // initialize live-search
   window.liveSearch = $.liveSearch({
-    selectorContainer: "#live-search",
+    selectorContainer: "#thumb-container",
     selectorElementsToSearch: ".search-tile",
     attributeToSearch: false,
     selectorInputSearch: "#search-query",
@@ -42,7 +42,7 @@ App.shared.initDetailsView = function () {
   });
 
   // bind selectio
-  $("#live-search").on("click", '.thumbnail', selectDetail);
+  $("#thumb-container").on("click", '.thumbnail', selectDetail);
 
   /**
    * Sets the 'active' class on the library thumb

@@ -5,7 +5,11 @@ class LibrariesController < ApplicationController
 
   # GET /libraries
   def index
-    render layout: "wide_content"
+    respond_to do |f|
+      f.html { render layout: "wide_content" }
+      f.json { libraries }
+    end
+    
   end
 
   # GET /libraries/1

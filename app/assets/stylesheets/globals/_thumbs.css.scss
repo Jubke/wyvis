@@ -9,7 +9,7 @@
 .thumbnail {
   position: relative;
   overflow: hidden;
-  
+
   @include transition(all 0.3s ease);
   // &:after {
   //   content: " ";
@@ -24,7 +24,8 @@
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 6px rgba($gray-light, 0.4);
+    box-shadow: 0 2px 3px rgba($gray-light, 0.4);
+    top: -1px;
     
     .plus div {
       background-color: darken($gray-lighter, 5%);
@@ -67,7 +68,9 @@
   }
 
   &.active {
-    box-shadow: 0 0 6px rgba($brand-primary, 0.8);
+    box-shadow: 0 3px 5px rgba($gray-light, 0.5);
+    border-bottom: 2px solid $brand-primary;
+    top: -3px;
   }
 
   &.add-item-thumb {

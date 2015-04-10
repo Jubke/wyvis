@@ -11,13 +11,13 @@ var datahub = (function(DataHub){
   template = {
     // add 1-2 days to the previous date
     date: function (pre) {
-      return moment(pre).add(chance.integer({min: 1, max: 2}), 'days').valueOf();
+      return moment(pre).add(chance.integer({min: 12, max: 48}), 'hours').valueOf();
     },
     // previous weight +/- 10, within range 0 to 333
     weight: function (pre) {
       return chance.integer({
                 min: Math.max(pre - 10, 0),
-                max: Math.min(pre + 10, 333),
+                max: Math.min(pre + 10, 350),
               });
     },
     // 5% chance to switch experiment

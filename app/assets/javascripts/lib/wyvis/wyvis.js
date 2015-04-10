@@ -82,6 +82,10 @@
 
     // initialize reset button
     this.$element.delegate('#reset', 'click', function (e) {
+
+      // reset the play/pause button status
+      that.$controls.find( "#toggle-pause" ).addClass("active");
+      
       that.editor.reset();
       that.frame.refresh();
     });

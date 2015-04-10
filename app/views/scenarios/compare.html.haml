@@ -5,6 +5,7 @@
   = form_tag('/',id: 'form-scenario-select', class: 'form-inline') do
     .form-group
       = select_tag :id, options_from_collection_for_select(scenarios, 'id', 'name', scenario.id), class: 'form-control'
+  = scenario_dec.hash_tags
   -# %p.lead= scenario.short
   -# %p= scenario.description
 .row.compare-container

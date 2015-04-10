@@ -9,5 +9,22 @@ class ScenarioDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+  
+  def hash_tags
+    tags = ""
+    object.data_types.each do |d|
+      name = d.name
+      tags = tags + h.content_tag( :span, '#' + name, class: 'scenario-tag data-type')
+    end
+    object.visualization_types.each do |d|
+      name = d.name
+      tags = tags + h.content_tag( :span, '#' + name, class: 'scenario-tag vis-type')
+    end
+    object.visualization_tasks.each do |d|
+      name = d.name
+      tags = tags + h.content_tag( :span, '#' + name, class: 'scenario-tag task')
+    end
+    return tags.html_safe
+  end
 
 end

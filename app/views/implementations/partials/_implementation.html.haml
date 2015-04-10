@@ -10,6 +10,16 @@
         %button#reset.btn.btn-default{title: 'Reset the visualization to the initial state', data: {toggle: 'tooltip', placement: 'top', container: 'body'}}
           %span.glyphicon.glyphicon-trash
       .btn-group.btn-group-editor
+      
+      .btn-group
+        .btn-label
+          = implementation.name
+        = link_to implementation.library.url, id: 'website', class: 'btn btn-default', target: '_blank', title: "Open the website for #{implementation.library.name}" do
+          %span.glyphicon.glyphicon-home
+        = link_to implementation.library.url_docs, id: 'docs', class: 'btn btn-default', target: '_blank', title: "Open the documentation for #{implementation.library.name}", disabled: implementation.library.url_docs.nil? do
+          %span.glyphicon.glyphicon-book
+        = link_to implementation.library.url_code, id: 'code', class: 'btn btn-default', target: '_blank', title: "Open the source repository for #{implementation.library.name}", disabled: implementation.library.url_code.nil? do
+          %span.glyphicon.glyphicon-folder-open
 
       - if scenario.has_interval?
         .btn-group

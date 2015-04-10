@@ -7,11 +7,11 @@ json = JSON.parse(content)
 
 json.each do |j|
   if j['url'] != "" && (j['description'] == "" || j['image_url'] == "" || j['meta_tags'].nil? || j['best_title'] == "")
-    puts j["framework"]
+    puts j["name"]
     begin
       page = MetaInspector.new(j['url'], :connection_timeout => 10, :read_timeout => 5, :retries => 4)
     rescue => e
-      puts j["framework"] + " error"
+      puts j["name"] + " error"
       puts e.to_s
     else
       if j['description'] == ""
@@ -21,7 +21,7 @@ json.each do |j|
         begin
           j['image_url'] = page.images.best
         rescue => e
-          puts j['framework'] + " error:"
+          puts j['name'] + " error:"
           puts e.to_s
         end
       end

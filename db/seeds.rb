@@ -15,6 +15,8 @@ libraries.each do |lib|
   new_library = Library.create!( 
     :name            => lib['name'],
     :url             => lib['url'],
+    :url_code        => lib['url_code'],
+    :url_docs        => lib['url_docs'],
     :current_version => lib['current_version'],
     :image_url       => lib['image_url'],
     :short           => lib['best_title'],

@@ -1,6 +1,7 @@
 class ScenariosController < ApplicationController
   expose(:scenarios)
   expose(:scenario, attributes: :scenario_params)
+  expose(:scenario_dec) { scenario.decorate }
   expose(:implementations) {ImplementationDecorator.decorate_collection(scenario.implementations)}
 
   # GET /scenarios
