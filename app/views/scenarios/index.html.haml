@@ -1,17 +1,19 @@
-%h1.page-header Listing scenarios
+- content_for :title do
+  Scenarios
+
+%h1.page-header Scenarios
 
 .row
   - scenarios.each do |scenario|
     .col-sm-4.col-md-3
       = link_to compare_scenario_path(scenario), class: 'link-thumb' do
         .thumbnail
-          %img.img-rounded.img-responsive{src: 'http://placehold.it/250x150/eeeeee', alt: scenario.name}/
           .caption
             %h3= scenario.name
             %p= scenario.short
-  .col-sm-4.col-md-3
-    = link_to new_scenario_path, class: 'link-thumb', title: 'Add a new scenario' do
-      .thumbnail.add-item-thumb
-        .plus
-          %div
-          %div
+  -# .col-sm-4.col-md-3
+  -#   = link_to new_scenario_path, class: 'link-thumb', title: 'Add a new scenario' do
+  -#     .thumbnail.add-item-thumb
+  -#       .plus
+  -#         %div
+  -#         %div

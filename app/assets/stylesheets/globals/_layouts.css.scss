@@ -2,3 +2,18 @@ html, body {
   width: 100%;
   overflow-x: hidden;
 }
+
+.navbar .navbar-nav li {
+  svg {
+    fill: $navbar-default-link-color;
+    margin-bottom: -5px;
+  }
+
+  &:hover svg {
+    fill: $navbar-default-link-hover-color;
+  }
+}
+
+footer {
+  margin-bottom: 40px;
+}

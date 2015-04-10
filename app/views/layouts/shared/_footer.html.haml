@@ -1,2 +1,18 @@
-.container
+%footer
   %hr/
+  .container
+    .row
+      .col-md-3
+        %ul.list-unstyled
+          %li= link_to "Home", page_path('home') , class: "active"
+          %li= link_to "About", page_path('about')
+          %li= link_to "Imprint", page_path('imprint')
+      .col-md-3
+        %ul.list-unstyled
+          %li= link_to "Scenarios", scenarios_path
+          %li= link_to "Libraries", libraries_path
+          %li= link_to "Taxonomy", types_path
+      .col-md-3
+        %h1 eeovis
+      .col-md-3
+        The core idea behind eeovis is to allow for empirical evaluation and pilot testing with JavaScript visualization libraries in a comparable, repeatable and interactive way, while reducing the time and resources spend on preparations that are required for such tests.
