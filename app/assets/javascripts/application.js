@@ -24,6 +24,7 @@
 //= require ace-builds/src-min-noconflict/mode-javascript
 //= require ace-builds/src-min-noconflict/mode-css
 //= require jquery-live-search/jquery.live.search
+//= require isotope/dist/isotope.pkgd.js
 //
 //= require_tree ./lib/wyvis/
 //

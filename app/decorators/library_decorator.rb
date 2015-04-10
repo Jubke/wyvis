@@ -14,6 +14,14 @@ class LibraryDecorator < Draper::Decorator
     object.render_tech * ", "
   end
 
+  def link_url_docs
+    object.url_docs.nil? ? h.content_tag(:span, 'Documentation', class: 'not-available', title: 'Sorry, no link to the documentation available.') : h.link_to('Documentation', object.url_docs)
+  end
+
+  def link_url_code
+    object.url_code.nil? ? h.content_tag(:span, 'Source', class: 'not-available', title: 'Sorry, no link to the source repository available.') : h.link_to('Source', object.url_code)
+  end
+
   def dependencies
     object.dependencies.empty? ? "-" : object.dependencies    
   end

@@ -25,5 +25,14 @@
     "visualization_tasks": ["overview", "zoom", "filter"],
     "visualization_types": ["time series"],
     "implementations": ["Highcharts"]
+  },
+  {
+    "name": "Library Release Timeline",
+    "short": "A timeline of all the libraries in the database visualizing their release years.",
+    "description": "This scenario shows how to fetch JSON data using jQuery. It fetches a JSON containing all the libraries data. Visualize the release dates in a timeline and show more details about each library on demand.",
+    "data_types": ["Temporal"],
+    "visualization_tasks": ["overview", "details-on-demand"],
+    "visualization_types": ["timeline"],
+    "implementations": ["Highcharts"]
   }
 ]

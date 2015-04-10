@@ -3,6 +3,8 @@ class CreateLibraries < ActiveRecord::Migration
     create_table :libraries do |t|
       t.string :name, null: false
       t.string :url, null: false
+      t.string :url_code
+      t.string :url_docs
       t.string :current_version
       t.string :image_url
       t.text :short

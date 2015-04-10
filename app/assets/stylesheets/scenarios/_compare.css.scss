@@ -46,6 +46,17 @@ body[data-controller=scenarios][data-action=compare] {
 
   .scenario-container {
 
+    .scenario-tag {
+      display: inline-block;
+      height: 49px;
+      padding: 0 15px;
+
+      font-size: 1.6em;
+      font-weight: 200;
+      line-height: 50px;
+      color: lighten($brand-dark, 20%);
+    }
+
   }
 
   .compare-container {

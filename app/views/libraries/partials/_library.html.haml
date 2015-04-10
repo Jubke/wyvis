@@ -10,11 +10,12 @@
       %span Current verison:
       = lib.current_version
   %h1= lib.name
-  %p.lead
-    = link_to lib.url, lib.url, target: "_blank"
+  %p.lead= link_to lib.url, lib.url, target: "_blank"
   %p= lib.description
+  %p.links
+    = lib.link_url_docs
+    = lib.link_url_code
   .vertical-spacer
-
   %dl.dl-horizontal
     %dt Rendered in
     %dd= lib.render_tech
@@ -26,7 +27,8 @@
     %dd= lib.license
     %dt Dependencies
     %dd= lib.dependencies
-  
+  %hr/
+
   %h3 Implemented scenarios
   - if lib.implementations.empty?
     %p.not-available Sorry, there are no scenario implementations with #{lib.name} yet. If you know #{lib.name} and would like to contribute check our link_to contribution page.
