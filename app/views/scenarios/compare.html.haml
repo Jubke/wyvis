@@ -17,6 +17,8 @@
             = select_tag :id, options_from_collection_for_select(implementations, 'id', 'lib_name'), class: 'form-control', prompt: 'Select an implementation', onchange: 'javascript: $( this ).trigger("submit.rails")'
         %button.btn.btn-icon.btn-full-screen
           %span.glyphicon
+        %button.btn.btn-icon.btn-lib-info
+          %span.glyphicon
       .implementation
         .select-notification
           %h2 No implementation seleceted.

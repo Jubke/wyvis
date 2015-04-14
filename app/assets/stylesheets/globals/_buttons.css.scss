@@ -2,25 +2,11 @@
   border-radius: 50%;
 }
 
-#toggle-pause {
-  span {
-    @extend .glyphicon-play;
-    color: $brand-info;
-  }
-
-  &.active {
-    span {
-      @extend .glyphicon-pause;
-      color: $brand-danger;
-    }
-  }
-}
-
-.btn-icon {
+.btn-icon, .btn-icon:focus{
   background-color: transparent;
   color: #fff;
 
-  &:hover, &:focus {
+  &:hover, , &.active {
     background-color: transparent;
     color: $brand-info;
   }

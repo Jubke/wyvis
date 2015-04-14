@@ -15,11 +15,11 @@ class LibraryDecorator < Draper::Decorator
   end
 
   def link_url_docs
-    object.url_docs.nil? ? h.content_tag(:span, 'Documentation', class: 'not-available', title: 'Sorry, no link to the documentation available.') : h.link_to('Documentation', object.url_docs)
+    object.url_docs.nil? ? h.content_tag(:span, 'Documentation', class: 'not-available', title: 'Sorry, no link to the documentation available.') : h.link_to('Documentation', object.url_docs, target: '_blank')
   end
 
   def link_url_code
-    object.url_code.nil? ? h.content_tag(:span, 'Source', class: 'not-available', title: 'Sorry, no link to the source repository available.') : h.link_to('Source', object.url_code)
+    object.url_code.nil? ? h.content_tag(:span, 'Repository', class: 'not-available', title: 'Sorry, no link to the source repository available.') : h.link_to('Repository', object.url_code, target: '_blank')
   end
 
   def dependencies
@@ -35,11 +35,27 @@ class LibraryDecorator < Draper::Decorator
   end
 
   def latest_release
-    object.latest_release.nil? ? "-" : object.latest_release
+    if object.latest_release.nil? 
+      return "-"
+    else
+      if(object.latest_release.month == 01 && object.latest_release.day == 01)
+        return object.latest_release.year
+      else
+        return object.latest_release.nil? ? "-" : h.raw(h.time_ago_in_words(object.latest_release) +  ' ago,<br/>on ' + object.latest_release.readable_inspect)
+      end
+    end
+  end
+
+  def repo_created_at
+    object.repo_created_at.nil? ? "-" : h.raw(h.time_ago_in_words(object.repo_created_at) +  ' ago,<br/>on ' + object.repo_created_at.readable_inspect)
+  end
+
+  def repo_pushed_at
+    object.repo_pushed_at.nil? ? "-" : h.raw(h.time_ago_in_words(object.repo_pushed_at) +  ' ago,<br/>on ' + object.repo_pushed_at.readable_inspect)
   end
 
   def first_release
-    object.first_release.nil? ? "-" : object.first_release
+    object.first_release.nil? ? "-" : object.first_release.year
   end
 
   def image
@@ -58,5 +74,21 @@ class LibraryDecorator < Draper::Decorator
     if object.implementations.length > 0
       h.content_tag(:span, h.pluralize(object.implementations.length, "implementation"), class: 'badge')
     end    
+  end
+
+  def repo_watchers_count
+    (object.repo_watchers_count.nil?) ? nil : h.content_tag(:span, h.pluralize(object.repo_watchers_count, "watcher"), class: 'count')
+  end
+
+  def repo_stargazers_count
+    (object.repo_stargazers_count.nil?) ? nil : h.content_tag(:span, h.pluralize(object.repo_stargazers_count, "star"), class: 'count')
+  end
+
+  def repo_forks_count
+    (object.repo_forks_count.nil?) ? nil : h.content_tag(:span, h.pluralize(object.repo_forks_count, "fork"), class: 'count')
+  end
+
+  def repo_open_issues
+    (object.repo_open_issues.nil?) ? nil : h.content_tag(:span, h.pluralize(object.repo_open_issues, "open issue"), class: 'count')
   end
 end

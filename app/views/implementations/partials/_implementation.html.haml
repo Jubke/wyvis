@@ -1,4 +1,6 @@
 = content_tag 'div', class: 'implementation', id: 'implementation-' + implementation.id.to_s, data: {implementation: implementation.json, scenario: implementation.scenario.json, library: implementation.library} do
+  .library-container
+    = render partial: 'libraries/partials/library', object: implementation.library.decorate, as: :lib
   .row.vis-row
     .vis-wrapper
       %iframe{id: 'frame-' + implementation.id.to_s, src: frame_path(scenario, implementation), sandbox: 'allow-scripts allow-same-origin'}

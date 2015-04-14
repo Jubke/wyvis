@@ -105,20 +105,31 @@ body[data-controller=scenarios][data-action=compare] {
         left: 100%;
         right: -50%;
       }
+
+      .library-container {
+        left: 100%;
+        border-left: 1px solid #eee;
+
+        &.show {
+          left: 0;
+        }
+      }
     }
 
     .top-controls {
       @extend .clearfix;
       display: block;
       height: 50px;
-  
-      .btn-full-screen {
+
+      .btn-icon {
         float: right;
         
         @include box-sizing(border-box);
         height: 100%;
         padding: 5px 20px;
+      }
   
+      .btn-full-screen {  
         span {
           @extend .glyphicon-resize-full;
         }
@@ -127,7 +138,15 @@ body[data-controller=scenarios][data-action=compare] {
           @extend .glyphicon-resize-small;
         }
       }
-  
+
+      .btn-lib-info {
+        span {
+          @extend .glyphicon-info-sign;
+        }
+
+        &.active span {
+        }
+      }
       
     }
   }
@@ -143,6 +162,33 @@ body[data-controller=scenarios][data-action=compare] {
 
     .row {
       margin: 0;      
+    }
+
+    .library-container {
+      @include position(absolute, 0 null null -100%);
+      @include transition(all 0.5s ease);
+      z-index: 50;
+      
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding: 40px;
+      
+      color: $brand-dark;
+      background-color: rgba(#fff,0.95);
+
+      &.show {
+        left: 0;
+      }
+
+      .details-container {
+        @extend %max-1080;
+
+        .versions {
+          color: $brand-dark;
+        }
+      }
     }
 
     .vis-row {
@@ -185,6 +231,20 @@ body[data-controller=scenarios][data-action=compare] {
               height: 4px;
               border-radius: 2px;
               background-color: $brand-info;
+            }
+          }
+        }
+
+        #toggle-pause {
+          span {
+            @extend .glyphicon-play;
+            color: $brand-info;
+          }
+
+          &.active {
+            span {
+              @extend .glyphicon-pause;
+              color: $brand-danger;
             }
           }
         }

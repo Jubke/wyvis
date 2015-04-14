@@ -19,14 +19,14 @@ libraries.each do |lib|
     :url_docs        => lib['url_docs'],
     :current_version => lib['current_version'],
     :image_url       => lib['image_url'],
-    :short           => lib['best_title'],
+    # :short           => lib['best_title'],
     :web_standard    => lib['web_standards'],
     :render_tech     => lib['render_tech'],
     :dependencies    => lib['dependencies'],
     :license         => lib['license'],
     :support         => lib['support'],
-    :first_release   => lib['first_release'],
-    :latest_release  => lib['latest_release'],
+    :first_release   => (lib['first_release'].nil?) ? nil : Date.new(lib['first_release']),
+    :latest_release  => (lib['latest_release'].nil?) ? nil : Date.new(lib['latest_release']),
     :meta_tags       => lib['meta_tags'],
     :description     => lib['description']
   )

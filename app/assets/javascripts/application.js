@@ -18,6 +18,7 @@
 //= require chance/chance
 //= require colorbrewer2/colorbrewer
 //= require moment/moment
+//= require d3/d3
 //= require ace-builds/src-min-noconflict/ace
 //= require ace-builds/src-min-noconflict/worker-javascript
 //= require ace-builds/src-min-noconflict/theme-chrome

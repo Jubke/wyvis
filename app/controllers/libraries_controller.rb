@@ -24,6 +24,16 @@ class LibrariesController < ApplicationController
   def edit
   end
 
+  def participation
+    respond_to do |f|
+      f.js do
+        json = library.repo_participation_stats.to_json
+        render object: library, locals: {:json => json}
+      end
+        
+    end
+  end
+
   # POST /libraries
   def create
     if library.save

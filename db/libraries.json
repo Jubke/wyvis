@@ -1977,7 +1977,7 @@
     "dependencies": "zRender",
     "license": "MIT License",
     "support": "All modern web and mobile browsers, including IE6+",
-    "first_release": "2013-06-03",
+    "first_release": 2013,
     "latest_release": 2015,
     "meta_tags": null,
     "description": "ECharts is a comprehensive charting library offering a painless way of adding interactive charts to your commercial products. On the foundation of ZRender-based (a whole new lightweight canvas library) coordinate system, legend, tooltip, toolbox and other basic components, ECharts currently supports line, column, scatter, pie, radar, candlestick, chord, gauge, funnel, map and force-directed chart types, many of these can be combined in one chart.",

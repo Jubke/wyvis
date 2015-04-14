@@ -59,6 +59,14 @@ App.shared.initDetailsView = function () {
 
     that.addClass("active");
     lib.addClass("active");
+
+    if( lib.find( ".participation-graph" ).html() === "" ) {
+      $.ajax({
+        url: "/libraries/participation/" + lib.data("lib") + ".js",
+        accepts: "script",
+        dataType: "script", 
+      });
+    }
   }
 };
 
