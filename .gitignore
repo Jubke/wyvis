@@ -45,5 +45,5 @@ package.json
 
 # used to build database
 /db/fetch*.rb
-/db/lib_reults.json
-/db/tax_reults.json
+/db/lib_results.json
+/db/tax_results.json
