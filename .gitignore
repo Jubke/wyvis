@@ -32,8 +32,18 @@ config/local_env.yml
 #*.bowerrc
 #bower.json
 
+# dev tool files
 *.codekit
-
 *.sublime-project
-
 *.sublime-workspace
+Guardfile
+Procfile
+
+# Heroku Files
+package.json
+.buildpacks
+
+# used to build database
+/db/fetch*.rb
+/db/lib_reults.json
+/db/tax_reults.json
