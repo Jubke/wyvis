@@ -1,6 +1,14 @@
 # eeovis
-A little project to enable comparison of different visualization frameworks
-# License
 
-# Contribute
+A project to enable the evaluation of different visualization libraries.
+
+## Libraries
+
+## Scenarios
+
+## Implementations
+
+## License
+
+## Contribute
 

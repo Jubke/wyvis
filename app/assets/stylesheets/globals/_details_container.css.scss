@@ -20,32 +20,121 @@
     left: 100%;
     width: 100%;
     opacity: 0;
-    padding: 0 40px;
-    
-    @include transition(all 0.5s ease);
 
+    @include transition(all 0.5s ease);
+    
     &.active {
       opacity: 1;
       left: 0%;
     }
+  }
+}
 
-    img {
-      max-width: 100%;
-      max-height: 300px;
+.details-container {
+  padding: 0 40px;
+  
+  img {
+    max-width: 100%;
+    max-height: 300px;
+  }
+
+  .links {
+    border-bottom: 1px solid $gray-lighter;
+    // border-top: 1px solid $gray-lighter;
+
+    a {
+      // font-size: 1.1em;
+      // font-weight: 200;
+      padding: 0 15px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &.details-container-library {
+    .versions {          
+      font-size: 0.8em;
+      color: lighten($gray-light, 30%);
+      margin-bottom: 0;
+
+      &:hover {
+        color: $brand-dark;
+      }
+      
+      th {
+        padding: 0 5px;
+        border-bottom: none;
+      }
+
+      tr {
+      }
+
+      td {
+        padding: 2px 5px 0px 5px;
+      }
     }
 
-    .links {
-      border-bottom: 1px solid $gray-lighter;
-      // border-top: 1px solid $gray-lighter;
+    .stat {
+      display: inline-block;
+      width: 24%;
+      span.count {
+        display: inline-block;
+        padding-left: 3px;
+      }
+    }
 
-      a {
-        // font-size: 1.1em;
-        // font-weight: 200;
-        padding: 0 15px;
+    .participation-graph {
+      width: 100%;
+      height: 100px;
 
-        &:first-child {
-          padding-left: 0;
+      svg {
+        .line {
+          stroke: $brand-info;
+          fill: none;
         }
+
+        .mark {
+          fill: transparent;
+          stroke-width: 0;
+          stroke: $brand-info;
+
+          
+          &:hover {
+            .mark-text {
+              fill: $brand-info;
+            }
+            
+            circle {
+              stroke-width: 1px;
+              fill: #fff;
+            }
+          }
+        }
+
+        .mark-text {
+          fill: transparent;
+          font-size: 1.3em;
+          // font-weight: 600;
+
+          &:hover {
+          }
+        }
+
+        .axis {
+          font-size: 0.7em;
+          fill: $brand-dark;
+
+          .domain {
+            fill: none;
+            stroke: none;
+            stroke-width: 1px;
+            shape-rendering: crispEdges;
+          }
+        }
+
+
       }
     }
   }

@@ -1,14 +1,20 @@
-.details-container.library-container{id: lib.transliterate_name}
-  %ul.versions
-    %li
-      %span First released:
-      = lib.first_release
-    %li
-      %span Latest release:
-      = lib.latest_release
-    %li
-      %span Current verison:
-      = lib.current_version
+.details-container.details-container-library{id: lib.transliterate_name, data: {lib: lib.id}}
+  %table.table.table-condensed.versions
+    %thead
+      %tr
+        %th First released:
+        %th Repo creation:
+        %th Latest release:
+        %th Current version:
+        %th Latest commit:
+    %tbody
+      %tr
+        %td= lib.first_release
+        %td= lib.repo_created_at
+        %td= lib.latest_release
+        %td= lib.current_version || "-"
+        %td= lib.repo_pushed_at
+
   %h1= lib.name
   %p.lead= link_to lib.url, lib.url, target: "_blank"
   %p= lib.description
@@ -28,6 +34,37 @@
     %dt Dependencies
     %dd= lib.dependencies
   %hr/
+
+  %h3 Project Activity
+  - if lib.has_github_repo
+    .stat
+      %span.glyphicon.glyphicon-eye-open
+      = lib.repo_watchers_count
+    .stat
+      %span.glyphicon.glyphicon-star
+      = lib.repo_stargazers_count
+    .stat
+      %span.glyphicon.glyphicon-duplicate
+      = lib.repo_forks_count
+    .stat
+      %span.glyphicon.glyphicon-exclamation-sign
+      = lib.repo_open_issues
+    .participation-graph
+    .p.lead 
+      commits/week 
+      %small - one year history
+
+  - else 
+    %p.not-available 
+      Sorry, there are no statistics for #{lib.name} available. Currently only #{link_to 'Github', 'http://github.com'} hosted projects support statistics.
+  %hr/
+
+  %h3 Source files
+  %p Currently inclued source files for this library
+  - lib.resources.where(content_type: 'javascript').each do |r|
+    = link_to r.url  
+  - lib.resources.where(content_type: 'css').each do |r|
+    = link_to r.url
 
   %h3 Implemented scenarios
   - if lib.implementations.empty?

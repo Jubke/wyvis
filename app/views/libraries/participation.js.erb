@@ -1,0 +1,95 @@
+;(function (window, $) {
+
+  var $target = $( "#<%= library.transliterate_name %> .participation-graph" ),
+      data = <%= json.html_safe %>;
+
+  // calculate dates
+  $.each(data, function (key, value) {
+    for(var i = value.length - 1; i >= 0; i--) {
+      var date = moment().subtract( 52 - i,"weeks").valueOf();
+      value[i] = {count: value[i], date: date};
+    }
+  });
+
+  // set up margins
+  var margin = {top: 25, right: 10, bottom: 25, left: 10},
+      width = $target.width() - margin.left - margin.right,
+      height = 100 - margin.top - margin.bottom;
+
+  // scales
+  var x = d3.time.scale()
+      .range([0, width])
+      .domain(d3.extent(data.all, function(d) { return d.date; }));
+
+  var y = d3.scale.linear()
+      .range([height, 0])
+      .domain(d3.extent(data.all, function(d) { return d.count; }));
+
+  // prepare axis objects
+  var x_axis_helper = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+
+  var y_axis_helper = d3.svg.axis()
+      .scale(y)
+      .orient("left");
+
+  // function to draw the line
+  var line = d3.svg.line()
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.count); });
+
+  // setup svg container
+  var svg = d3.select("#<%= library.transliterate_name %> .participation-graph")
+        .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  // prepare groups for axis
+  var x_axis = svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(x_axis_helper);
+
+  // var y_axis = svg.append("g")
+  //       .attr("class", "y axis")
+  //       .call(y_axis_helper);
+
+  // create a path to represent the data as a line
+  var path = svg.append("g")
+        .attr("class", "path");
+
+      path.append("path")
+        .datum(data.all)
+        .attr("d", line)
+        .attr("class", "all line");
+
+      // path.append("path")
+      //   .datum(data.owner)
+      //   .attr("d", line)
+      //   .attr("class", "owner line");
+
+  var marks = path.append("g")
+          .attr("class", "marks")
+
+      marks.selectAll("circle")
+          .data(data.all).enter()
+        .append("g")
+          .attr("class", "mark")
+        .append("circle")
+          .attr("cx", function(d){return x(d.date);})
+          .attr("cy", function(d){return y(d.count);})
+          .attr("r", "4px");
+
+      marks.selectAll(".mark")
+        .append("text")
+          .attr("class", "mark-text")
+          .attr("x", function(d){return x(d.date);})
+          .attr("y", -5)
+          .attr("text-anchor", "middle")
+          .text(function(d){return d.count;});
+        
+
+})(window, jQuery);

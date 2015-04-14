@@ -38,6 +38,8 @@ gem 'decent_exposure'
 gem 'metainspector'
 # Handle model attachment file uploads
 gem 'paperclip', "~> 4.2"
+# github api wrapper
+gem 'octokit'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

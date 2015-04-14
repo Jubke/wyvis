@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :libraries
 
+  get 'libraries/participation/:id' => 'libraries#participation', as: :library_participation
+
   resources :scenarios do
     resources :implementations
   end

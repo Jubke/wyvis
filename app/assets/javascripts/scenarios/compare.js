@@ -8,6 +8,7 @@ App.scenarios.compare = function() {
   // initialize full-screen toggle
   var container = $( ".implementation-container" );
   container.delegate(".top-controls .btn-full-screen", "click", toggleFullScreen);
+  container.delegate(".top-controls .btn-lib-info", "click", toggleLibInfo);
 
   // initialize scenario select
   $("form#form-scenario-select").on('change', function() {
@@ -15,7 +16,7 @@ App.scenarios.compare = function() {
     window.location.replace("/scenarios/" + id + "/compare");
   });
 
-  // initialize selectors
+  // initialize selector links
   $("a.impl-link").on('click', selectImplementation);
 
   /**
@@ -27,6 +28,21 @@ App.scenarios.compare = function() {
     $( e.currentTarget ).toggleClass("active");
     $( e.delegateTarget ).toggleClass("full-screen");
     container.not(e.delegateTarget).toggleClass("not-full-screen");
+  }
+
+  function toggleLibInfo(e) {
+    var $delegate = $(e.delegateTarget);
+
+    $( e.currentTarget ).toggleClass("active");
+    $delegate.find( ".library-container" ).toggleClass("show");
+
+    if( $delegate.find( ".library-container .participation-graph" ).html() === "" ) {
+      $.ajax({
+        url: "/libraries/participation/" + $delegate.find( ".details-container-library" ).data("lib") + ".js",
+        accepts: "script",
+        dataType: "script", 
+      });
+    }
   }
 
   /**

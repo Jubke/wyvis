@@ -207,6 +207,8 @@ GEM
     notiffany (0.0.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    octokit (3.8.0)
+      sawyer (~> 0.6.0, >= 0.5.3)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -302,6 +304,9 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    sawyer (0.6.0)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -376,6 +381,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   launchy
   metainspector
+  octokit
   paperclip (~> 4.2)
   pg
   quiet_assets
