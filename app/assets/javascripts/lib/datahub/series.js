@@ -11,7 +11,7 @@
     options = options || {};
 
     this.datahub = datahub;
-    this.name = options.name || "";
+    this.name = options.name || chance.guid();
     this.data = options.data || [];
     this.tweak = options.tweak || {};
 
@@ -20,7 +20,7 @@
     this.intervalReference = null;
 
     if (this.interval) {
-      this.setInterval(this.timeout);
+      datahub.addSchedule(this.timeout, [this.name]);
     }
   }
 

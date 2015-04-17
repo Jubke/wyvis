@@ -19,6 +19,12 @@
     this.mode = undefined;
 
     this.interval = 0;
+    this.schedules = {
+      timeouts: [],
+      refs: [],
+      running: 0,
+      getID: 1
+    }; 
     this.initSeries(series);
   }
   
@@ -52,6 +58,7 @@
           this.addSeries(series[i]);
 
         }
+
       }
     }
   };
@@ -235,11 +242,41 @@
   };
 
   DataHub.prototype.toggleInterval = function(filter) {
-    if (this.interval > 0) {
-      this.clearInterval(filter);
+    if (this.schedules.running > 0) {
+      this.callSchedule("stop", filter);
     } else {
-      this.setInterval(filter);
+      this.callSchedule("start", filter);
     }
+  };
+
+  DataHub.prototype.addSchedule = function(timeout, filter) {
+    timeout = timeout || 1000;
+    var schedule;
+
+    if (this.schedules.timeouts instanceof Array && ($.inArray(timeout, this.schedules.timeouts) >= 0) ) {
+
+      schedule = this.schedules.refs.filter(function(ele) { return (ele.timeout = timeout); })[0];
+
+        schedule.filter = schedule.filter.concat(filter);
+
+    } else {
+
+      schedule = new DataHub.Schedule(this, timeout, filter);
+      this.schedules.refs.push(schedule);
+      schedule.start();
+    }
+  };
+
+  DataHub.prototype.callSchedule = function(command, filter) {
+    for (var i = this.schedules.refs.length - 1; i >= 0; i--) {
+      if (filter === undefined || 
+          this.schedules.refs[i].ID === filter || 
+          $.inArray(this.schedules.refs[i].ID,filter) > -1 ) {
+
+        this.schedules.refs[i][command]();
+
+      }
+    };
   };
 
   //*******************
