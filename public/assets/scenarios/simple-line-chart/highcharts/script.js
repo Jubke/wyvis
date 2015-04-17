@@ -26,7 +26,7 @@ var draw = function () {
     series.addPoint(data_point, true, shift);
   }
 
-  // call update on the new.data event
+  // call update on the the newPoint event
   $( datahub ).on("newPoint", function (e, data) {
     update(data);
   });

@@ -38,7 +38,7 @@ var draw = function () {
       valueSuffix: ' mol',
       pointFormat: 'sample: <b>{series.name}</b><br/>' +
                    'weight: <b>{point.y}</b><br/>' +
-                   'experiment: <b>{point.experiment}</b><br/>' +
+                   'experiment: <b>{point.experiment_id}</b><br/>' +
                    'subsatnce: <b>{point.substance}</b>'
     }
   });

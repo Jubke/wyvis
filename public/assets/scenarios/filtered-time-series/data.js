@@ -23,78 +23,33 @@ var datahub = (function(DataHub){
     // 5% chance to switch experiment
     experiment_id: function(pre) {
       return chance.weighted([pre,chance.pick(["ex-4389","ex-2035"])],[90,10]);
-      }
+    }
   };
 
   // the basic structure & initial values
   // 4 series, random weight, two possible experiments
-  // all initialised with our template as tweak
+  // all initialised with our template as tweak 
   datahub = new DataHub([
     {
-      name: "sample_1",
+      name: "sample",
       tweak: template,
+      copies: 3,
       data: [
         {
-          sample_id: "00123978",
-          substance: "C14H9BrF3NO",
-          date: +moment(),
-          weight: chance.integer({min: 7, max: 333}),
-          experiment_id: chance.pick(["ex-4389","ex-2035"])
+          sample_id: function() { return chance.guid(); },
+          substance: function() { return chance.pick(["C14H9BrF3NO","C15H22O5S"]); },
+          date: function() { return +moment(); },
+          weight: function() { return chance.integer({ min: 7, max: 333}); },
+          experiment_id: function() { return chance.pick(["ex-4389","ex-2035"]); },
         }
       ]
-    },{
-      name: "sample_2",
-      tweak: template,
-      data: [
-        {
-          sample_id: "00219383",
-          substance: "C15H22O5S",
-          date: +moment(),
-          weight: chance.integer({min: 7, max: 333}),
-          experiment_id: chance.pick(["ex-4389","ex-2035"])
-        }
-      ],
-    },{
-      name: "sample_3",
-      tweak: template,
-      data: [
-        {
-          sample_id: "00023455",
-          substance: "C15H22O5S",
-          date: +moment(),
-          weight: chance.integer({min: 7, max: 333}),
-          experiment_id: chance.pick(["ex-4389","ex-2035"])
-        }
-      ],
-    },{
-      name: "sample_4",
-      tweak: template,
-      data: [
-        {
-          sample_id: "01328501",
-          substance: "C14H9BrF3NO",
-          date: +moment(),
-          weight: chance.integer({min: 7, max: 333}),
-          experiment_id: chance.pick(["ex-4389","ex-2035"])
-        }
-      ],
     }
   ]);
   
-  // generates 999 new points based on the seed
+  // generates 999 new points each
   // each series now holds 1000 weight measurement points
   datahub.generatePoints(999);
 
   // return the datahub to the global variable
   return datahub;
 })(DataHub);
-
-/**
- * @scenario    Filtered Time Series
- * @tasks       [overview, zoom, filter]
- * @data        [nD/Multidimensional, Temporal]
- * @type        [time series]
- * 
- * @author      Julian Luebke
- * @date        15-03-29
- */

@@ -25,93 +25,6 @@
   }
 
   /**
-   * Recursively generates a new object based on the target
-   * and the specified twaek.
-   * @param  {object} target The initial object that should serve as base.
-   * @param  {object} tweak  The tweak specifies how values of the new object will be generated.
-   * @return {object}        The newly constructed object.
-   */
-  var construct = function(target, tweak) {
-    // is our tweak neither object (, array), nor function?
-    if ( typeof tweak !== 'object' && typeof tweak !== 'function' ) {
-      // then we just return that value
-      return tweak;
-    }
-
-    // is tweak a function?
-    if ( typeof tweak === 'function') {
-      // then we evaluate the function, passing the 
-      // current target, and return the result
-      return tweak(target);
-    }
-
-    // tweak is either array or object
-    // from here on we decide by the type of target
-
-    // is the target an array?
-    if (target instanceof Array) {
-      var new_array = [];
-
-      // if tweak is also an Array and is of length 1,
-      // then that 1 element is passed as tweak 
-      // to each element of the array target
-      if(tweak instanceof Array && tweak.length === 1) {
-        // we recursively call tweak for each element
-        for (var i = target.length - 1; i >= 0; i--) {
-          new_array.unshift( construct(target[i], tweak[0]) );
-        }
-      } 
-      // or tweak is an object, then that object is
-      // passed as tweak to each element of the target array
-      else if (typeof tweak === 'object') {
-        // we recursively call tweak for each element
-        for (var j = target.length - 1; j >= 0; j--) {
-          new_array.unshift( construct(target[j], tweak) );
-        }
-      }
-      // in any other case something went wrong
-      // we just return the previous value
-      else {
-        new_array = target;
-      }
-
-      return new_array;
-    }
-    
-    // if we have reached this point our target
-    // is an object and we can iterate its properties
-    if (typeof target === 'object' && typeof tweak === 'object') {
-      var new_target = {};
-
-      for (var prop in target) {
-        // for each property we check if there
-        // is a tweak defined
-        if (tweak[prop] !== undefined) {
-          // enter recursion if so
-          new_target[prop] = construct(target[prop], tweak[prop]);
-        } 
-        // if no tweak is defined we might have to deep copy
-        else if ( target[prop] instanceof Array ) {
-          // deep copy any arrays without defined tweak
-          new_target[prop] = $.extend(true, [], target[prop]);
-        
-        } else if ( typeof target[prop] === 'object' ) {
-          // deep copy any objects without defined tweak
-          new_target[prop] = $.extend(true, {}, target[prop]);
-        
-        } else {
-          // or pass on any symbols, numbers, strings
-          new_target[prop] = target[prop];
-        }
-      }
-      
-      return new_target;
-   }
-   // I missed a case... lets return
-   return target;
-  };
-
-  /**
    * Returns a deep copy of the data in this series
    * @method getData
    * @memberOf Series
@@ -169,25 +82,25 @@
     numberOfPoints = numberOfPoints || 1;
     var last;
 
-    // loop over da
+    // do numberOfPoints time the
     for (var i = numberOfPoints; i >= 1; i = i - 1) {
       // a generated point is alway based on 
       // the last point in the series
       var point = this.getLastPoint();
 
       // tweak the latest point to generate a new one
-      point = construct(point, this.tweak);
+      point = this.datahub.construct(point, this.tweak);
       
       // add the point to the series
       this.data.push(point);
 
       // update last and fire 'newPoint' event
       last = this.getLastPoint();
-      $(this.datahub).trigger("newPoint", last);
+      $( this.datahub ).trigger("newPoint", last);
     }
 
     // Fire 'afterPoints' event and return the last point
-    $(this.datahub).trigger("afterPoints", last);
+    $( this.datahub ).trigger("afterPoints", last);
     return last;
   };
 
