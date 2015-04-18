@@ -16,10 +16,13 @@
         %td= lib.repo_pushed_at
 
   %h1= lib.name
-  %p.lead= link_to lib.url, lib.url, target: "_blank"
+  %p.lead
+    = link_to lib.url, lib.url, target: "_blank"
   %p= lib.description
   %p.links
+    %span.glyphicon.glyphicon-book
     = lib.link_url_docs
+    %span.glyphicon.glyphicon-folder-open
     = lib.link_url_code
   .vertical-spacer
   %dl.dl-horizontal
@@ -33,10 +36,14 @@
     %dd= lib.license
     %dt Dependencies
     %dd= lib.dependencies
+  
   %hr/
-
   %h3 Project Activity
   - if lib.has_github_repo
+    .participation-graph
+    .p.lead 
+      commits/week 
+      %small - one year history
     .stat
       %span.glyphicon.glyphicon-eye-open
       = lib.repo_watchers_count
@@ -49,16 +56,12 @@
     .stat
       %span.glyphicon.glyphicon-exclamation-sign
       = lib.repo_open_issues
-    .participation-graph
-    .p.lead 
-      commits/week 
-      %small - one year history
 
   - else 
     %p.not-available 
       Sorry, there are no statistics for #{lib.name} available. Currently only #{link_to 'Github', 'http://github.com'} hosted projects support statistics.
+  
   %hr/
-
   %h3 Source files
   %p Currently inclued source files for this library
   - lib.resources.where(content_type: 'javascript').each do |r|
@@ -66,6 +69,7 @@
   - lib.resources.where(content_type: 'css').each do |r|
     = link_to r.url
 
+  %hr
   %h3 Implemented scenarios
   - if lib.implementations.empty?
     %p.not-available Sorry, there are no scenario implementations with #{lib.name} yet. If you know #{lib.name} and would like to contribute check our link_to contribution page.

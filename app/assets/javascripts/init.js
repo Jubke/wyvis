@@ -37,7 +37,8 @@ App.shared.initDetailsView = function () {
   // initialize affix for side panel with library containers
   $( '#affix' ).height(App.shared.windowHeight() - 100).affix({
     offset: {
-      top: containers.offset().top - 160
+      top: containers.offset().top - 160,
+      bottom: $( "footer" ).outerHeight(true)
     }
   });
 
