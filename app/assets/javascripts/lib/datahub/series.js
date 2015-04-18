@@ -17,7 +17,6 @@
 
     this.timeout = options.timeout;
     this.interval = options.interval || false;
-    this.intervalReference = null;
 
     if (this.interval) {
       datahub.addSchedule(this.timeout, [this.name]);
@@ -104,42 +103,42 @@
     return last;
   };
 
-  /**
-   * Set an interval in which new data points are generated automatically.
-   * @method setInterval
-   * @memberOf Series
-   * @param {integer} interval The timeout in milliseconds.
-   * @return {integer} Returns the timeout that was set
-   */
-  Series.prototype.setInterval = function(timeout) {
-    timeout = timeout || this.timeout || 1000;
+  // /**
+  //  * Set an interval in which new data points are generated automatically.
+  //  * @method setInterval
+  //  * @memberOf Series
+  //  * @param {integer} interval The timeout in milliseconds.
+  //  * @return {integer} Returns the timeout that was set
+  //  */
+  // Series.prototype.setInterval = function(timeout) {
+  //   timeout = timeout || this.timeout || 1000;
 
-    if( this.intervalReference !== null ) {
-      this.clearInterval();
-      this.setInterval(timeout);     
-    } else {
-      var that = this;
-      this.intervalReference = window.setInterval(function() {
-        that.generatePoints();
-      }, timeout);
-      this.timeout = timeout;
-      this.datahub.interval += 1;
-    }
-    return this.intervalReference;
-  };
+  //   if( this.intervalReference !== null ) {
+  //     this.clearInterval();
+  //     this.setInterval(timeout);     
+  //   } else {
+  //     var that = this;
+  //     this.intervalReference = window.setInterval(function() {
+  //       that.generatePoints();
+  //     }, timeout);
+  //     this.timeout = timeout;
+  //     this.datahub.interval += 1;
+  //   }
+  //   return this.intervalReference;
+  // };
 
-  /**
-   * Clears the interval currently set on this series.
-   * @method clearInterval
-   * @memberOf Series
-   */
-  Series.prototype.clearInterval = function() {
-    if(this.intervalReference !== null) {
-      window.clearInterval(this.intervalReference);
-      this.intervalReference = null;
-      this.datahub.interval -= 1;
-    }
-  };
+  // /**
+  //  * Clears the interval currently set on this series.
+  //  * @method clearInterval
+  //  * @memberOf Series
+  //  */
+  // Series.prototype.clearInterval = function() {
+  //   if(this.intervalReference !== null) {
+  //     window.clearInterval(this.intervalReference);
+  //     this.intervalReference = null;
+  //     this.datahub.interval -= 1;
+  //   }
+  // };
 
   /**
    * Returns the timeout set on this series. This does 

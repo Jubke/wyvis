@@ -238,15 +238,7 @@
   };
 
   DataHub.prototype.destroy = function() {
-    this.clearInterval();
-  };
-
-  DataHub.prototype.toggleInterval = function(filter) {
-    if (this.schedules.running > 0) {
-      this.callSchedule("stop", filter);
-    } else {
-      this.callSchedule("start", filter);
-    }
+    this.callSchedule("stop");
   };
 
   DataHub.prototype.addSchedule = function(timeout, filter) {
@@ -257,13 +249,17 @@
 
       schedule = this.schedules.refs.filter(function(ele) { return (ele.timeout = timeout); })[0];
 
-        schedule.filter = schedule.filter.concat(filter);
+      schedule.filter = schedule.filter.concat(filter);
+
+      return schedule.ID;
 
     } else {
 
       schedule = new DataHub.Schedule(this, timeout, filter);
       this.schedules.refs.push(schedule);
       schedule.start();
+
+      return schedule.ID;
     }
   };
 
@@ -278,6 +274,23 @@
       }
     };
   };
+
+  DataHub.prototype.startSchedule = function(timeout, filter) {
+    return this.callSchedule('start', filter);
+  };
+
+  DataHub.prototype.stopSchedule = function(filter) {
+    return this.callSchedule('stop', filter);
+  };
+
+  DataHub.prototype.toggleInterval = function(filter) {
+    if (this.schedules.running > 0) {
+      this.stopSchedule(filter);
+    } else {
+      this.startSchedule(filter);
+    }
+  };
+
 
   //*******************
   //* wrapper methods
@@ -295,14 +308,6 @@
     var points = this.callSeries(filter, 'generatePoints', numberOfPoints);
     $(this).trigger('afterGeneratePoints', points);
     return  points;
-  };
-
-  DataHub.prototype.setInterval = function(timeout, filter) {
-    return this.callSeries(filter, 'setInterval', timeout);
-  };
-
-  DataHub.prototype.clearInterval = function(filter) {
-    return this.callSeries(filter, 'clearInterval');
   };
 
   DataHub.prototype.getTimeout = function(filter) {
