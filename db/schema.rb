@@ -37,10 +37,14 @@ ActiveRecord::Schema.define(version: 20150320193638) do
   create_table "implementations", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.float    "execution_time"
+    t.integer  "execution_count"
+    t.float    "update_time"
+    t.integer  "update_count"
     t.integer  "library_id"
     t.integer  "scenario_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "implementations", ["library_id"], name: "index_implementations_on_library_id", using: :btree

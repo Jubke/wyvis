@@ -101,6 +101,6 @@ scenarios.each do |vt|
   # adding implementations
   vt['implementations'].each do |dt|
     lib = Library.where(name: dt).first
-    new_scenario.implementations.create!(library_id: lib['id'])
+    new_scenario.implementations.create!(library_id: lib['id'], execution_time: 0, execution_count: 0)
   end
 end

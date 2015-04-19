@@ -6,8 +6,10 @@
     .form-group
       = select_tag :id, options_from_collection_for_select(scenarios, 'id', 'name', scenario.id), class: 'form-control'
   = scenario_dec.hash_tags
-  -# %p.lead= scenario.short
-  -# %p= scenario.description
+  %span.pull-right.hint Click to toggle details.
+  .scenario-details
+    %p.lead.short= scenario.short
+    %p.description= scenario.description
 .row.compare-container
   - 2.times do |i|
     .implementation-container{id: 'container-' + i.to_s}

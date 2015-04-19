@@ -37,7 +37,7 @@ class Implementation < ActiveRecord::Base
     paths.each_index do |i|
       paths[i] = paths[i].sub('public', '')
     end
-    return paths 
+    return paths
   end
 
   def json

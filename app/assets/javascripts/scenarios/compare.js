@@ -9,6 +9,8 @@ App.scenarios.compare = function() {
   var container = $( ".implementation-container" );
   container.delegate(".top-controls .btn-full-screen", "click", toggleFullScreen);
   container.delegate(".top-controls .btn-lib-info", "click", toggleLibInfo);
+  
+  $( ".scenario-container" ).click(toggleScenarioDetails);
 
   // initialize scenario select
   $("form#form-scenario-select").on('change', function() {
@@ -42,6 +44,12 @@ App.scenarios.compare = function() {
         accepts: "script",
         dataType: "script", 
       });
+    }
+  }
+
+  function toggleScenarioDetails (e) {
+    if (e.target.nodeName !== "SELECT") {
+      $(".scenario-details").slideToggle();
     }
   }
 

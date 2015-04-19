@@ -45,7 +45,7 @@
     this.editor = this.$code.data("plugin_editor");
 
     // initialize the visualization plugin
-    this.$visuals.frame();
+    this.$visuals.frame(this);
     this.frame = this.$visuals.data("plugin_frame");
 
     // add tabs to editor

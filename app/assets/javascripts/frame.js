@@ -7,12 +7,18 @@
 
 //= require_tree ./lib/datahub
 
+var stats = {beginDraw: 0, endDraw: 0, updates: []};
 
-var setOnLoad = function (argument) {
-  window.hasLoaded = true;
-  draw();
-};
+;(function() {
+  var setOnLoad = function (argument) {
+     window.hasLoaded = true;
+    
+    stats.beginDraw = performance.now();
+    draw();
+    stats.endDraw = performance.now();
+  };
 
-$(document).ready(setOnLoad);
+  $( document ).ready(setOnLoad);
 
-$(document).on("page:load", setOnLoad);
+  $( document ).on("page:load", setOnLoad);
+})();

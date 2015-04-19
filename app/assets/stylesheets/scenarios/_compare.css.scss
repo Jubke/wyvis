@@ -1,7 +1,7 @@
 body[data-controller=scenarios][data-action=compare] {
   
-  background-color: $brand-dark;
-  color: #fff;
+  // background-color: $brand-dark;
+  // color: #fff;
 
   form {
     float: left;
@@ -45,6 +45,10 @@ body[data-controller=scenarios][data-action=compare] {
   }
 
   .scenario-container {
+    background-color: $brand-dark;
+    color: #fff;
+
+    cursor: pointer;
 
     .scenario-tag {
       display: inline-block;
@@ -54,7 +58,31 @@ body[data-controller=scenarios][data-action=compare] {
       font-size: 1.6em;
       font-weight: 200;
       line-height: 50px;
-      color: lighten($brand-dark, 20%);
+      color: lighten($brand-dark, 30%);
+    }
+
+    .hint {
+      padding: 0 40px;
+      line-height: 50px;
+      font-weight: 200;
+      font-size: 2em;
+      color: $brand-dark;
+    }
+    
+    .scenario-details {
+      width: 100%;
+      background-color: #fff;
+      padding: 20px 40px;
+      color: $text-color;
+
+      p {
+        width: 100%;
+        max-width: 650px;
+      }
+    }
+
+    &:hover .hint {
+      color: lighten($brand-dark, 30%);
     }
 
   }
@@ -71,7 +99,7 @@ body[data-controller=scenarios][data-action=compare] {
     width: auto;
     overflow: hidden;
     
-    background-color: $brand-dark;
+    // background-color: $brand-dark;
 
     @include transition(all 0.5s ease-in-out 0.2s);
     
@@ -121,6 +149,9 @@ body[data-controller=scenarios][data-action=compare] {
       display: block;
       height: 50px;
 
+      background-color: $brand-dark;
+      color: #fff;
+
       .btn-icon {
         float: right;
         
@@ -145,6 +176,7 @@ body[data-controller=scenarios][data-action=compare] {
         }
 
         &.active span {
+          // @extend .glyphicon-remove;
         }
       }
       
@@ -214,8 +246,11 @@ body[data-controller=scenarios][data-action=compare] {
     }
 
     .controls-row {
-      height: 50px;
+      height: 47px;
       padding: 5px 33px;
+
+      background-color: $brand-dark;
+      color: #fff;
 
       .controls-wrapper {
         @extend %max-1080;
@@ -248,11 +283,28 @@ body[data-controller=scenarios][data-action=compare] {
             }
           }
         }
+
+        .drawing-stats {
+          height: 34px;
+
+          .time {
+            text-align: right;
+            display: block;
+            line-height: 17px;
+
+            &.avg-exe {
+              color: lighten($brand-dark, 30%);
+            }
+          }
+        }
       }
     }
     
     .code-row {
       height: 50%;
+
+      background-color: $brand-dark;
+      color: #fff;
 
       .code-wrapper {
         @extend %max-1080;
@@ -288,11 +340,11 @@ body[data-controller=scenarios][data-action=compare] {
 
       width: auto;
       padding: 5px 33px;
-      color: lighten($brand-dark, 20%);
+      color: lighten($brand-dark, 30%);
 
       .impl-link {
         display: block;
-        color: lighten($brand-dark, 20%);
+        color: lighten($brand-dark, 30%);
       }
     }
   }

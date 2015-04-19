@@ -10,8 +10,9 @@
   };
 
   // The actual plugin constructor
-  function Frame ( element, options ) {    
+  function Frame ( element, wyvis, options ) {    
     this.$element = $( element );
+    this.wyvis = wyvis;
     this.options = $.extend( {}, defaults, options) ;
 
     this._defaults = defaults;
@@ -43,12 +44,63 @@
     this.$document = $( this.iframeWindow.document );
     this.$contents = this.$iframe.contents();
 
-    // prepare style container
+    // cache container
     this.$styles = this.$contents.find("#styles");
     this.$vis = this.$contents.find("#vis");
+
+    this.updateStats();
   };
 
   // public methods
+  /**
+   * Fetches the stats from the iframe and updates
+   * the values in the user interface
+   */
+  Frame.prototype.setStats = function(exe_time, avg_exe_time) {
+    var $target = this.$element
+                      .closest(".implementation-container")
+                      .find(".drawing-stats");
+
+    // round to two decimals for display
+    exe_time = Math.round(exe_time * 100) / 100;
+    $target.find(".exe.time").html("now executed in " + exe_time + " ms");
+    
+    // set avg if defined
+    if (avg_exe_time) {
+      // round to two decimals for display
+      avg_exe_time = Math.round(avg_exe_time * 100) / 100;
+      $target.find(".avg-exe.time").html("on avg. in " + avg_exe_time + " ms");
+    }
+  };
+
+  Frame.prototype.getExecutionTime = function() {
+    // get the execution time from frame
+    var stats = this.iframeWindow.stats,
+        exe_time = stats.endDraw - stats.beginDraw;
+
+    return exe_time;
+  };
+
+  Frame.prototype.updateStats = function() {
+    var exe_time = this.getExecutionTime();
+    
+    $.ajax({
+      url: "/implementations/" + this.wyvis.implementation.id + "/add_stats",
+      data: {
+        implementation: {
+          new_value: exe_time
+        }
+      },
+      content: "script",
+      method: "PUT",
+      context: this
+    }).success(function (data){
+      var avg_exe_time = data.execution_time;
+      this.setStats(exe_time, avg_exe_time);
+    });
+
+  };
+
   /**
    * Inject css styles into the iframe of the Frame
    * @param  {[type]} styles Styles as pure Text
@@ -72,12 +124,16 @@
     var new_vis = $( "<div id='vis'></div>" );
     this.$vis.replaceWith(new_vis);
     this.$vis = new_vis;
-
-    this.iframeWindow.$(document).off("new.data");
   };
 
   Frame.prototype.callDraw = function () {
+    this.iframeWindow.stats.beginDraw = this.iframeWindow.performance.now();
+    // call draw function in iframe
     this.iframeWindow[this.options.draw_function]();
+    this.iframeWindow.stats.endDraw = this.iframeWindow.performance.now();
+
+    var exe_time = this.getExecutionTime();
+    this.setStats(exe_time);
   };
 
   Frame.prototype.refresh = function () {
@@ -90,11 +146,11 @@
 
   // A really lightweight plugin wrapper around the constructor,
   // preventing against multiple instantiations
-  $.fn[pluginName] = function ( options ) {
+  $.fn[pluginName] = function ( wyvis, options ) {
     return this.each(function () {
       if ( !$.data(this, "plugin_" + pluginName )) {
         $.data( this, "plugin_" + pluginName,
-          new Frame( this, options ));
+          new Frame( this, wyvis, options ));
       }
     });
   };
