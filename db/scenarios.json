@@ -27,12 +27,12 @@
     "implementations": ["Highcharts"]
   },
   {
-    "name": "Library Release Timeline",
-    "short": "A timeline of all the libraries in the database visualizing their release years.",
-    "description": "This scenario shows how to fetch JSON data using jQuery. It fetches a JSON containing all the libraries data. Visualize the release dates in a timeline and show more details about each library on demand.",
-    "data_types": ["Temporal"],
-    "visualization_tasks": ["overview", "details-on-demand"],
-    "visualization_types": ["timeline"],
-    "implementations": ["Highcharts"]
+    "name": "Browsing Historical Data",
+    "short": "Make large historic data sets filter- and browsable.",
+    "description": "What is to be visualized? Sensors in the reaction chamber deliver two synced data streams (temperature and pressure) measured every 10 seconds. Reactions in the chamber last from several minutes to hours or even days. Data sets of up several 100,000 data points might be recorded. Each data point consists of the above two values and a timestamp. When data sets are later analyzed, an overview of all data sets is required. For each set abnormal behavior has to be identified. For that data sets sometimes need to be analyzed on the most detailed level of several seconds.",
+    "data_types": ["Temporal", "nD/Multidimensional"],
+    "visualization_tasks": ["overview", "zoom", "filter", "history"],
+    "visualization_types": ["time series", "line chart"],
+    "implementations": ["Highcharts", "Fusioncharts", "AMCharts", "CanvasJS", "D3"]
   }
 ]

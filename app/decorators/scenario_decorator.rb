@@ -14,15 +14,15 @@ class ScenarioDecorator < Draper::Decorator
     tags = ""
     object.data_types.each do |d|
       name = d.name
-      tags = tags + h.content_tag( :span, '#' + name, class: 'scenario-tag data-type')
+      tags = tags + h.content_tag( :span, '#' + name, class: 'badge scenario-tag data-type')
     end
     object.visualization_types.each do |d|
       name = d.name
-      tags = tags + h.content_tag( :span, '#' + name, class: 'scenario-tag vis-type')
+      tags = tags + h.content_tag( :span, '#' + name, class: 'badge scenario-tag vis-type')
     end
     object.visualization_tasks.each do |d|
       name = d.name
-      tags = tags + h.content_tag( :span, '#' + name, class: 'scenario-tag task')
+      tags = tags + h.content_tag( :span, '#' + name, class: 'badge scenario-tag task')
     end
     return tags.html_safe
   end

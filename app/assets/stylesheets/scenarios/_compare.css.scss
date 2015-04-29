@@ -59,6 +59,7 @@ body[data-controller=scenarios][data-action=compare] {
       font-weight: 200;
       line-height: 50px;
       color: lighten($brand-dark, 30%);
+      background-color: transparent;
     }
 
     .hint {
@@ -171,6 +172,8 @@ body[data-controller=scenarios][data-action=compare] {
       }
 
       .btn-lib-info {
+        display: none;
+
         span {
           @extend .glyphicon-info-sign;
         }
@@ -180,6 +183,12 @@ body[data-controller=scenarios][data-action=compare] {
         }
       }
       
+    }
+
+    &.implementation-loaded {
+      .btn-lib-info {
+        display: block;
+      }
     }
   }
 

@@ -1,0 +1,36 @@
+svg {
+  font: 10px sans-serif;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2px;
+  clip-path: url(#clip);
+}
+
+.temp.line {
+  stroke: steelblue;
+}
+
+.pres.line {
+  stroke: orange;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+rect.pane {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}

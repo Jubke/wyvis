@@ -21,7 +21,7 @@ App.shared.initLiveSearch = function () {
     attributeToSearch: false,
     selectorInputSearch: "#search-query",
     minCharacters: 1,
-    typeDelay: 200,
+    typeDelay: 100,
   });
 };
 

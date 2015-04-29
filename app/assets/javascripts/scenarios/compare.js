@@ -5,26 +5,26 @@ App.scenarios.compare = function() {
   resizeFullHeight();
   $( window ).on("resize", resizeFullHeight);
 
-  // initialize full-screen toggle
   var container = $( ".implementation-container" );
+  
+  // initialize full-screen toggle
   container.delegate(".top-controls .btn-full-screen", "click", toggleFullScreen);
+
+  // initialize lib-info toggle
   container.delegate(".top-controls .btn-lib-info", "click", toggleLibInfo);
   
+  // initialize scenario details
   $( ".scenario-container" ).click(toggleScenarioDetails);
 
   // initialize scenario select
-  $("form#form-scenario-select").on('change', function() {
-    var id = $("form#form-scenario-select select").val();
-    window.location.replace("/scenarios/" + id + "/compare");
-  });
+  $("form#form-scenario-select").on('change', loadScenario);
 
   // initialize selector links
-  $("a.impl-link").on('click', selectImplementation);
+  $("a.impl-link").click(selectImplementation);
 
   /**
    * Toggles the full-screen mode for an implementation container.
-   * @param  {Object} e event that caused the action
-   * @return {undefined}
+   * @param  {object} e jQuery event that triggered the handler.
    */
   function toggleFullScreen(e) {
     $( e.currentTarget ).toggleClass("active");
@@ -32,6 +32,10 @@ App.scenarios.compare = function() {
     container.not(e.delegateTarget).toggleClass("not-full-screen");
   }
 
+  /**
+   * Toggles the library information overlay.
+   * @param  {object} e jQuery event that triggered the handler.
+   */
   function toggleLibInfo(e) {
     var $delegate = $(e.delegateTarget);
 
@@ -47,6 +51,10 @@ App.scenarios.compare = function() {
     }
   }
 
+  /**
+   * Toggles the scenario details.
+   * @param  {object} e jQuery event that triggered the handler.
+   */
   function toggleScenarioDetails (e) {
     if (e.target.nodeName !== "SELECT") {
       $(".scenario-details").slideToggle();
@@ -54,16 +62,26 @@ App.scenarios.compare = function() {
   }
 
   /**
-   * Resizes the .compare-container element on a window resize.
-   * @return {undefined}
+   * Resizes the .compare-container element on a 
+   * window resize to fill the current screen height.
    */
   function resizeFullHeight() {
     $( ".compare-container" ).height( $( window ).height() - $( ".navbar" ).height() - $( "select#form-scenario-select" ).height() );
   }
 
+  function loadScenario() {    
+    var id = $("form#form-scenario-select select").val();
+    window.location.replace("/scenarios/" + id + "/compare");
+  }
+
+  /**
+   * Sets the implementation in the select element when
+   * a library was loaded from the server.
+   * @param  {object} e jQuery event that triggered the handler. 
+   */
   function selectImplementation (e) {
     var link = $(e.currentTarget),
-        id = link.data("id");
+        id = link.data("id"),
         i = link.data("index");
     $("#container-" + i + " .form-impl-select select" ).val(id);
   }

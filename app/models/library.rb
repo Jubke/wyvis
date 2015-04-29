@@ -38,7 +38,7 @@ class Library < ActiveRecord::Base
 
         self.repo_created_at = repository.created_at
         self.repo_pushed_at = repository.pushed_at
-        self.repo_watchers_count = repository.watchers_count
+        self.repo_watchers_count = repository.subscribers_count
         self.repo_stargazers_count = repository.stargazers_count
         self.repo_forks_count = repository.forks_count
         self.repo_open_issues = repository.open_issues

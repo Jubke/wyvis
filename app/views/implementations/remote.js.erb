@@ -1,2 +1,8 @@
-$( "#container-<%= @index %> .implementation" ).replaceWith("<%= j (render partial: 'implementations/partials/implementation', object: @implementation) %>");
-$( "#container-<%= @index %> .implementation" ).wyvis();
+;(function () {
+  var container =  $( "#container-<%= @index %>");
+
+  container.find( ".implementation" ).replaceWith("<%= j (render partial: 'implementations/partials/implementation', object: @implementation) %>");
+  container.find( ".implementation" )
+           .wyvis();
+  container.addClass("implementation-loaded");
+})();

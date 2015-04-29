@@ -1,0 +1,7 @@
+body[data-controller=scenarios][data-action=index] {
+  .scenario-thumb {
+    .scenario-tag {
+      //@extend .badge;
+    }
+  }
+}

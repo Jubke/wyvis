@@ -7,10 +7,13 @@
   - scenarios.each do |scenario|
     .col-sm-4.col-md-3
       = link_to compare_scenario_path(scenario), class: 'link-thumb' do
-        .thumbnail
+        .thumbnail.scenario-thumb
           .caption
             %h3= scenario.name
             %p= scenario.short
+          .badges
+            = scenario.decorate.hash_tags
+
   -# .col-sm-4.col-md-3
   -#   = link_to new_scenario_path, class: 'link-thumb', title: 'Add a new scenario' do
   -#     .thumbnail.add-item-thumb
